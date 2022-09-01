@@ -24,29 +24,10 @@
 
 		<mt-card :showExtraIcon="true" :extraIcon="extraIcon" :notes="notes" :title="title" :tags="[]" :btnGroup="[]">
 		</mt-card>
-
-		<mt-card :thumb="thumb" :thumbTag="thumbTag" thumbSize="lg" thumbType="square" :ellipsis="1" :title="title"
-			:btnGroup="btnGroup">
-		</mt-card>
-
-		<mt-card :thumb="thumb" :rightText="rightText" :showBottomBadge="true" :bottomBadges="bottomBadges" :tags="[]"
-			:title="title" :btnGroup="[]">
-		</mt-card>
-
-		<mt-card :showCheck="true" :checkItem="checkItem" :showArrow="true" :title="title" :btnGroup="[]" :tags="[]"
-			@click="clickCard">
-		</mt-card>
-
-		<mt-card :title="title" :showSwitch="true" :switchChecked="true" :canSwitch="true" :clickable="true"
-			:btnGroup="[]" :tags="[]" @click="clickCard">
-		</mt-card>
-
-		<mt-card>
-			<template slot="middle">
-				我是自定义卡片哦，啥参数也没有
-			</template>
-		</mt-card>
-
+		
+		<mt-box>
+			<mt-form ref="ocnForm"></mt-form>
+		</mt-box>
 
 	</view>
 </template>

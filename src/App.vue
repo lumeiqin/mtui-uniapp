@@ -13,5 +13,6 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "./static/font/iconfont.css";
 	@import "./components/mt-theme/index.scss"
 </style>
