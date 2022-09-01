@@ -1,0 +1,88 @@
+@import "./common.scss";
+
+.mt-tag {
+  color: #333;
+  background-color: transparent;
+  text-align: center;
+  @include vw(12, font-size);
+  @include vw(10, border-radius);
+  padding: 2px 8px !important;
+  display: inline-block;
+  /* #ifdef H5 */
+  cursor: pointer;
+  /* #endif */
+
+  &--small {
+    transform: scale(0.8);
+    transform-origin: center center;
+  }
+
+
+  &--inverted {
+    padding: 0 5px 0 0;
+    color: #f1f1f1;
+  }
+
+  &--default {
+    color: #333;
+    background-color: #f1f1f1;
+
+    &-inverted {
+      color: #999;
+      background-color: transparent;
+      border: 1px solid #999;
+    }
+  }
+
+  &--primary {
+    color: #1e8bff;
+    background-color: #e9f7ff;
+
+    &-inverted {
+      color: #007aff;
+      background-color: transparent;
+      border: 1px solid #007aff;
+    }
+  }
+
+  &--success {
+    color: #fff;
+    background-color: #4cd964;
+
+    &-inverted {
+      color: #4cd964;
+      background-color: transparent;
+      border: 1px solid #4cd964;
+    }
+  }
+
+  &--warning {
+    color: #ffb53e;
+    background-color: #fff5c9;
+
+    &-inverted {
+      color: #f0ad4e;
+      background-color: transparent;
+      border: 1px solid #f0ad4e;
+    }
+  }
+
+  &--error {
+    color: #fff;
+    background-color: #dd524d;
+
+    &-inverted {
+      color: #dd524d;
+      background-color: transparent;
+      border: 1px solid #dd524d;
+    }
+  }
+
+
+  &--noborder {
+    border: none;
+    padding: 0 0;
+  }
+}
+
+
