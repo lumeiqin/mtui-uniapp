@@ -1,0 +1,27 @@
+@import "./common.scss";
+
+.mt-text {
+  width: 100%;
+  position: relative;
+
+  &-normal {
+    @include font-set(16, 26);
+    @include font-color(title);
+  }
+
+  &-title {
+    @include font-set(18, 32);
+    @include font-color(title);
+    font-weight: 500;
+  }
+
+  &-subtitle {
+    @include font-set(15, 24);
+    @include font-color(subtitle);
+  }
+
+  &-paragraph {
+    @include font-set(14, 22);
+    @include font-color(paragraph);
+  }
+}

@@ -1,0 +1,21 @@
+@import "./common.scss";
+
+.mt-button {
+  width: 100%;
+  @extend %flex-center;
+  border: none;
+
+  &[disabled] {
+    color: rgba(0, 0, 0, .3) !important;
+    background-color: #f7f7f7 !important;
+  }
+
+  &--default {
+    color: #fff;
+    border: none !important;
+  }
+
+  &--hollow {
+    background: #fff;
+  }
+}
