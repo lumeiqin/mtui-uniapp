@@ -30,7 +30,7 @@
 					label: showTitle,
 					value: this.pickerValue,
 					[this.showValue.value]: showTitle,
-					[this.showValue.key]: this.chooseList[this.pickerValue][this.showValue.key]
+					[this.showValue.key]: this.chooseList[this.pickerValue[0]][this.showValue.key]
 				}
 				this.$emit("submit", pickObj);
 				this.close();
@@ -38,7 +38,3 @@
 		}
 	};
 </script>
-
-<style lang="scss" scoped>
-	@import "../common/css/index.scss";
-</style>

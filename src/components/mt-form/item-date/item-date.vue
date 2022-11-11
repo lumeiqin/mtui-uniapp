@@ -4,18 +4,12 @@
 		<ItemBox :data="showItem">
 			<template slot="value">
 				<input :style="textAlign" type="text" disabled :placeholder="pickPlaceholder"
-					:placeholder-style="formUtils.placeholderStyle" 
-					
-					:value="valueShowInput"
+					:placeholder-style="formUtils.placeholderStyle" :value="valueShowInput"
 					@click="openBox('simpleDate')" />
 			</template>
 		</ItemBox>
 
-		<simpleDate ref="simpleDate" 
-			:startDate="showItem.start" 
-			:endDate="showItem.end" 
-			:field="showItem.field"
-			
+		<simpleDate ref="simpleDate" :startDate="showItem.start" :endDate="showItem.end" :field="showItem.field"
 			@submit="handleSubmit($event)" @cancel="changeEvent('')"></simpleDate>
 	</view>
 </template>
@@ -39,7 +33,3 @@
 		}
 	};
 </script>
-
-<style lang="scss" scoped>
-	@import "../common/css/index.scss";
-</style>

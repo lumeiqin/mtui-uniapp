@@ -19,15 +19,32 @@
 			<br>
 		</mt-box>
 
+		<!-- 
 		<mt-card :notes="notes" :title="title" :tags="[]" :btnGroup="btnGroup1"></mt-card>
-
-
 		<mt-card :showExtraIcon="true" :extraIcon="extraIcon" :notes="notes" :title="title" :tags="[]" :btnGroup="[]">
 		</mt-card>
+
+		<mt-grid :col="2"></mt-grid>
+		<mt-grid :col="3"></mt-grid>
+		<mt-grid :col="4"></mt-grid>
+		<mt-grid :col="5"></mt-grid>
+
+		<mt-grid name="title" :col="2" :data="title2" @click="jump"></mt-grid>
+		<mt-grid name="title" :col="3" :data="title3" @click="jump"></mt-grid>
+		<mt-grid name="title" :col="4" :data="title4" @click="jump"></mt-grid>
+		<mt-grid name="title" :col="5" :data="title5" @click="jump"></mt-grid>
+		<mt-grid name="title" :data="titleDiy">
+			<div style="padding: 2.67vw">
+				协议资料
+			</div>
+		</mt-grid>
+
 		
+		
+
 		<mt-box>
 			<mt-form ref="ocnForm"></mt-form>
-		</mt-box>
+		</mt-box> -->
 
 	</view>
 </template>
@@ -37,7 +54,102 @@
 		name: 'examples',
 		data() {
 			return {
-
+				title2: [{
+					icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+					menuName: "测试模块2",
+					children: [{
+						icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+						menuName: "测试模块",
+						url: ""
+					}, {
+						icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+						menuName: "diy模块",
+						type: "diy",
+						url: ""
+					}],
+					url: ""
+				}],
+				title3: [{
+					icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+					menuName: "测试模块3",
+					children: [{
+						icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+						menuName: "测试模块",
+						url: ""
+					}, {
+						icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+						menuName: "diy模块",
+						type: "diy",
+						url: ""
+					}, {
+						icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+						menuName: "测试模块",
+						url: ""
+					}],
+					url: ""
+				}],
+				title4: [{
+					icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+					menuName: "测试模块4",
+					children: [{
+						icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+						menuName: "测试模块",
+						url: ""
+					}, {
+						icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+						menuName: "diy模块",
+						type: "diy",
+						url: ""
+					}, {
+						icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+						menuName: "测试模块",
+						url: ""
+					}, {
+						icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+						menuName: "测试模块",
+						url: ""
+					}],
+					url: ""
+				}],
+				title5: [{
+					icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+					menuName: "测试模块5",
+					children: [{
+						icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+						menuName: "测试模块",
+						url: ""
+					}, {
+						icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+						menuName: "diy模块",
+						type: "diy",
+						url: ""
+					}, {
+						icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+						menuName: "测试模块",
+						url: ""
+					}, {
+						icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+						menuName: "测试模块",
+						url: ""
+					}, {
+						icon: "https://m.firstui.cn/static/images/common/icon_tabbar_3x.png",
+						menuName: "测试模块",
+						url: ""
+					}],
+					url: ""
+				}],
+				titleDiy: [{
+					icon: "https://t11.baidu.com/it/u=2446819114,1498509809&fm=58",
+					menuName: "测试模块",
+					type: "diy",
+					url: ""
+				}],
+				inputData: {
+					type: "ID",
+					text: "房号",
+					value: "occupation",
+					validate: true
+				},
 				title: "江苏省无锡市滨湖区具区路与缘溪道交汇处融创茂内二楼",
 				thumb: "https://s.cn.bing.net/th?id=OIP-C.cT1RA85bYHiJ0erDaDQpiwHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
 				thumbTag: "data:image/png;base64,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",
@@ -105,6 +217,9 @@
 					title: "当前卡片会触发点击事件哦",
 					icon: "none"
 				})
+			},
+			jump(item) {
+				alert(JSON.stringify(item))
 			}
 		}
 	}
@@ -114,6 +229,6 @@
 	.index {
 		width: 100%;
 		min-height: 100vh;
-		background: #f5f5f5;
+		background: #fff;
 	}
 </style>

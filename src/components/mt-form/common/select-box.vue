@@ -1,5 +1,5 @@
 <template>
-	<uni-popup ref="popup" type="bottom">
+	<mt-popup ref="popup" type="bottom">
 		<view class="select-box">
 			<view class="select-box-header" @touchmove.stop.prevent catchtouchmove="true">
 				<view class="select-box-header-btn" @click="_onCancel">取消</view>
@@ -10,7 +10,7 @@
 				<slot name="picker"></slot>
 			</view>
 		</view>
-	</uni-popup>
+	</mt-popup>
 </template>
 
 <script>
@@ -29,16 +29,12 @@
 			close() {
 				this.$refs.popup.close();
 			},
-			_onCancel(from) {
-				this.$emit("cancel", from)
+			_onCancel() {
+				this.$emit("cancel")
 			},
-			_onSubmit(e) {
-				this.$emit("submit", e)
+			_onSubmit() {
+				this.$emit("submit")
 			}
 		}
 	};
 </script>
-
-<style lang="scss" scoped>
-	@import "./css/index.scss";
-</style>

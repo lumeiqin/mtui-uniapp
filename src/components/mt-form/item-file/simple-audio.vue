@@ -215,8 +215,6 @@
 </script>
 
 <style lang="scss" scoped>
-	@import "../common/css/index.scss";
-
 	%center {
 		display: flex;
 		align-items: center;

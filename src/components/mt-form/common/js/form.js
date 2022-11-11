@@ -3,7 +3,7 @@ import Vue from 'vue';
 
 export default class FormUtils {
     constructor() {
-        this.placeholderStyle = "color:#6d6d6d;fontWeight:300;fontSize:28rpx;"
+        this.placeholderStyle = "color:#A7A7A7;fontWeight:300;fontSize:28rpx;"
         this.reg = ""
     }
 

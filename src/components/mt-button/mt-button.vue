@@ -2,20 +2,21 @@
 	<view style="width: 100%">
 		<button v-if="name === 'default'" class="mt-button mt-button--default" :disabled="isDisabled" :loading="loading"
 			@click="btnClick" :style="{
-				'height': height,
-					'background': color,
-					'fontSize': fontsize,
-					'borderRadius': radius}">
+				'height': selfConfig.height,
+					'background': selfConfig.color,
+					'fontSize': selfConfig.fontsize,
+					'borderRadius': selfConfig.radius,
+					'boxShadow': selfConfig.shadow}">
 			<slot></slot>
 		</button>
-
 		<button v-else-if="name === 'hollow'" class="mt-button mt-button--hollow" :disabled="isDisabled"
 			:loading="loading" @click="btnClick" :style="{
-					'height': height,
-					'border': noBorder? 'none': '1px solid ' + color,
-					'color': color,
-					'fontSize': fontsize,
-					'borderRadius': radius}">
+					'height': selfConfig.height,
+					'border': selfConfig.noBorder? 'none': '1px solid ' + selfConfig.color,
+					'color': selfConfig.color,
+					'fontSize': selfConfig.fontsize,
+					'borderRadius': selfConfig.radius,
+					'boxShadow': selfConfig.shadow}">
 			<slot></slot>
 		</button>
 	</view>
@@ -37,26 +38,38 @@
 				type: Boolean,
 				default: false,
 			},
-			height: {
-				type: String,
-				default: '42px'
-			},
-			noBorder: {
-				type: Boolean,
-				default: false,
-			},
-			color: {
-				type: String,
-				default: '#3490fc'
-			},
-			radius: {
-				type: String,
-				default: '4px'
-			},
-			fontsize: {
-				type: String,
-				default: "15px"
-			},
+			config: {
+				type: Object,
+				default () {
+					return {}
+				}
+			}
+		},
+		data() {
+			return {
+				selfConfig: {
+					height: '42px',
+					color: '#3490fc',
+					fontsize: '15px',
+					radius: '4px',
+					shadow: '0px 3px 8px 0px rgba(0,0,0,0.1)',
+					noBorder: false,
+				}
+			}
+		},
+		watch: {
+			config(value) {
+				this.selfConfig = {
+					...this.selfConfig,
+					...value
+				}
+			}
+		},
+		created() {
+			this.selfConfig = {
+				...this.selfConfig,
+				...this.config
+			}
 		},
 		computed: {
 			isDisabled() {
@@ -70,7 +83,3 @@
 		}
 	};
 </script>
-
-<style lang="scss" scoped>
-	@import "../mt-theme/mt-button.scss";
-</style>

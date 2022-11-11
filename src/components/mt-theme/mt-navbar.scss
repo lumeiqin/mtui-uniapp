@@ -1,0 +1,34 @@
+.mt-navbar {
+	width: 100%;
+
+	&--fixed {
+		position: fixed;
+		left: 0;
+		top: 0;
+		z-index: 20;
+	}
+
+	&-header {
+		width: 100%;
+		padding: 0 30rpx;
+		font-size: 32rpx;
+		color: #333;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		text-align: center;
+	}
+
+	.title {
+		text-align: center;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.backBtn,
+	.rightBtn {
+		width: 40rpx;
+		text-align: left;
+	}
+}

@@ -3,8 +3,8 @@
 		<block v-for="(item, index) in showForm.property" :key="index">
 			<view :class="{'mtForm-main': config}">
 				<text class="delete iconfont icon-guanbi" v-if="config" @click="deleteItem(item, index)"></text>
-
-				<!-- 【 '' | text | ID | tel |number | password 】 -->
+				<!-- 
+				【 '' | text | ID | tel |number | password 】 -->
 				<block
 					v-if="!item.type || item.type == 'text' || item.type == 'ID' || item.type == 'tel' || item.type == 'number' || item.type == 'password'">
 					<itemInput ref="itemInput" :data="bindIsEdit(item)" @inputEvent="changeEvent" @toCamera="toCamera"
@@ -114,37 +114,3 @@
 		}
 	};
 </script>
-
-<style lang="scss" scoped>
-	.mtForm {
-		text.delete {
-			font-size: 52rpx !important;
-			margin-right: 30rpx;
-			color: #ff5b55;
-		}
-
-		&-main {
-			display: flex;
-			justify-content: flex-start;
-			align-items: center;
-
-			>view {
-				flex: 1;
-			}
-		}
-	}
-
-	.formDivide {
-		width: 750rpx;
-		height: 20rpx;
-		background: #f7f7f7;
-		margin-left: -30rpx;
-	}
-
-	.formTitle {
-		width: 100%;
-		font-weight: 500;
-		padding: 20rpx;
-		box-sizing: border-box;
-	}
-</style>

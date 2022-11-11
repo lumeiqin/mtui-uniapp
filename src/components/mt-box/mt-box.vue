@@ -33,9 +33,36 @@
 			},
 			radius: {
 				type: String,
-				default: "1vw"
+				default: ""
+			},
+			config: {
+				type: Object,
+				default () {
+					return {}
+				}
+			},
+		},
+		data() {
+			return {
+				selfConfig: {
+					radius: '1vw',
+				}
 			}
-		}
+		},
+		watch: {
+			config(value) {
+				this.selfConfig = {
+					...this.selfConfig,
+					...value
+				}
+			}
+		},
+		created() {
+			this.selfConfig = {
+				...this.selfConfig,
+				...this.config
+			}
+		},
 	}
 </script>
 

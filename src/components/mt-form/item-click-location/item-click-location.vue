@@ -46,7 +46,3 @@
 		}
 	};
 </script>
-
-<style lang="scss">
-	@import "../common/css/index.scss";
-</style>

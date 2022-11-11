@@ -41,12 +41,12 @@
 		</view>
 
 		<!-- #ifndef H5 -->
-		<uni-popup ref="simpleAudio" type="bottom">
+		<mt-popup ref="simpleAudio" type="bottom">
 			<simple-audio @cancel="cancelAudio" @confirm="confirmAudio"></simple-audio>
-		</uni-popup>
+		</mt-popup>
 		<!-- #endif -->
 
-		<uni-popup ref="video" type="center">
+		<mt-popup ref="video" type="center">
 			<video id="myVideo" style="width: 96%;
 			height: 240px;
 			position: fixed;
@@ -56,7 +56,7 @@
 			z-index: 2000;
 			border-radius: 12px;" :src="playPath" @error="videoErrorCallback" @ended="videoEnd" :show-fullscreen-btn="false"
 				:autoplay="true"></video>
-		</uni-popup>
+		</mt-popup>
 	</view>
 </template>
 
@@ -203,7 +203,3 @@
 		}
 	}
 </script>
-
-<style lang="scss" scoped>
-	@import "../common/css/index.scss";
-</style>

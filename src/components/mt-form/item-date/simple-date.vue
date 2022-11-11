@@ -41,7 +41,7 @@
 
 <script>
 	import pickerMixin from "../common/js/pickerMixin.js";
-	
+
 	export default {
 		name: "simple-date",
 		mixins: [pickerMixin],
@@ -327,7 +327,7 @@
 				}
 				this.seconds = seconds;
 			},
-			
+
 			getSelectValue() {
 				this.year = this.years[this.value[0]];
 				this.month = this.months[this.value[1]];
@@ -341,7 +341,7 @@
 				this.value = e.detail.value;
 				this.getSelectValue();
 			},
-			
+
 			_onSubmit() {
 				const {
 					year,
@@ -357,7 +357,7 @@
 					result = {
 						year: formatNum(year),
 						month: formatNum(month),
-						total: `${formatNum(year)}-${formatNum(month)}-${e.day} ${e.hour}:${e.minute}`
+						total: `${formatNum(year)}-${formatNum(month)}`
 					};
 				} else if (this.field == "day") {
 					result = {
@@ -372,7 +372,7 @@
 						month: formatNum(month),
 						day: formatNum(day),
 						hour: formatNum(hour),
-						total: `${formatNum(year)}-${formatNum(month)}-${formatNum(day)} ${formatNum(hour)}`
+						total: `${formatNum(year)}-${formatNum(month)}-${formatNum(day)} ${formatNum(hour)}时`
 					};
 				} else if (this.field == "minute") {
 					result = {
@@ -467,7 +467,3 @@
 		}
 	};
 </script>
-
-<style lang="scss" scoped>
-	@import "../common/css/index.scss";
-</style>

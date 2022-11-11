@@ -147,8 +147,6 @@
 </script>
 
 <style lang="scss" scoped>
-	@import "../common/css/index.scss";
-
 	.searchBox {
 		width: 100%;
 		background: #F7F7F7;

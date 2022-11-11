@@ -41,18 +41,20 @@ export default {
 			return this.showItem.disabled || !this.showItem.isEdit;
 		},
 		inputPlaceholder() {
-			if(!this.showItem.isEdit) return "";
+			if (!this.showItem.isEdit) return "";
 			return this.formUtils._isEmpty(this.showItem.placeholder) ? '请输入' : this.showItem.placeholder
 		},
 		pickPlaceholder() {
-			if(!this.showItem.isEdit) return "";
+			if (!this.showItem.isEdit) return "";
 			return this.formUtils._isEmpty(this.showItem.placeholder) ? '请选择' : this.showItem.placeholder
 		},
 		showCount() {
 			return Number(this.showItem.maxlength) > 0 && this.showItem.countText
 		},
 		textAlign() {
-			return {'text-align': this.showItem.isEdit? 'left': 'right'}
+			return {
+				'text-align': this.showItem.isEdit ? 'left' : 'right'
+			}
 		},
 		defaultSelect() {
 			if (this.formUtils._isEmpty(this.showItem.defaultPicker)) {

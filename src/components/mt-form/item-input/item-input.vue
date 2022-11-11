@@ -40,7 +40,3 @@
 		}
 	};
 </script>
-
-<style lang="scss" scoped>
-	@import "../common/css/index.scss";
-</style>

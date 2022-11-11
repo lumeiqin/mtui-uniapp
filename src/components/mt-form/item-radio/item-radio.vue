@@ -36,8 +36,6 @@
 </script>
 
 <style lang="scss" scoped>
-	@import "../common/css/index.scss";
-
 	.uni-radio-input {
 		border: 1px solid #d1d1d1 !important;
 	}
