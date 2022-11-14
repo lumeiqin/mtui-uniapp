@@ -20,8 +20,8 @@ const result = {
 		type: "diy",
 		url: ""
 	}],
-	
-	
+
+
 	tabbarData: [{
 		isactive: 1,
 		path: "/pages/index/index",
@@ -47,7 +47,27 @@ const result = {
 		selectedIcon: '../../static/tab/itab3.png',
 		iconWidth: '45px',
 		iconHeight: '45px'
-	}]
+	}],
+
+	tabData: [{
+		id: 0,
+		title: "生产监控"
+	}, {
+		id: 1,
+		title: "装置负荷"
+	}, {
+		id: 2,
+		title: "库存分析"
+	}, {
+		id: 3,
+		title: "发货分析"
+	}, {
+		id: 4,
+		title: "原材料"
+	}, {
+		id: 5,
+		title: "生产计划"
+	}],
 }
 
 export default result;

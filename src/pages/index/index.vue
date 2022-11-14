@@ -2,26 +2,30 @@
 	<view class="index">
 		<!-- mt-navbar -->
 		<mt-navbar title="通讯录"></mt-navbar>
-		
-		<!-- mt-box -->
-		<mt-box border="true" center="true">
-			金城留旬浃，兀兀醉歌舞。
-		</mt-box>
 
-		<!-- mt-button -->
-		<mt-button>测试</mt-button>
-		<mt-button name="hollow">测试1</mt-button>
+		<!-- mt-tabs -->
+		<mt-tabs :tabData="tabData"></mt-tabs>
 
-		<!-- mt-grid -->
-		<mt-grid name="title" :col="2" :data="title2"></mt-grid>
-		<mt-grid></mt-grid>
-		<mt-grid name="title" :data="titleDiy">
-			协议资料
-		</mt-grid>
-		
-		<mt-search></mt-search>
+		<view v-if="false">
+			<!-- mt-box -->
+			<mt-box border="true" center="true">
+				金城留旬浃，兀兀醉歌舞。
+			</mt-box>
 
+			<!-- mt-button -->
+			<mt-button>测试</mt-button>
+			<mt-button name="hollow">测试1</mt-button>
 
+			<!-- mt-grid -->
+			<mt-grid name="title" :col="2" :data="title2"></mt-grid>
+			<mt-grid></mt-grid>
+			<mt-grid name="title" :data="titleDiy">
+				协议资料
+			</mt-grid>
+
+			<!-- mt-search -->
+			<mt-search></mt-search>
+		</view>
 
 		<!-- <mt-box bg="#fff" border="true">
 			<mt-text>
@@ -31,7 +35,8 @@
 				一昔营幕来，天明但平土。
 			</mt-text>
 		</mt-box> -->
-		
+
+		<!-- mt-tabbar -->
 		<mt-tabbar :data="tabbarData"></mt-tabbar>
 	</view>
 </template>
