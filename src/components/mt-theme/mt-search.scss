@@ -1,10 +1,7 @@
 .mt-search {
 	width: 100%;
-	background: #fff;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	position: relative;
+	background: transparent;
+	@extend %flex-between;
 
 	&-box {
 		flex: 1;
@@ -25,9 +22,7 @@
 			z-index: 1000;
 			width: 80rpx;
 			height: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
+			@extend %flex-center;
 
 			i {
 				font-size: 36rpx;

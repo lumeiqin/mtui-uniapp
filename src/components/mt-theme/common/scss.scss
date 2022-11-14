@@ -1,0 +1,51 @@
+$theme: #2194F2;
+
+/**
+	* 字体全家桶
+	* @param {String} $size 字体大小（不加单位）
+	* @param {String} $lineHeight 行高（不加单位）
+	* @param {String} $weight 字体粗细（默认为normal）
+	* @param {String} $style 字体风格（默认为normal）
+	* @param {String} $family 字体类型（默认为Sans-serif）
+*/
+@mixin font-set($size: 30,$lineHeight: 30, $weight: normal, $style: normal, $family: Sans-serif) {
+  font: {
+	size: $size + rpx;
+    weight: $weight;
+    style: $style;
+    family: $family;
+  }
+  line-height: $lineHeight + rpx;
+}
+
+/**
+ * 设置主题色
+ * @param {String} $key 属性
+ */
+@mixin setTheme($key: color) {
+  #{$key}: $theme;
+}
+
+
+/**
+	* 一行多列
+	* @param {Number} $column 列数
+	* @param {String} $distance 列之间的距离（加单位，默认为0）
+*/
+@mixin column($column: 4, $distance: 0) {
+  @if $distance != 0 {
+    width: calc((100% - #{$distance}) / #{$column});
+    margin-right: calc(#{$distance} / (#{$column} - 1));
+  } @else {
+    width: calc(100% / #{$column});
+  }
+}
+
+/**
+	* @description 等宽等高
+	* @param {String} $size 宽度高度
+*/
+@mixin square-size($size: 50) {
+	width: $size + rpx;
+	height: $size + rpx;
+}

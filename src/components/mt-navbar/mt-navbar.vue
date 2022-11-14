@@ -1,15 +1,16 @@
 <template>
 	<view>
 		<view class="mt-navbar" :class="{'mt-navbar--fixed': fixed}" :style="{
-					background: nobg? 'transparent': bg,
+					background: selfConfig.nobg? 'transparent': selfConfig.bg,
 					backgroundSize: '100%',
 					paddingTop: statusBarHeight + 'px'}">
 
-			<view class="mt-navbar-header" :style="{ height: customBar, color: nobg? '#333': '#fff' }">
+			<view class="mt-navbar-header"
+				:style="{ height: customBar, color: selfConfig.nobg? selfConfig.color: '#fff' }">
 
 				<slot name="left">
-					<view class="backBtn" @click="onBackPage">
-						<i class="iconfont icon-31fanhui1" v-if="back"></i>
+					<view class="backBtn" @click="onBackPage" v-if="selfConfig.back">
+						<i class="iconfont icon-31fanhui1"></i>
 					</view>
 				</slot>
 
@@ -22,8 +23,9 @@
 				</slot>
 			</view>
 		</view>
-		<view :style="{paddingTop: statusBarHeight + 'px', height: customBar, boxSizing: 'content-box'}" v-if="!nobg"
-			v-show="fixed">
+
+		<view :style="{paddingTop: statusBarHeight + 'px', height: customBar, boxSizing: 'content-box'}"
+			v-if="!selfConfig.nobg" v-show="fixed">
 		</view>
 	</view>
 </template>
@@ -33,39 +35,57 @@
 		name: "mt-navbar",
 		props: {
 			fixed: {
-				type: Boolean,
+				type: [Boolean, String],
 				default: false
 			},
-			back: {
-				type: Boolean,
-				default: true
-			},
 			emit: {
-				type: Boolean,
+				type: [Boolean, String],
 				default: false
 			},
 			title: {
 				type: String,
 				default: ''
 			},
-			nobg: {
-				type: Boolean,
-				default: false
-			},
-			bg: {
-				type: String,
-				default: "#0762ed"
+			config: {
+				type: Object,
+				default () {
+					return {}
+				}
 			}
 		},
 		data() {
 			return {
 				headTitle: '',
 				statusBarHeight: 0,
-				customBar: 0
+				customBar: 0,
+
+				selfConfig: {
+					nobg: false,
+					bg: "#2194F2",
+					back: true,
+					color: "#333"
+				}
 			};
 		},
+		watch: {
+			title(newValue, oldValue) {
+				this.headTitle = newValue;
+			},
+			config(value) {
+				this.selfConfig = {
+					...this.selfConfig,
+					...value
+				}
+			}
+		},
 		created() {
+			this.selfConfig = {
+				...this.selfConfig,
+				...this.config
+			}
 			this.headTitle = this.title;
+
+
 			this.statusBarHeight = uni.getSystemInfoSync()['statusBarHeight'];
 
 			// #ifdef MP-WEIXIN
@@ -76,11 +96,6 @@
 			// #ifdef H5 || APP-PLUS
 			this.customBar = '45px';
 			// #endif
-		},
-		watch: {
-			title(newValue, oldValue) {
-				this.headTitle = newValue;
-			}
 		},
 		methods: {
 			onBackPage() {

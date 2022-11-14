@@ -1,13 +1,28 @@
-@import "./common.scss";
-@import "./mt-navbar.scss";
-@import "./mt-tabbar.scss";
-@import "./mt-tabs.scss";
-@import "./mt-grid.scss";
-@import "./mt-form.scss";
-@import "./mt-search.scss";
-@import "./mt-button.scss";
+// 重置样式 + 公共样式
+@import "./common/index.scss";
+
+// mt-box
 @import "./mt-box.scss";
-@import "./mt-card.scss";
-@import "./mt-text.scss";
-@import "./mt-form-item/index.scss";
-@import "./mt-steps/index.scss";
+
+// mt-button
+@import "./mt-button.scss";
+
+// mt-grid
+@import "./mt-grid.scss";
+
+// mt-navbar
+@import "./mt-navbar.scss";
+
+// mt-search
+@import "./mt-search.scss";
+
+// mt-tabbar
+@import "./mt-tabbar.scss";
+
+
+// @import "./mt-tabs.scss";
+// @import "./mt-form.scss";
+// @import "./mt-card.scss";
+// @import "./mt-text.scss";
+// @import "./mt-form-item/index.scss";
+// @import "./mt-steps/index.scss";

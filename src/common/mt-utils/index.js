@@ -81,13 +81,13 @@ class Utils extends Config {
 	}
 
 	_bindToken(obj, name) {
+		if (!this.hasToken) {
+			return obj;
+		}
 		name = name || 'token';
-		obj = {
-			...obj
-		};
 		if (obj.hasOwnProperty(name) && obj[name] == '') {
 			delete obj[name];
-			return obj
+			return obj;
 		} else {
 			return Object.assign(obj, {
 				[name]: uni.getStorageSync("token").access_token || ''
@@ -112,10 +112,8 @@ class Utils extends Config {
 		return new Promise((resolve, reject) => {
 			uni.request({
 				url: this._handleUrl(urlParams),
-				data: this.hasToken ? this._bindToken(requestParams, this.tokenName) :
-					requestParams,
-				header: this.hasToken ? this._bindToken(headerParams, this.tokenName) :
-					requestParams,
+				data: this._bindToken(requestParams, this.tokenName),
+				header: this._bindToken(headerParams, this.tokenName),
 				success(res) {
 					resolve(res.data)
 				},
@@ -150,14 +148,10 @@ class Utils extends Config {
 			uni.request({
 				method: "POST",
 				url: this._handleUrl(urlParams),
-				data: this.hasToken ? this._bindToken(requestParams, this.tokenName) :
-					requestParams,
-				header: this.hasToken ? {
+				data: this._bindToken(requestParams, this.tokenName),
+				header: {
 					...submitHeader,
 					...this._bindToken(headerParams, this.tokenName)
-				} : {
-					...submitHeader,
-					...headerParams
 				},
 				success(res) {
 					resolve(res.data)
@@ -182,12 +176,9 @@ class Utils extends Config {
 				filePath: fileName,
 				name: 'file',
 				formData: requestParams,
-				header: this.hasToken ? {
+				header: {
 					'content-type': 'multipart/form-data',
 					...this._bindToken(headerParams, this.tokenName)
-				} : {
-					'content-type': 'multipart/form-data',
-					...headerParams
 				},
 				success(res) {
 					resolve(res.data)

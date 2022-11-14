@@ -1,16 +1,17 @@
 <template>
 	<view>
 		<view class="mt-tabbar" :style="{
-					background: bg,
-					height: height}">
+					background: selfConfig.bg,
+					height: selfConfig.height}">
 
 
 			<view class="mt-tabbar-item" :style="{ 
-				color: item.isactive === 1? selectedColor: color }" v-for="(item, index) in data" :key="index"
-				@click="jumpPage(item)">
+				color: item.isactive === 1? selfConfig.selectedColor: selfConfig.color }" v-for="(item, index) in data"
+				:key="index" @click="jumpPage(item)">
 
-				<uni-icons :style="{margin: item.spaceing}" :color="item.isactive === 1? selectedColor: color"
-					:type="item.icontype" :size="item.iconWidth || 24" v-if="item.icontype"></uni-icons>
+				<uni-icons :style="{margin: item.spaceing}"
+					:color="item.isactive === 1? selfConfig.selectedColor: selfConfig.color" :type="item.icontype"
+					:size="item.iconWidth || 24" v-if="item.icontype"></uni-icons>
 
 				<image v-else :style="{
 					width: item.iconWidth || '24px',
@@ -19,13 +20,11 @@
 				}" :src="item.isactive === 1?item.selectedIcon: item.icon"></image>
 
 
-				<text :style="{'font-size': fontSize}" v-if="item.text">{{item.text}}</text>
+				<text :style="{'font-size': selfConfig.fontsize}" v-if="item.text">{{item.text}}</text>
 
 			</view>
-
-
 		</view>
-		<view :style="{ height: height}"></view>
+		<view :style="{ height: selfConfig.height}"></view>
 	</view>
 </template>
 
@@ -33,25 +32,15 @@
 	export default {
 		name: "mt-tabbar",
 		props: {
-			bg: {
-				type: String,
-				default: "#fff"
+			emit: {
+				type: [Boolean, String],
+				default: false
 			},
-			height: {
-				type: String,
-				default: "64px"
-			},
-			color: {
-				type: String,
-				default: "#333"
-			},
-			selectedColor: {
-				type: String,
-				default: "#0762ed"
-			},
-			fontSize: {
-				type: String,
-				default: "12px"
+			config: {
+				type: Object,
+				default () {
+					return {}
+				}
 			},
 			data: {
 				type: Array,
@@ -60,8 +49,37 @@
 				}
 			},
 		},
+		data() {
+			return {
+				selfConfig: {
+					bg: "#fff",
+					height: "128rpx",
+					color: "#333",
+					selectedColor: "#2194F2",
+					fontsize: "24rpx"
+				}
+			}
+		},
+		created() {
+			this.selfConfig = {
+				...this.selfConfig,
+				...this.config
+			}
+		},
+		watch: {
+			config(value) {
+				this.selfConfig = {
+					...this.selfConfig,
+					...value
+				}
+			}
+		},
 		methods: {
 			jumpPage(item) {
+				if (this.emit) {
+					this.$emit("click", item)
+					return
+				}
 				if (item.path) {
 					uni.navigateTo({
 						url: item.path

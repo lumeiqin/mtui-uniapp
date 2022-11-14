@@ -31,11 +31,11 @@
 				default: "default"
 			},
 			disabled: {
-				type: Boolean,
+				type: [Boolean, String],
 				default: false,
 			},
 			loading: {
-				type: Boolean,
+				type: [Boolean, String],
 				default: false,
 			},
 			config: {
@@ -48,10 +48,10 @@
 		data() {
 			return {
 				selfConfig: {
-					height: '42px',
-					color: '#3490fc',
-					fontsize: '15px',
-					radius: '4px',
+					radius: '8rpx',
+					height: '84rpx',
+					color: '#2194F2',
+					fontsize: '30rpx',
 					shadow: '0px 3px 8px 0px rgba(0,0,0,0.1)',
 					noBorder: false,
 				}

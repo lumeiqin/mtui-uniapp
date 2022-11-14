@@ -1,31 +1,42 @@
 <template>
-	<view>
-		<view class="mt-grid" v-if="name === 'default'">
-			<view :class="'mt-grid-icon ' + 'icon-' + col" v-for="(item, index) in moduleArr" :key="index"
+	<view class="mt-grid">
+		<block v-if="name === 'default'">
+			<view class="grid_default" :class="'icon-' + col" v-for="(item, index) in moduleArr" :key="index"
 				@click="jumpIcon(item)">
-				<image class="mt-grid-icon-img" :src="item.icon" alt="">
-					<view class="mt-grid-icon-text">{{ item.menuName }}</view>
+				<image
+					:style="{padding: selfConfig.iconPadding, width: selfConfig.iconSize, height: selfConfig.iconSize}"
+					:src="item.icon" alt="">
+					<view :style="{color: selfConfig.color, fontSize: selfConfig.fontsize}">{{ item.menuName }}</view>
 			</view>
-		</view>
+		</block>
 
-		<view class="mt-grid" v-else-if="name === 'title'">
-			<view class="mt-grid-title" v-for="(item, index) in moduleArr" :key="index">
-				<view class="mt-grid-title-text">
-					<text class="mt-grid-title-text-name">{{ item.menuName }}</text>
+
+
+		<block v-else-if="name === 'title'">
+			<view class="grid_title" v-for="(item, index) in moduleArr" :key="index">
+				<view class="grid_title_box">
+					<text>{{ item.menuName }}</text>
 				</view>
-				<view class="mt-grid-title-box" :style="{padding: Number(col) === 2? '18px 18px 0 18px': 0}"
+
+				<view class="grid_title_main"
+					:style="{padding: Number(col) === 2? '36rpx 36rpx 2rpx 36rpx': '36rpx 0 2rpx 0'}"
 					v-if="item.children && item.children.length > 0">
-					<view :class="'mt-grid-icon ' + 'icon-' + col" v-for="(items, indexs) in item.children"
+
+					<view class="grid_default" :class="'icon-' + col" v-for="(items, indexs) in item.children"
 						:key="indexs" @click="jumpIcon(items)">
-						<image class="mt-grid-icon-img" :src="item.icon" alt="">
-							<view class="mt-grid-icon-text">{{ item.menuName }}</view>
+						<image
+							:style="{padding: selfConfig.iconPadding, width: selfConfig.iconSize, height: selfConfig.iconSize}"
+							:src="item.icon" alt="">
+							<view :style="{color: selfConfig.color, fontSize: selfConfig.fontsize}">{{ item.menuName }}
+							</view>
 					</view>
 				</view>
-				<view class="mt-grid-title-box" v-else>
+
+				<view class="grid_title_file" v-else>
 					<slot></slot>
 				</view>
 			</view>
-		</view>
+		</block>
 	</view>
 </template>
 
@@ -38,7 +49,7 @@
 				default: "default"
 			},
 			col: {
-				type: [Number, String],
+				type: [String, Number],
 				default: 4
 			},
 			data: {
@@ -66,19 +77,41 @@
 						url: ""
 					}]
 				}
+			},
+			config: {
+				type: Object,
+				default () {
+					return {}
+				}
 			}
 		},
 		data() {
 			return {
-				moduleArr: []
+				moduleArr: [],
+				selfConfig: {
+					iconSize: "",
+					iconPadding: "0 0 14rpx 0",
+					color: "#424242",
+					fontsize: "24rpx",
+				}
 			};
 		},
 		created() {
 			this.moduleArr = this.data;
+			this.selfConfig = {
+				...this.selfConfig,
+				...this.config
+			}
 		},
 		watch: {
 			data(newvalue) {
 				this.moduleArr = newvalue;
+			},
+			config(value) {
+				this.selfConfig = {
+					...this.selfConfig,
+					...value
+				}
 			}
 		},
 		methods: {

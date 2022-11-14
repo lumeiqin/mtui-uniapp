@@ -2,101 +2,95 @@
   width: 100%;
   @extend %flex-start;
 
-  &-title {
-    background-color: #FFFFFF;
-    width: 100%;
-    @include vw(8, border-radius);
-    @include vw(15, margin-bottom);
-    overflow: hidden;
-    box-shadow: 0 pxtovw(2) pxtovw(12) 0 rgba(0, 0, 0, .1);
+  // col = 4
+  .grid_default {
+    @include column(4);
+	padding-bottom: 30rpx;
+    text-align: center;
 
-    &-text {
-      width: 100%;
-      @include vw(43, height);
-      padding: 0 pxtovw(10);
-      border-bottom: 1px solid #F4F5F8;
-      @extend %flex-start;
-
-      &-name {
-        @include vw(15, font-size);
-        @include vw(43, line-height);
-        color: #000;
-        font-weight: 500;
-        padding: 0 pxtovw(3);
-        position: relative;
-      }
-
-      &-name:before {
-        content: '';
-        width: 100%;
-        @include vw(3, height);
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        background: $themecolor;
-      }
-    }
-
-
-    &-box {
-      width: 100%;
-      @extend %flex-start;
-    }
-  }
-
-  &-icon {
-	padding-bottom: pxtovw(15);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-
-    &-img {
-      @include square-size(50);
+    image {
+      @include square-size(100);
+	  display: block;
       margin: 0 auto;
-      position: relative;
-    }
-
-    &-text {
-      color: #424242;
-      @include vw(12, font-size);
-      text-align: center;
-      // padding: pxtovw(8) pxtovw(8) 0 pxtovw(8);
     }
   }
-
+  // col = 2
   .icon-2 {
-    @include column(2, 18px);
-    padding: pxtovw(15) 0;
-    box-shadow: 0 0 pxtovw(4) #e1e5e9;
-    @include vw(10, border-radius);
-    @include vw(18, margin-bottom);
-
-    .mt-grid-icon-img {
-      @include square-size(60);
+    @include column(2, 36rpx);
+    padding: 30rpx 0;
+	box-shadow: 0px 2px 6px 0px rgba(152,173,188,0.1608);
+  	border-radius: 20rpx;
+  	margin-bottom: 36rpx;
+    image {
+      @include square-size(100);
     }
   }
-
   .icon-2:nth-child(2n) {
     margin-right: 0;
   }
-
+  // col = 3
   .icon-3 {
     @include column(3);
-
-    .mt-grid-icon-img {
-      @include square-size(65);
+  
+    image {
+      @include square-size(110);
     }
   }
-
-  .icon-4 {
-    @include column(4);
-  }
-
+  // col = 5
   .icon-5 {
     @include column(5);
+  
+    image {
+      @include square-size(90);
+    }
+  }
+  
+// title 模式
+  .grid_title {
+    width: 100%;
+	background: #fff;
+	border-radius: 16rpx;
+	margin-bottom: 30rpx;
+    overflow: hidden;
+	box-shadow: 0px 2px 6px 0px rgba(152,173,188,0.1608);
 
-    .mt-grid-icon-img {
-      @include square-size(45);
+    &_box {
+      width: 100%;
+	  height: 86rpx;
+	  padding: 0 20rpx;
+      border-bottom: 1px solid #F4F5F8;
+      @extend %flex-start;
+
+      text {
+        color: #000;
+		font-size: 30rpx;
+		line-height: 86rpx;
+        font-weight: 500;
+		padding: 0 10rpx;
+        position: relative;
+      }
+
+      text:before {
+		@extend %line;
+        width: 100%;
+		height: 6rpx;
+		border-radius: 10rpx;
+        left: 0;
+        bottom: 0;
+		@include setTheme(background);
+      }
+    }
+
+	&_main {
+		@extend %flex-start;
+	}
+
+    &_file {
+      width: 100%;
+      @extend %flex-start;
+	  padding: 28rpx;
+	  font-size: 30rpx;
+	  color: #424242;
     }
   }
 }

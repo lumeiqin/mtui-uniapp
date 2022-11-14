@@ -13,22 +13,24 @@
 		padding: 0 30rpx;
 		font-size: 32rpx;
 		color: #333;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		text-align: center;
+		@extend %flex-between;
 	}
 
 	.title {
+		flex: 1;
 		text-align: center;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
 
-	.backBtn,
-	.rightBtn {
+	.backBtn,.rightBtn {
 		width: 40rpx;
+	}
+	.backBtn {
 		text-align: left;
+	}
+	.rightBtn {
+		text-align: right;
 	}
 }

@@ -1,7 +1,11 @@
 <template>
-	<view class="mt-box" :style="{backgroundColor: bg, padding: padding, borderRadius: radius}"
+	<view class="mt-box"
+		:style="{backgroundColor: selfConfig.bg, padding: selfConfig.padding, borderRadius: selfConfig.radius}"
 		:class="{'mt-box--flip': flip, 'mt-box--border': border}">
-		<view class="mt-box-main" :class="{'mt-box--center': center}">
+		<view :style="{
+			color: selfConfig.color,
+			fontSize: selfConfig.fontsize
+		}" :class="{'mt-box--center': center}">
 			<slot />
 		</view>
 	</view>
@@ -11,14 +15,6 @@
 	export default {
 		name: "mt-box",
 		props: {
-			bg: {
-				type: String,
-				default: "#ffffff"
-			},
-			padding: {
-				type: String,
-				default: "4vw"
-			},
 			flip: {
 				type: [Boolean, String],
 				default: false
@@ -31,10 +27,6 @@
 				type: [Boolean, String],
 				default: false
 			},
-			radius: {
-				type: String,
-				default: ""
-			},
 			config: {
 				type: Object,
 				default () {
@@ -45,7 +37,11 @@
 		data() {
 			return {
 				selfConfig: {
-					radius: '1vw',
+					radius: '10rpx',
+					padding: '30rpx',
+					bg: '#fff',
+					fontsize: "30rpx",
+					color: "#333"
 				}
 			}
 		},
@@ -65,7 +61,3 @@
 		},
 	}
 </script>
-
-<style lang="scss" scoped>
-	@import "../mt-theme/mt-box.scss";
-</style>

@@ -5,17 +5,12 @@
 	right: 0;
 	bottom: 0;
 	z-index: 20;
-
-
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
 	box-shadow: 0 0 16px rgba(0, 0, 0, .15);
 
+	@extend %flex-around;
+
 	&-item {
-		display: flex;
+		@extend %flex-center;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
 	}
 }

@@ -40,7 +40,7 @@
 				default: "",
 			},
 			disabled: {
-				type: Boolean,
+				type: [Boolean, String],
 				default: false,
 			},
 			config: {
@@ -57,7 +57,7 @@
 					height: "64rpx",
 					radius: "32rpx",
 					placeholder: "请输入关键字",
-					color: "##4C4D4D",
+					color: "#4C4D4D",
 					placeholderColor: "#B1B1B1",
 					fontsize: "28rpx",
 					background: "#F6F6F6",

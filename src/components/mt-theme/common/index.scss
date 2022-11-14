@@ -1,0 +1,70 @@
+/**
+ * author: 卢美琴
+ * time: 2022-11-11
+ */
+
+@import "./reset.scss";
+@import "./scss.scss";
+
+
+/** flex布局 */
+%flex-start {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%flex-between {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+%flex-around {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+// 伪元素
+%line {
+  content: "";
+  display: block;
+  position: absolute;
+}
+
+
+/** 单行省略 */
+.ell-1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: start;
+  word-break: break-all;
+}
+
+.ell-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: start;
+  word-break: break-all;
+}
+
+/** 图片默认尺寸 */
+%img-default-size {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
