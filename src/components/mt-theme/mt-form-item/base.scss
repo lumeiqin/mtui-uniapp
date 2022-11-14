@@ -1,0 +1,51 @@
+$_formHeight: 100rpx; // 表单高度
+$_warn-color: #ff6f71; // 警告颜色
+$_line-color: #ccc; // 底线颜色
+$_item-bottom: 0; // 项与项之间的距离
+
+$_key-width: 180rpx; // key的宽度
+$_key-size: 28rpx; // key的字体大小
+$_key-color:#737373; // key的字体颜色
+
+$_value-size: 28rpx; // value的字体大小
+$_value-color: #252525; // value的字体颜色
+
+$_value-count-size: 26rpx; // countText字体大小
+$_value-count-color: #999; // countText字体颜色
+
+$_date-size: 26rpx; // 选择内容盒子的列的字体大小
+
+$_themecolor: #2194f2; // 主题色
+$_iconcolor: #A7A7A7; // 阿里巴巴矢量图标的颜色
+
+$transition: all 0.3s ease; // 过渡效果
+
+@mixin flex-start {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+// 所有项的底线
+@mixin setLine($color: $_line-color) {
+	content: "";
+	display: block;
+	width: 100%;
+	height: 2rpx;
+	background: $color;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	transform: scaleY(.2);
+}
+
+// 图片长宽设置
+@mixin imgStyle($width: 48rpx, $height: 48rpx) {
+	width: $width;
+	height: $height;
+	display: block;
+}
+
+
+view,text,input,textarea {
+	box-sizing: border-box;
+}

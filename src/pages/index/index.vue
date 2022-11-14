@@ -3,10 +3,10 @@
 		<!-- mt-navbar -->
 		<mt-navbar title="通讯录"></mt-navbar>
 
-		<!-- mt-tabs -->
-		<mt-tabs :tabData="tabData"></mt-tabs>
-
 		<view v-if="false">
+			<!-- mt-tabs -->
+			<mt-tabs :tabData="tabData"></mt-tabs>
+
 			<!-- mt-box -->
 			<mt-box border="true" center="true">
 				金城留旬浃，兀兀醉歌舞。
@@ -33,9 +33,14 @@
 				</view>
 			</mt-popup>
 			<mt-button @click="openModal">显示模态框</mt-button>
+
+			<!-- mt-tag -->
+			<mt-tag>生产监控</mt-tag>
 		</view>
 
-		<mt-tag>生产监控</mt-tag>
+		<!-- mt-form -->
+		<mt-form></mt-form>
+
 		<!-- mt-tabbar -->
 		<mt-tabbar :data="tabbarData"></mt-tabbar>
 	</view>
