@@ -1,0 +1,32 @@
+.mt-step {
+	padding: 0 30rpx;
+
+	.process_box {
+		border-left: 2px solid #D3F0FF;
+		position: relative;
+		padding: 0 0 36rpx 32rpx;
+
+		.dot {
+			width: 26rpx;
+			height: 26rpx;
+			border: 2px solid #3490fc;
+			background: #fff;
+			border-radius: 50%;
+			position: absolute;
+			left: -14rpx;
+			top: 0;
+		}
+
+		.time {
+			font-size: 28rpx;
+			line-height: 28rpx;
+			color: #2194F2;
+		}
+
+		.mainBox {
+			background: #F5F7FA;
+			border-radius: 12rpx;
+			margin-top: 26rpx;
+		}
+	}
+}
