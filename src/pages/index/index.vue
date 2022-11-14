@@ -25,17 +25,17 @@
 
 			<!-- mt-search -->
 			<mt-search></mt-search>
+
+			<!-- mt-popup -->
+			<mt-popup ref="popup">
+				<view style="width: 100%;height: 200px;background: #fff;">
+					这是模态框
+				</view>
+			</mt-popup>
+			<mt-button @click="openModal">显示模态框</mt-button>
 		</view>
 
-		<!-- <mt-box bg="#fff" border="true">
-			<mt-text>
-				金城留旬浃，兀兀醉歌舞。
-				出门览民风，惨惨愁肺腑。
-				去年夏秋旱，七月黍穟吐。
-				一昔营幕来，天明但平土。
-			</mt-text>
-		</mt-box> -->
-
+		<mt-tag>生产监控</mt-tag>
 		<!-- mt-tabbar -->
 		<mt-tabbar :data="tabbarData"></mt-tabbar>
 	</view>
@@ -48,6 +48,11 @@
 		data() {
 			return {
 				...result
+			}
+		},
+		methods: {
+			openModal() {
+				this.$refs.popup.open()
 			}
 		}
 	}
