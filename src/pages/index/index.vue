@@ -36,10 +36,13 @@
 
 			<!-- mt-tag -->
 			<mt-tag>生产监控</mt-tag>
+
+			<!-- mt-form -->
+			<mt-form></mt-form>
 		</view>
 
-		<!-- mt-form -->
-		<mt-form></mt-form>
+		<!-- mt-card -->
+		<mt-card :notes="notes" :title="title"></mt-card>
 
 		<!-- mt-tabbar -->
 		<mt-tabbar :data="tabbarData"></mt-tabbar>
@@ -52,7 +55,7 @@
 		name: 'examples',
 		data() {
 			return {
-				...result
+				...result,
 			}
 		},
 		methods: {

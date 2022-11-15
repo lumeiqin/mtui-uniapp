@@ -68,6 +68,24 @@ const result = {
 		id: 5,
 		title: "生产计划"
 	}],
+
+	title: "江苏省无锡市滨湖区具区路与缘溪道交汇处融创茂内二楼",
+	notes: [{
+		noteLabel: '使用现状',
+		noteText: '闲置',
+		valueKey: 'noteText',
+		icon: ""
+	}, {
+		noteLabel: '建筑名称',
+		noteText: '市网格中心办公大楼',
+		valueKey: 'noteText',
+		icon: ""
+	}, {
+		noteLabel: '建筑地址',
+		noteText: '江苏省无锡市梁溪区北大街道北创科技大厦',
+		valueKey: 'noteText',
+		icon: ""
+	}],
 }
 
 export default result;

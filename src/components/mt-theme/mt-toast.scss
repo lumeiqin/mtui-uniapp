@@ -1,0 +1,46 @@
+.mt-toast {
+  pointer-events: none;
+  font-size: 28rpx;
+  border-radius: 16rpx;
+  line-height: 50rpx;
+  color: #fff;
+  padding: 12rpx 30rpx;
+  background-color: rgba(0, 0, 0, .6);
+  display: inline-block;
+  position: fixed;
+  z-index: 99999999;
+
+  animation-name: fadeInAndFadeOut;
+  animation-duration: .5s;
+  animation-fill-mode: forwards;
+
+  &-top {
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &-bottom {
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeInAndFadeOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
