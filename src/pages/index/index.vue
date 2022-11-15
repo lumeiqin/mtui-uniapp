@@ -39,10 +39,17 @@
 
 			<!-- mt-form -->
 			<mt-form></mt-form>
+
+			<!-- mt-card -->
+			<mt-card :notes="notes" :title="title"></mt-card>
+
+			<!-- mt-modal -->
+			<mt-modal ref="popup"></mt-modal>
+			<mt-button @click="openModal">显示modal</mt-button>
 		</view>
 
-		<!-- mt-card -->
-		<mt-card :notes="notes" :title="title"></mt-card>
+		<!-- mt-rate -->
+		<mt-rate></mt-rate>
 
 		<!-- mt-tabbar -->
 		<mt-tabbar :data="tabbarData"></mt-tabbar>

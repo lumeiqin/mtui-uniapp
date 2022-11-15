@@ -39,6 +39,7 @@
 		position: fixed;
 		left: 0;
 		right: 0;
+		@extend %flex-center;
 	}
 
 	// center

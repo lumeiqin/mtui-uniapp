@@ -1,0 +1,94 @@
+.mt-modal {
+	width: 600rpx;
+	border-radius: 24rpx;
+	background: #fff;
+	overflow: hidden;
+
+	&_header {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		padding: 20rpx 40rpx;
+		line-height: 1.5;
+		font-size: 32rpx;
+		color: #333;
+		text-align: center;
+	}
+
+	&_content {
+		font-size: 30rpx;
+		color: #333;
+		line-height: 1.8;
+		position: relative;
+		padding: 40rpx 24rpx;
+
+		&::before {
+			content: "";
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			height: 2rpx;
+			border-top: 1px solid #e5e5e5;
+			transform: scaleY(.5);
+		}
+	}
+
+	&_footer {
+		position: relative;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		color: #333;
+		font-size: 32rpx;
+		display: flex;
+		flex-direction: row;
+
+		&-left,
+		&-right {
+			position: relative;
+			flex: 1;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			height: 88rpx;
+			font-size: 28rpx;
+			line-height: 88rpx;
+			text-align: center;
+			background-color: #fff;
+			color: #333;
+			cursor: pointer;
+			background: #fff;
+		}
+
+		&-right {
+			color: #2194F2;
+		}
+
+		&-left::after {
+			content: "";
+			display: block;
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 1px;
+			bottom: 0;
+			border-right: 1px solid #e5e5e5;
+			transform: scaleX(.5);
+		}
+
+		&::before {
+			content: "";
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			height: 2rpx;
+			border-top: 1px solid #e5e5e5;
+			transform: scaleY(.5);
+			z-index: 100;
+		}
+	}
+}
