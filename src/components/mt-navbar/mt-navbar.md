@@ -4,6 +4,7 @@
 | fixed | false   | Boolean，String | 是否固定在顶部   | -      | false        |
 | emit  | false   | Boolean，String | 是否触发自定义方法   | -      | false        |
 | title | -    | String  | 标题       | -      | false        |
+| config   | {}      | Object          | 自定义参数        | -                | false|
 
 
 ### config说明
