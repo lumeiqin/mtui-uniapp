@@ -1,35 +1,37 @@
 <template>
 	<view class="mt-card" :class="{ 'mt-card--disabled': disabled }"
-		:hover-class="(!clickable && !link) || disabled || showSwitch ? '' : 'mt-card--hover'">
+		:hover-class="(!clickable && !link) || disabled || selfConfig.showSwitch ? '' : 'mt-card--hover'">
 
 		<view class="mt-card-item" @click.stop="onClick">
 			<view class="itemBox"
-				:class="{ 'itemBox--right': showArrow || link, 'itemBox--column': direction === 'column' }">
+				:class="{ 'itemBox--right': selfConfig.showArrow || link, 'itemBox--column': selfConfig.direction === 'col' }">
 
 				<slot name="left">
-					<view class="leftBox" v-if="showCheck || thumb || showExtraIcon">
-						<checkbox-group class="leftBox-check" v-if="showCheck" @change="checkboxChange">
+					<view class="leftBox" v-if="selfConfig.showCheck || thumb || selfConfig.showExtraIcon">
+						<checkbox-group class="leftBox-check" v-if="selfConfig.showCheck" @change="checkboxChange">
 							<checkbox :disabled="disabled" :value="checkItem.value" :checked="checkItem.checked" />
 						</checkbox-group>
 
 						<view v-if="thumb" class="left_thumb">
 							<image v-if="thumbTag" :src="thumbTag" class="left_thumb_tag"
-								:class="{'left_thumb_tag-sm': thumbTagSM}"></image>
+								:class="{'left_thumb_tag-sm': selfConfig.thumbTagSM}"></image>
 							<image :src="thumb" class="left_thumb_img"
-								:class="['left_thumb_img-' + thumbSize, 'left_thumb_img-'+ thumbType]" />
+								:class="['left_thumb_img-' + selfConfig.thumbSize, 'left_thumb_img-'+ selfConfig.thumbType]" />
 						</view>
 
-						<view v-else-if="showExtraIcon" class="left_diyicon">
-							<uni-icons :color="extraIcon.color" :size="extraIcon.size" :type="extraIcon.type" />
+						<view v-else-if="selfConfig.showExtraIcon" class="left_diyicon">
+							<uni-icons :color="selfConfig.extraIcon.color" :size="selfConfig.extraIcon.size"
+								:type="selfConfig.extraIcon.type" />
 						</view>
 					</view>
 				</slot>
 
 				<slot name="middle">
 					<view class="middleBox"
-						:class="{ 'middleBox-center': thumb || showExtraIcon || showBadge || showSwitch }">
+						:class="{ 'middleBox-center': thumb || selfConfig.showExtraIcon || badgeText || selfConfig.showSwitch }">
 						<view v-if="title" class="middle_title">
-							<text :class="[ellipsis && ellipsis != 0 ? 'ell-' + ellipsis : '']">
+							<text
+								:class="[selfConfig.ellipsis && selfConfig.ellipsis != 0 ? 'ell-' + selfConfig.ellipsis : '']">
 								{{ title }}
 							</text>
 						</view>
@@ -60,10 +62,10 @@
 				</slot>
 
 				<slot name="right">
-					<view v-if="rightText || showBadge || showSwitch" class="rightBox"
-						:class="{ 'initial': direction === 'column' }">
+					<view v-if="rightText || badgeText || selfConfig.showSwitch" class="rightBox"
+						:class="{ 'initial': selfConfig.direction === 'col' }">
 						<text v-if="rightText">{{ rightText }}</text>
-						<mt-tag v-if="showBadge" class="tag" :config="{
+						<mt-tag v-if="badgeText" class="tag" :config="{
 								color: '#fff',
 								border: 'none',
 								padding: '6rpx 12rpx',
@@ -72,16 +74,17 @@
 							}">
 							{{ badgeText }}
 						</mt-tag>
-						<switch v-if="showSwitch" :disabled="disabled || showCheck || canSwitch"
+						<switch v-if="selfConfig.showSwitch"
+							:disabled="disabled || selfConfig.showCheck || selfConfig.canSwitch"
 							:checked="switchChecked" @change="onSwitchChange" />
 					</view>
 				</slot>
 			</view>
 
-			<uni-icons v-if="showArrow || link" :size="16" class="itemArrow" color="#bbb" type="arrowright" />
+			<i v-if="selfConfig.showArrow || link" class="iconfont icon-danse_gengduojiantou itemArrow"></i>
 		</view>
 
-		<view class="mt-card-badge" v-if="showBottomBadge">
+		<view class="mt-card-badge" v-if="bottomBadges && bottomBadges.length">
 			<mt-tag v-for="(tag, index) in bottomBadges" :key="index" class="badgeItem" :config="{
 				color: tag.color || '#333',
 				size: tag.size || '24rpx',
@@ -98,7 +101,7 @@
 		<view class="mt-card-button" :class="btnGroup.length > 1? 'mt-card-button-more': 'mt-card-button-one'"
 			v-if="btnGroup.length > 0">
 			<mt-button v-for="(item,index) in btnGroup" :key="index" :name="item.type || 'hollow'"
-				:disabled="disabled || showCheck"
+				:disabled="disabled || selfConfig.showCheck"
 				:class="btnGroup.length > 1? 'mt-card-button-more-btn': 'mt-card-button-one-btn'" :config="{
 					color: item.color || '#2194F2',
 					radius: item.radius || '34px',
@@ -118,17 +121,13 @@
 	export default {
 		name: 'mt-card',
 		props: {
-			direction: {
-				type: String,
-				default: 'row'
-			},
 			disabled: {
 				type: [Boolean, String],
 				default: false
 			},
 			// 点击相关参数
 			clickable: {
-				type: Boolean,
+				type: [Boolean,String],
 				default: false
 			},
 			link: {
@@ -139,15 +138,8 @@
 				type: String,
 				default: ''
 			},
-			showArrow: {
-				type: [Boolean, String],
-				default: false
-			},
+
 			// checkbox
-			showCheck: {
-				type: [Boolean, String],
-				default: false
-			},
 			checkItem: {
 				type: Object,
 				default () {
@@ -162,70 +154,25 @@
 				type: String,
 				default: ''
 			},
-			thumbSize: {
-				type: String,
-				default: 'md'
-			},
-			thumbType: {
-				type: String,
-				default: 'circle'
-			},
 			thumbTag: {
 				type: String,
 				default: ''
-			},
-			thumbTagSM: {
-				type: Boolean,
-				default: false
-			},
-			showExtraIcon: {
-				type: [Boolean, String],
-				default: false
-			},
-			extraIcon: {
-				type: Object,
-				default () {
-					return {
-						type: 'contact',
-						color: '#000000',
-						size: 20
-					};
-				}
 			},
 
 			title: {
 				type: String,
 				default: '标题'
 			},
-			ellipsis: {
-				type: [Number, String],
-				default: 2
-			},
 			notes: {
-				type: Array | String,
+				type: Array,
 				default () {
 					return []
-					// {
-					// 	icon: "",
-					// 	noteLabel: "创建时间",
-					// 	noteText: "2020-10-17 12:30:47"
-					// }
 				}
 			},
 			tags: {
 				type: Array,
 				default () {
-					return [{
-						name: "测试tag",
-						color: "#2194F2",
-						size: "24rpx",
-						lineHeight: "24rpx",
-						border: "1px solid #2194F2",
-						padding: "6rpx 16rpx",
-						bg: "#fff",
-						radius: "20rpx",
-						scale: 0.9
-					}]
+					return []
 				}
 			},
 
@@ -233,79 +180,73 @@
 				type: String,
 				default: ''
 			},
-			showSwitch: {
-				type: [Boolean, String],
-				default: false
-			},
 			switchChecked: {
-				type: [Boolean, String],
-				default: false
-			},
-			canSwitch: {
-				type: [Boolean, String],
-				default: false
-			},
-
-			showBadge: {
 				type: [Boolean, String],
 				default: false
 			},
 			badgeText: {
 				type: String,
-				default: '1' // 1
-			},
-
-			showBottomBadge: {
-				type: [Boolean, String],
-				default: false
+				default: ''
 			},
 			bottomBadges: {
 				type: Array,
 				default () {
-					return [{
-						badgeLabel: '事项大类123',
-						badgeText: '事项大类',
-						valueKey: 'badgeLabel',
-
-						color: "#f0ad4e",
-						size: "24rpx",
-						lineHeight: "24rpx",
-						border: "1px solid #f0ad4e",
-						padding: "6rpx 16rpx",
-						bg: "transparent",
-						radius: "20rpx"
-					}]
+					return []
 				}
 			},
 			btnGroup: {
 				type: Array,
 				default () {
-					return [{
-						type: 'default', // 按钮类型
-						name: '详情', // 按钮名字
-						value: 'delete', // 按钮标识
-						color: '#2194F2', // 按钮颜色
-						radius: '34px', // 按钮圆角
-						height: '34px', // 按钮高度
-						fontsize: '14px', // 按钮字体大小
-						noBorder: false, // 是否无边框（type=hollow）
-						shadow: '0px 3px 8px 0px rgba(0,0,0,0.1)' // 按钮阴影
-					}, {
-						name: '删除', // 按钮名字
-						value: 'delete', // 按钮标识
-						color: '#2194F2', // 按钮颜色
-						radius: '34px', // 按钮圆角
-						height: '34px', // 按钮高度
-						fontsize: '14px', // 按钮字体大小
-						noBorder: false, // 是否无边框（type=hollow）
-						shadow: '0px 3px 8px 0px rgba(0,0,0,0.1)' // 按钮阴影
-					}]
+					return []
 				}
 			},
+			config: {
+				type: Object,
+				default () {
+					return {
+
+					}
+				}
+			}
+		},
+		data() {
+			return {
+				selfConfig: {
+					direction: 'row',
+					thumbSize: 'md',
+					thumbType: 'circle',
+					thumbTagSM: false,
+					showExtraIcon: false,
+					extraIcon: {
+						type: 'contact',
+						color: '#000000',
+						size: 20
+					},
+					ellipsis: 2,
+					showArrow: false,
+					showCheck: false,
+					showSwitch: false,
+					canSwitch: false
+				}
+			}
+		},
+		watch: {
+			config(value) {
+				this.selfConfig = {
+					...this.selfConfig,
+					...value
+				}
+			}
+		},
+		created() {
+			this.selfConfig = {
+				...this.selfConfig,
+				...this.config
+			}
 		},
 		methods: {
 			onClick() {
-				if (!this.showCheck) {
+				if (!this.selfConfig.showCheck) {
 					if (this.url !== '') {
 						this.openPage();
 						return;
@@ -319,7 +260,7 @@
 				this.$emit('switchChange', e.detail);
 			},
 			checkboxChange(e) {
-				this.$emit("checkChange", e.target.value[0])
+				this.$emit("checkChange", e.target.value)
 			},
 			btnClick(item) {
 				this.$emit("btnEvent", {
