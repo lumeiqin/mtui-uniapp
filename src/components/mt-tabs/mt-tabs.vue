@@ -68,7 +68,7 @@
 			},
 			type: {
 				type: String,
-				default: 'scroll'
+				default: 'default'
 			},
 			showValue: {
 				type: Object,

@@ -33,7 +33,7 @@
 				default: '20rpx'
 			},
 			readonly: {
-				type: Boolean,
+				type: [Boolean,String],
 				default: false
 			},
 		},
