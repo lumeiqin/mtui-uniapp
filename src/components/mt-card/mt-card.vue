@@ -9,7 +9,7 @@
 				<slot name="left">
 					<view class="leftBox" v-if="selfConfig.showCheck || thumb || selfConfig.showExtraIcon">
 						<checkbox-group class="leftBox-check" v-if="selfConfig.showCheck" @change="checkboxChange">
-							<checkbox :disabled="disabled" :value="checkItem.value" :checked="checkItem.checked" />
+							<checkbox :disabled="disabled" :value="checkItem && checkItem.value" :checked="checkItem && checkItem.checked" />
 						</checkbox-group>
 
 						<view v-if="thumb" class="left_thumb">
@@ -143,10 +143,7 @@
 			checkItem: {
 				type: Object,
 				default () {
-					return {
-						value: 'exval',
-						checked: false
-					}
+					return {}
 				}
 			},
 			// 左侧图片
