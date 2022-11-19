@@ -1,0 +1,28 @@
+<template>
+	<view class="comp">
+		<ry-title>
+			<mt-tag>标签1</mt-tag>
+		</ry-title>
+
+		<ry-title title="自定义参数">
+			<mt-tag :config="tagConfig">标签2</mt-tag>
+		</ry-title>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				tagConfig: {
+					color: "#2194F2",
+					border: "1px solid #2194F2",
+					padding: "10rpx 30rpx",
+					radius: "30rpx",
+					bg: "#fff",
+					scale: "1.2"
+				},
+			}
+		}
+	}
+</script>

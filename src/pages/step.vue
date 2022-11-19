@@ -1,0 +1,41 @@
+<template>
+	<view class="comp">
+		<ry-title>
+			<mt-step v-for="(v, index) in dutyRecordList" :key="index" :time="v.createTime">
+				<view class="dutyListSteps">
+					所属组织：{{v.organName}}
+				</view>
+			</mt-step>
+		</ry-title>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				dutyRecordList: [{
+					organName: "电化厂",
+					createTime: "时间：2022-10-01",
+				}, {
+					organName: "电化厂",
+					createTime: "时间：2022-10-01",
+				}, {
+					organName: "电化厂",
+					createTime: "时间：2022-10-01",
+				}],
+			}
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	.dutyListSteps {
+		padding: 10rpx 20rpx;
+		font-size: 28rpx;
+		line-height: 80rpx;
+		font-weight: 500;
+		color: #F4787E;
+		text-shadow: 0px 3px 4px rgba(244, 124, 127, 0.3);
+	}
+</style>

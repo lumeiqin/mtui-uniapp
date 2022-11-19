@@ -1,82 +1,68 @@
 <template>
-	<view class="index">
-		<!-- mt-navbar -->
-		<mt-navbar title="通讯录"></mt-navbar>
-
-		<view v-if="false">
-			<!-- mt-tabs -->
-			<mt-tabs :tabData="tabData"></mt-tabs>
-
-			<!-- mt-box -->
-			<mt-box border="true" center="true">
-				金城留旬浃，兀兀醉歌舞。
-			</mt-box>
-
-			<!-- mt-button -->
-			<mt-button>测试</mt-button>
-			<mt-button name="hollow">测试1</mt-button>
-
-			<!-- mt-grid -->
-			<mt-grid name="title" :col="2" :data="title2"></mt-grid>
-			<mt-grid></mt-grid>
-			<mt-grid name="title" :data="titleDiy">
-				协议资料
-			</mt-grid>
-
-			<!-- mt-search -->
-			<mt-search></mt-search>
-
-			<!-- mt-popup -->
-			<mt-popup ref="popup">
-				<view style="width: 100%;height: 200px;background: #fff;">
-					这是模态框
-				</view>
-			</mt-popup>
-			<mt-button @click="openModal">显示模态框</mt-button>
-
-			<!-- mt-tag -->
-			<mt-tag>生产监控</mt-tag>
-
-			<!-- mt-form -->
-			<mt-form></mt-form>
-
-			<!-- mt-card -->
-			<mt-card :notes="notes" :title="title"></mt-card>
-
-			<!-- mt-modal -->
-			<mt-modal ref="popup"></mt-modal>
-			<mt-button @click="openModal">显示modal</mt-button>
-		</view>
-
-		<!-- mt-rate -->
-		<mt-rate></mt-rate>
-
-		<!-- mt-tabbar -->
-		<mt-tabbar :data="tabbarData"></mt-tabbar>
+	<view style="padding: 30px 20px;">
+		<block v-for="(item, index) in compArr" :key="index">
+			<mt-button @click="jumpPage(item.path)">{{item.title}}</mt-button>
+			<br>
+			<br>
+		</block>
 	</view>
 </template>
 
 <script>
-	import result from "./index.js";
 	export default {
-		name: 'examples',
 		data() {
 			return {
-				...result,
+				compArr: [{
+					title: 'Box 容器',
+					path: '/pages/box'
+				}, {
+					title: 'Button 按钮',
+					path: '/pages/button'
+				}, {
+					title: 'Card 卡片',
+					path: '/pages/card'
+				}, {
+					title: 'Form 表单',
+					path: '/pages/form'
+				}, {
+					title: 'Grid 宫格',
+					path: '/pages/grid'
+				}, {
+					title: 'Modal 模态框',
+					path: '/pages/modal'
+				}, {
+					title: 'Navbar 导航栏',
+					path: '/pages/navbar'
+				}, {
+					title: 'Popup 弹窗',
+					path: '/pages/popup'
+				}, {
+					title: 'Rate 评分',
+					path: '/pages/rate'
+				}, {
+					title: 'Search 搜索框',
+					path: '/pages/search'
+				}, {
+					title: 'Step 流程图',
+					path: '/pages/step'
+				}, {
+					title: 'Tabbar 标签栏',
+					path: '/pages/tabbar'
+				}, {
+					title: 'Tabs 标签页',
+					path: '/pages/tabs'
+				}, {
+					title: 'Tag 标签',
+					path: '/pages/tag'
+				}]
 			}
 		},
 		methods: {
-			openModal() {
-				this.$refs.popup.open()
-			}
+			jumpPage(path) {
+				uni.navigateTo({
+					url: path
+				})
+			},
 		}
 	}
 </script>
-
-<style lang="scss" scoped>
-	.index {
-		width: 100%;
-		min-height: 100vh;
-		background: #fff;
-	}
-</style>

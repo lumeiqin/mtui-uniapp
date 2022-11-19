@@ -6,7 +6,7 @@
 
 <script>
 	export default {
-		name: 'mtPopup',
+		name: 'mt-popup-transition',
 		props: {
 			show: {
 				type: Boolean,

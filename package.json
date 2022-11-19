@@ -1,7 +1,6 @@
 {
-  "name": "my-project",
-  "version": "0.1.0",
-  "private": true,
+  "name": "mtui-uni",
+  "version": "0.0.0",
   "scripts": {
     "serve": "npm run dev:h5",
     "build": "npm run build:h5",
@@ -96,7 +95,6 @@
     "mini-types": "*",
     "miniprogram-api-typings": "*",
     "postcss-comment": "^2.0.0",
-    "sass": "^1.54.7",
     "vue-template-compiler": "^2.6.11"
   },
   "browserslist": [

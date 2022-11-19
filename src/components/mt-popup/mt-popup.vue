@@ -11,7 +11,7 @@
 <script>
 	import mtPopupTransition from "./mt-popup-transition";
 	export default {
-		name: 'mtPopup',
+		name: 'mt-popup',
 		components: {
 			mtPopupTransition
 		},

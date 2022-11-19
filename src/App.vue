@@ -14,5 +14,8 @@
 
 <style lang="scss">
 	@import "./static/font/iconfont.css";
-	@import "./components/mt-theme/index.scss";
+	
+	.comp {
+		padding: 15px 0;
+	}
 </style>
