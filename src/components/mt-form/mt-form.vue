@@ -3,7 +3,7 @@
 		<block v-for="(item, index) in showForm.property" :key="index">
 			<view :class="{'mtForm-main': config}">
 				<text class="delete iconfont icon-guanbi" v-if="config" @click="deleteItem(item, index)"></text>
-				<!-- 
+				<!--
 				【 '' | text | ID | tel |number | password 】 -->
 				<block
 					v-if="!item.type || item.type == 'text' || item.type == 'ID' || item.type == 'tel' || item.type == 'number' || item.type == 'password'">
@@ -71,7 +71,7 @@
 				<!-- title -->
 				<block v-else-if="item.type == 'title'">
 					<view class="mtForm-formTitle" :style="{
-						fontSize: (item.fontSize || 34) + 'rpx',
+						fontSize: (item.fontSize || 30) + 'rpx',
 						color: item.color || '#333',
 						background: item.background || '#F5F7FA',
 						textAlign: item.align || 'center'

@@ -55,7 +55,7 @@ export default {
 		};
 	},
 	watch: {
-		showForm(newvalue, oldvalue) {
+		formData(newvalue, oldvalue) {
 			this.showForm = this.pickerDefault(newvalue);
 		}
 	},
