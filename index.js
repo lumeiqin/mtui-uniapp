@@ -1,64 +1,51 @@
-import mtBox from "./src/components/mt-box/component/index";
-import mtButton from "./src/components/mt-button/component/index";
-import mtCard from "./src/components/mt-card/component/index";
-
-import mtForm from "./src/components/mt-form/component/index";
-import itemClickLocation from "./src/components/mt-form/component/itemClickLocation";
-import itemCode from "./src/components/mt-form/component/itemCode";
-import itemDate from "./src/components/mt-form/component/itemDate";
-import itemFile from "./src/components/mt-form/component/itemFile";
-import itemInput from "./src/components/mt-form/component/itemInput";
-import itemList from "./src/components/mt-form/component/itemList";
-import itemMultiChoose from "./src/components/mt-form/component/itemMultiChoose";
-import itemMultiCustom from "./src/components/mt-form/component/itemMultiCustom";
-import itemMultiSelector from "./src/components/mt-form/component/itemMultiSelector";
-import itemRadio from "./src/components/mt-form/component/itemRadio";
-import itemSelector from "./src/components/mt-form/component/itemSelector";
-import itemTextarea from "./src/components/mt-form/component/itemTextarea";
-
-import mtGrid from "./src/components/mt-grid/component/index";
-import mtModal from "./src/components/mt-modal/component/index";
-import mtNavbar from "./src/components/mt-navbar/component/index";
+import mtBox from "./src/components/mt-box/mt-box";
+import mtButton from "./src/components/mt-button/mt-button";
+import mtCard from "./src/components/mt-card/mt-card";
+import mtForm from "./src/components/mt-form/mt-form";
+import itemClickLocation from "./src/components/mt-form/item-click-location/item-click-location";
+import itemCode from "./src/components/mt-form/item-code/item-code";
+import itemDate from "./src/components/mt-form/item-date/item-date";
+import itemFile from "./src/components/mt-form/item-file/item-file";
+import itemInput from "./src/components/mt-form/item-input/item-input";
+import itemList from "./src/components/mt-form/item-list/item-list";
+import itemMultiChoose from "./src/components/mt-form/item-multiChoose/item-multiChoose";
+import itemMultiCustom from "./src/components/mt-form/item-multiCustom/item-multiCustom";
+import itemMultiSelector from "./src/components/mt-form/item-multiSelector/item-multiSelector";
+import itemRadio from "./src/components/mt-form/item-radio/item-radio";
+import itemSelector from "./src/components/mt-form/item-selector/item-selector";
+import itemTextarea from "./src/components/mt-form/item-textarea/item-textarea";
+import mtGrid from "./src/components/mt-grid/mt-grid";
+import mtModal from "./src/components/mt-modal/mt-modal";
+import mtNavbar from "./src/components/mt-navbar/mt-navbar";
 import mtPopup from "./src/components/mt-popup/mt-popup";
-import mtRate from "./src/components/mt-rate/component/index";
-import mtSearch from "./src/components/mt-search/component/index";
-import mtStep from "./src/components/mt-step/component/index";
+import mtPopupTransition from "./src/components/mt-popup/mt-popup-transition";
+import mtRate from "./src/components/mt-rate/mt-rate";
+import mtSearch from "./src/components/mt-search/mt-search";
+import mtStep from "./src/components/mt-step/mt-step";
 import mtTabbar from "./src/components/mt-tabbar/mt-tabbar";
-import mtTabs from "./src/components/mt-tabs/component/index";
-import mtTag from "./src/components/mt-tag/component/index";
+import mtTabs from "./src/components/mt-tabs/mt-tabs";
+import mtTag from "./src/components/mt-tag/mt-tag";
 
 import mtUtils from "./src/common/mt-utils/index";
 
-const components = [
+let components = [
     mtBox,
     mtButton,
     mtCard,
 
-    mtForm,
-    itemClickLocation,
-    itemCode,
-    itemDate,
-    itemFile,
-    itemInput,
-    itemList,
-    itemMultiChoose,
-    itemMultiCustom,
-    itemMultiSelector,
-    itemRadio,
-    itemSelector,
-    itemTextarea,
+    mtForm, itemClickLocation, itemCode, itemDate, itemFile, itemInput, itemList, itemMultiChoose, itemMultiCustom, itemMultiSelector, itemRadio, itemSelector, itemTextarea,
 
     mtGrid,
     mtModal,
     mtNavbar,
-    mtPopup,
+    mtPopup, mtPopupTransition,
     mtRate,
     mtSearch,
     mtStep,
     mtTabbar,
     mtTabs,
-    mtTag,
-];
+    mtTag
+]
 
 const install = function (Vue, opts = {}) {
     components.forEach(component => {
@@ -67,7 +54,6 @@ const install = function (Vue, opts = {}) {
 
     Vue.prototype.$mt = new mtUtils();
 };
-
 
 export default {
     install,
@@ -94,6 +80,7 @@ export default {
     mtModal,
     mtNavbar,
     mtPopup,
+    mtPopupTransition,
     mtRate,
     mtSearch,
     mtStep,
