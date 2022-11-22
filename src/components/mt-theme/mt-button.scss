@@ -1,8 +1,11 @@
+// 重置样式 + 公共样式
+@import "./common/index.scss";
+
 .mt-button {
   width: 100%;
   @extend %flex-center;
   border: none;
-  
+
   &:after, &:before {
 	  display: none;
   }

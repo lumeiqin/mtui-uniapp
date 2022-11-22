@@ -1,3 +1,6 @@
+// 重置样式 + 公共样式
+@import "./common/index.scss";
+
 ::v-deep uni-checkbox .uni-checkbox-wrapper {
   display: flex;
   justify-content: center;

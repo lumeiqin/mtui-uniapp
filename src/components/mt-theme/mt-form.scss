@@ -1,3 +1,7 @@
+// 重置样式 + 公共样式
+@import "./common/index.scss";
+@import "./mt-form-item/index.scss";
+
 .mtForm {
 	text.delete {
 		font-size: 52rpx !important;

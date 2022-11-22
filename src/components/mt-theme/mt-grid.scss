@@ -1,3 +1,6 @@
+// 重置样式 + 公共样式
+@import "./common/index.scss";
+
 .mt-grid {
   width: 100%;
   @extend %flex-start;
@@ -31,7 +34,7 @@
   // col = 3
   .icon-3 {
     @include column(3);
-  
+
     image {
       @include square-size(110);
     }
@@ -39,12 +42,12 @@
   // col = 5
   .icon-5 {
     @include column(5);
-  
+
     image {
       @include square-size(90);
     }
   }
-  
+
 // title 模式
   .grid_title {
     width: 100%;
