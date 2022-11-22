@@ -1,6 +1,7 @@
 {
   "name": "mtui-uni",
   "version": "0.0.4",
+  "keywords": ["vue","uniapp","scss","mtui"],
   "scripts": {
     "serve": "npm run dev:h5",
     "build": "npm run build:h5",

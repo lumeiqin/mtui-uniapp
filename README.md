@@ -1,10 +1,9 @@
 #### 在使用 MtUI UNI版 前，请确保你已经学习并熟练使用过 [uni-app](https://uniapp.dcloud.io/) 。
 
 ### [mtui-uni 文档](https://static-ab398308-a8d9-41bf-9e5e-0129499ef255.bspapp.com/#/)
-
-## 安装
 ***
 
+#
 ### 方式一 ：通过 npm 安装
 
 #### 使通过 npm 安装，需要先通过 vue-cli 创建 uni-app 项目，[详见](https://uniapp.dcloud.io/quickstart-cli)
