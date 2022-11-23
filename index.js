@@ -14,6 +14,14 @@ import itemMultiSelector from "./src/components/mt-form/item-multiSelector/item-
 import itemRadio from "./src/components/mt-form/item-radio/item-radio";
 import itemSelector from "./src/components/mt-form/item-selector/item-selector";
 import itemTextarea from "./src/components/mt-form/item-textarea/item-textarea";
+
+import simpleDate from "./src/components/mt-form/item-date/simple-date";
+import simpleMultiChoose from "./src/components/mt-form/item-multiChoose/simple-multi-choose";
+import simpleFormList from "./src/components/mt-form/item-list/simple-form-list";
+import simpleMultiCustom from "./src/components/mt-form/item-multiCustom/simple-multi-custom";
+import simpleMultiSelector from "./src/components/mt-form/item-multiSelector/simple-multi-selector";
+import simpleSelector from "./src/components/mt-form/item-selector/simple-selector";
+
 import mtGrid from "./src/components/mt-grid/mt-grid";
 import mtModal from "./src/components/mt-modal/mt-modal";
 import mtNavbar from "./src/components/mt-navbar/mt-navbar";
@@ -25,6 +33,7 @@ import mtStep from "./src/components/mt-step/mt-step";
 import mtTabbar from "./src/components/mt-tabbar/mt-tabbar";
 import mtTabs from "./src/components/mt-tabs/mt-tabs";
 import mtTag from "./src/components/mt-tag/mt-tag";
+// import mtCollapse from "./src/components/mt-collapse/mt-collapse";
 
 import mtUtils from "./src/common/mt-utils/index";
 
@@ -35,6 +44,13 @@ let components = [
 
     mtForm, itemClickLocation, itemCode, itemDate, itemFile, itemInput, itemList, itemMultiChoose, itemMultiCustom, itemMultiSelector, itemRadio, itemSelector, itemTextarea,
 
+    simpleDate,
+    simpleMultiChoose,
+    simpleFormList,
+    simpleMultiCustom,
+    simpleMultiSelector,
+    simpleSelector,
+
     mtGrid,
     mtModal,
     mtNavbar,
@@ -44,7 +60,8 @@ let components = [
     mtStep,
     mtTabbar,
     mtTabs,
-    mtTag
+    mtTag,
+    // mtCollapse,
 ]
 
 const install = function (Vue, opts = {}) {
@@ -76,6 +93,13 @@ export default {
     itemSelector,
     itemTextarea,
 
+    simpleDate,
+    simpleMultiChoose,
+    simpleFormList,
+    simpleMultiCustom,
+    simpleMultiSelector,
+    simpleSelector,
+
     mtGrid,
     mtModal,
     mtNavbar,
@@ -86,5 +110,6 @@ export default {
     mtStep,
     mtTabbar,
     mtTabs,
-    mtTag
+    mtTag,
+    // mtCollapse,
 };
