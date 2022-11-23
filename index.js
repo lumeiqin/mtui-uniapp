@@ -69,7 +69,7 @@ const install = function (Vue, opts = {}) {
         Vue.component(component.name, component);
     });
 
-    Vue.prototype.$mt = new mtUtils();
+    Vue.prototype.$config = mtUtils;
 };
 
 export default {
