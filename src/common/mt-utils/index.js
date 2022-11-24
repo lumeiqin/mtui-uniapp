@@ -4,25 +4,27 @@ class Utils {
         this.debug = data.debug || false;
         // 当前环境
         this.serveMode = data.serveMode || 'formal';
-        // 接口对象集合
-        this.urlData = data.urlData || {
-            getFormData: '/api/common/getJsonFormByKey'
-        };
 
-        // 环境列表
-        this.serveModeArr = ['default'] || data.serveModeArr;
-        this.serveModeObj = {
+        this.serveModeArr = data.serveModeArr || ['default']; // 模块接口前缀列表
+
+        // 环境对象集
+        this.serveModeObj = data.serveModeObj || {
             online: {
                 defaultHost: 'http://172.30.200.92:6342/'
             },
             formal: {
                 defaultHost: 'http://gz.gisocn.com:6342/'
             }
-        } || data.serveModeObj;
+        };
 
         this.serveModeArr.forEach(item => {
             this[item + 'Host'] = this.serveModeObj[this.serveMode][item + 'Host'] || ""
         })
+
+        // 接口集合
+        this.urlData = data.urlData || {
+            getFormData: '/api/common/getJsonFormByKey'
+        };
 
         // 是否需要token
         this.hasToken = data.hasToken || false;
@@ -30,7 +32,7 @@ class Utils {
         this.tokenName = data.tokenName || 'token';
 
         // 水印参数
-        this.settings = {
+        this.settings = data.settings || {
             textArr: ['mtui', 'uniapp'], // 需要展示的文字，多行就多个元素【必填】
             font: "15px '微软雅黑'", // 字体样式
             fillStyle: 'rgba(100,47,47,0.1)', // 描边样式
@@ -87,7 +89,7 @@ class Utils {
             return obj;
         } else {
             return Object.assign(obj, {
-                [name]: uni.getStorageSync("token").access_token || ''
+                [name]: uni.getStorageSync("token") || ''
             })
         }
     }
@@ -95,15 +97,12 @@ class Utils {
 
     /**
      * @description 接口请求 [get | post | file]
-     * @param {String: url | Object: url + type} urlParams: 接口地址相关参数
-     * @param {Object} requestParams: 接口参数
-     * @param {Object} headerParams: 接口头部
-     * @param {String} submitType: post请求方式 [form | json]
-     * @param {File} fileName：文件本体
      */
-    get(urlParams, requestParams, headerParams) {
-        this.setConsole(["----------get接口请求地址：" + this._handleUrl(urlParams), "接口请求参数：" + JSON.stringify(this
-            ._bindToken(requestParams, 'token')), "接口请求头部：" + JSON.stringify(headerParams)]);
+    get(urlParams, requestParams = {}, headerParams = {}) {
+        this.setConsole(["----------get" +
+        "接口请求地址：" + this._handleUrl(urlParams),
+            "接口请求参数：" + JSON.stringify(this._bindToken(requestParams, this.tokenName)),
+            "接口请求头部：" + JSON.stringify(this._bindToken(headerParams, this.tokenName))]);
 
         return new Promise((resolve, reject) => {
             uni.request({
@@ -118,7 +117,7 @@ class Utils {
         })
     }
 
-    post(urlParams, requestParams, submitType, headerParams) {
+    post(urlParams, requestParams = {}, submitType = "json", headerParams = {}) {
         let submitHeader = {};
         switch (submitType) {
             case "form":
@@ -133,10 +132,13 @@ class Utils {
                 submitHeader["content-type"] = "application/json";
                 break;
         }
-        ;this.setConsole(["=============post接口请求地址：" + this._handleUrl(urlParams), "接口请求参数：" + JSON.stringify(this
-            ._bindToken(requestParams, 'token')), "post请求方式：" + submitType, "接口请求头部：" + JSON.stringify({
-            ...submitHeader, ...headerParams
-        })]);
+        this.setConsole(["=============post" +
+        "接口请求地址：" + this._handleUrl(urlParams),
+            "接口请求参数：" + JSON.stringify(this._bindToken(requestParams, this.tokenName)),
+            "post请求方式：" + submitType,
+            "接口请求头部：" + JSON.stringify({
+                ...submitHeader, ...this._bindToken(headerParams, this.tokenName)
+            })]);
 
         return new Promise((resolve, reject) => {
             uni.request({
@@ -154,22 +156,50 @@ class Utils {
         })
     }
 
-    fileUpload(urlParams, fileName, requestParams, headerParams) {
-        this.setConsole(["+++++++++++++++file接口请求地址：" + this._handleUrl(urlParams), "文件本体：" + fileName, "接口请求参数：" + JSON
-            .stringify(requestParams), "接口请求头部：" + JSON.stringify({
-            'content-type': 'multipart/form-data', ...headerParams
-        })]);
+    fileUpload(urlParams, fileName, requestParams = {}, headerParams = {}, nameKey = 'file', submitMethods = 'single') {
+        this.setConsole(["+++++++++++++++fileUpload" +
+        "接口请求地址：" + this._handleUrl(urlParams),
+            "文件本体：" + fileName,
+            "文件对应的key：" + nameKey,
+            "附件提交方式：" + submitMethods,
+            "接口请求参数：" + JSON.stringify(requestParams),
+            "接口请求头部：" + JSON.stringify({
+                'content-type': 'multipart/form-data',
+                ...this._bindToken(headerParams, this.tokenName)
+            })]);
 
         return new Promise((resolve, reject) => {
-            uni.uploadFile({
-                url: this._handleUrl(urlParams), filePath: fileName, name: 'file', formData: requestParams, header: {
-                    'content-type': 'multipart/form-data', ...this._bindToken(headerParams, this.tokenName)
-                }, success(res) {
-                    resolve(res.data)
-                }, fail: reject
-            });
+            if (submitMethods === "single") {
+                uni.uploadFile({
+                    url: this._handleUrl(urlParams),
+                    filePath: fileName,
+                    name: nameKey,
+                    formData: requestParams,
+                    header: {
+                        'content-type': 'multipart/form-data', ...this._bindToken(headerParams, this.tokenName)
+                    },
+                    success(res) {
+                        resolve(res.data)
+                    },
+                    fail: reject
+                });
+            } else {
+                uni.uploadFile({
+                    url: this._handleUrl(urlParams),
+                    files: fileName,
+                    formData: requestParams,
+                    header: {
+                        'content-type': 'multipart/form-data', ...this._bindToken(headerParams, this.tokenName)
+                    },
+                    success(res) {
+                        resolve(res.data)
+                    },
+                    fail: reject
+                })
+            }
         })
     }
+
 
     /**
      * 附件地址完善
@@ -387,7 +417,6 @@ class Utils {
 
             document.body.appendChild(divMask);
         }
-
     }
 }
 
