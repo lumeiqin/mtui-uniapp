@@ -35,7 +35,6 @@ import mtTabs from "./src/components/mt-tabs/mt-tabs";
 import mtTag from "./src/components/mt-tag/mt-tag";
 // import mtCollapse from "./src/components/mt-collapse/mt-collapse";
 
-import mtUtils from "./src/common/mt-utils/index";
 
 let components = [
     mtBox,
@@ -68,8 +67,6 @@ const install = function (Vue, opts = {}) {
     components.forEach(component => {
         Vue.component(component.name, component);
     });
-
-    Vue.prototype.$config = mtUtils;
 };
 
 export default {

@@ -10,7 +10,7 @@ class Utils {
         };
 
         // 环境列表
-        this.serveModeArr = ['default', 'product'] || data.serveModeArr;
+        this.serveModeArr = ['default'] || data.serveModeArr;
         this.serveModeObj = {
             online: {
                 defaultHost: 'http://172.30.200.92:6342/'
