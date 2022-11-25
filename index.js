@@ -33,8 +33,7 @@ import mtStep from "./src/components/mt-step/mt-step";
 import mtTabbar from "./src/components/mt-tabbar/mt-tabbar";
 import mtTabs from "./src/components/mt-tabs/mt-tabs";
 import mtTag from "./src/components/mt-tag/mt-tag";
-// import mtCollapse from "./src/components/mt-collapse/mt-collapse";
-
+import mtCollapse from "./src/components/mt-collapse/mt-collapse";
 
 let components = [
     mtBox,
@@ -60,7 +59,7 @@ let components = [
     mtTabbar,
     mtTabs,
     mtTag,
-    // mtCollapse,
+    mtCollapse,
 ]
 
 const install = function (Vue, opts = {}) {
@@ -108,5 +107,5 @@ export default {
     mtTabbar,
     mtTabs,
     mtTag,
-    // mtCollapse,
+    mtCollapse,
 };

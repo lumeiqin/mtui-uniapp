@@ -22,6 +22,9 @@
 					title: 'Card 卡片',
 					path: '/pages/card'
 				}, {
+					title: 'Collapse 折叠面板',
+					path: '/pages/collapse'
+				}, {
 					title: 'Form 表单',
 					path: '/pages/form'
 				}, {
