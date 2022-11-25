@@ -1,17 +1,22 @@
 <template>
-	<view class="comp">
-		<ry-title>
-			<mt-step v-for="(v, index) in dutyRecordList" :key="index" :time="v.createTime">
-				<view class="dutyListSteps">
-					所属组织：{{v.organName}}
-				</view>
-			</mt-step>
-		</ry-title>
+	<view>
+		<mt-navbar title="Step" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
+		<view class="comp">
+			<ry-title>
+				<mt-step v-for="(v, index) in dutyRecordList" :key="index" :time="v.createTime">
+					<view class="dutyListSteps">
+						所属组织：{{v.organName}}
+					</view>
+				</mt-step>
+			</ry-title>
+		</view>
 	</view>
 </template>
 
 <script>
+	import common from "../common/common.js";
 	export default {
+		mixins: [common],
 		data() {
 			return {
 				dutyRecordList: [{

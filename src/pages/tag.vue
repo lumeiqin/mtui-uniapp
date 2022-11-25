@@ -1,17 +1,22 @@
 <template>
-	<view class="comp">
-		<ry-title>
-			<mt-tag>标签1</mt-tag>
-		</ry-title>
+	<view>
+		<mt-navbar title="Tag" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
+		<view class="comp">
+			<ry-title>
+				<mt-tag>标签1</mt-tag>
+			</ry-title>
 
-		<ry-title title="自定义参数">
-			<mt-tag :config="tagConfig">标签2</mt-tag>
-		</ry-title>
+			<ry-title title="自定义参数">
+				<mt-tag :config="tagConfig">标签2</mt-tag>
+			</ry-title>
+		</view>
 	</view>
 </template>
 
 <script>
+	import common from "../common/common.js";
 	export default {
+		mixins: [common],
 		data() {
 			return {
 				tagConfig: {

@@ -6,7 +6,7 @@
 					paddingTop: statusBarHeight + 'px'}">
 
 			<view class="mt-navbar-header"
-				:style="{ height: customBar, color: selfConfig.nobg? selfConfig.color: '#fff' }">
+				:style="{ height: customBar, color: selfConfig.color }">
 
 				<slot name="left">
 					<view class="backBtn" @click="onBackPage" v-if="selfConfig.back">
@@ -63,7 +63,7 @@
 					nobg: false,
 					bg: "#2194F2",
 					back: true,
-					color: "#333"
+					color: "#fff"
 				}
 			};
 		},

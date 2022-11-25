@@ -1,21 +1,26 @@
 <template>
-	<view class="comp">
-		<ry-title>
-			<mt-tabs></mt-tabs>
-		</ry-title>
+	<view>
+		<mt-navbar title="Tabs" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
+		<view class="comp">
+			<ry-title>
+				<mt-tabs></mt-tabs>
+			</ry-title>
 
-		<ry-title title="无限制模式">
-			<mt-tabs type="scroll" :tabData="scrollTabData"></mt-tabs>
-		</ry-title>
+			<ry-title title="无限制模式">
+				<mt-tabs type="scroll" :tabData="scrollTabData"></mt-tabs>
+			</ry-title>
 
-		<ry-title title="自定义参数">
-			<mt-tabs :config="tabConfig"></mt-tabs>
-		</ry-title>
+			<ry-title title="自定义参数">
+				<mt-tabs :config="tabConfig"></mt-tabs>
+			</ry-title>
+		</view>
 	</view>
 </template>
 
 <script>
+	import common from "../common/common.js";
 	export default {
+		mixins: [common],
 		data() {
 			return {
 				scrollTabData: [{

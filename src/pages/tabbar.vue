@@ -1,12 +1,17 @@
 <template>
-	<view class="comp">
-		<!-- 基础用法 -->
-		<mt-tabbar :data="tabbarData"></mt-tabbar>
+	<view>
+		<mt-navbar title="Tabbar" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
+		<view class="comp">
+			<!-- 基础用法 -->
+			<mt-tabbar :data="tabbarData"></mt-tabbar>
+		</view>
 	</view>
 </template>
 
 <script>
+	import common from "../common/common.js";
 	export default {
+		mixins: [common],
 		data() {
 			return {
 				tabbarData: [{

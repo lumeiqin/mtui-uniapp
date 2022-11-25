@@ -1,34 +1,39 @@
 <template>
-	<view class="comp">
-		<ry-title>
-			<mt-button @click="clickEvent">测试</mt-button>
-		</ry-title>
-		<ry-title title="name=hollow 基础使用">
-			<mt-button name="hollow">测试</mt-button>
-		</ry-title>
+	<view>
+		<mt-navbar title="Button" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
+		<view class="comp">
+			<ry-title>
+				<mt-button @click="clickEvent">测试</mt-button>
+			</ry-title>
+			<ry-title title="name=hollow 基础使用">
+				<mt-button name="hollow">测试</mt-button>
+			</ry-title>
 
-		<ry-title title="name=hollow 无边框">
-			<mt-button name="hollow" :config="hollowConfig">测试</mt-button>
-		</ry-title>
+			<ry-title title="name=hollow 无边框">
+				<mt-button name="hollow" :config="hollowConfig">测试</mt-button>
+			</ry-title>
 
-		<ry-title title="禁用按钮">
-			<mt-button disabled>测试</mt-button>
-		</ry-title>
+			<ry-title title="禁用按钮">
+				<mt-button disabled>测试</mt-button>
+			</ry-title>
 
-		<ry-title title="显示loading图标">
-			<mt-button loading>测试</mt-button>
-		</ry-title>
+			<ry-title title="显示loading图标">
+				<mt-button loading>测试</mt-button>
+			</ry-title>
 
-		<ry-title title="自定义参数">
-			<mt-button :config="buttonConfig">测试</mt-button>
-			<br>
-			<mt-button name="hollow" :config="buttonConfig">测试</mt-button>
-		</ry-title>
+			<ry-title title="自定义参数">
+				<mt-button :config="buttonConfig">测试</mt-button>
+				<br>
+				<mt-button name="hollow" :config="buttonConfig">测试</mt-button>
+			</ry-title>
+		</view>
 	</view>
 </template>
 
 <script>
+	import common from "../common/common.js";
 	export default {
+		mixins: [common],
 		data() {
 			return {
 				hollowConfig: {

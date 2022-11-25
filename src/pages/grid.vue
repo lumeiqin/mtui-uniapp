@@ -1,34 +1,39 @@
 <template>
-	<view class="comp">
-		<ry-title title="基础用法">
-			<mt-grid></mt-grid>
-		</ry-title>
+	<view>
+		<mt-navbar title="Grid" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
+		<view class="comp">
+			<ry-title title="基础用法">
+				<mt-grid></mt-grid>
+			</ry-title>
 
-		<ry-title title="name=title 基础用法">
-			<mt-grid name="title" :data="titleData" @click="gridEvent"></mt-grid>
-		</ry-title>
+			<ry-title title="name=title 基础用法">
+				<mt-grid name="title" :data="titleData" @click="gridEvent"></mt-grid>
+			</ry-title>
 
 
-		<ry-title title="5列">
-			<mt-grid col="5"></mt-grid>
-		</ry-title>
-		<ry-title title="3列">
-			<mt-grid col="3"></mt-grid>
-		</ry-title>
-		<ry-title title="2列">
-			<mt-grid col="2"></mt-grid>
-		</ry-title>
+			<ry-title title="5列">
+				<mt-grid col="5"></mt-grid>
+			</ry-title>
+			<ry-title title="3列">
+				<mt-grid col="3"></mt-grid>
+			</ry-title>
+			<ry-title title="2列">
+				<mt-grid col="2"></mt-grid>
+			</ry-title>
 
-		<ry-title title="diy内容">
-			<mt-grid name="title" :data="titleDiy">
-				协议资料
-			</mt-grid>
-		</ry-title>
+			<ry-title title="diy内容">
+				<mt-grid name="title" :data="titleDiy">
+					协议资料
+				</mt-grid>
+			</ry-title>
+		</view>
 	</view>
 </template>
 
 <script>
+	import common from "../common/common.js";
 	export default {
+		mixins: [common],
 		data() {
 			return {
 				titleData: [{

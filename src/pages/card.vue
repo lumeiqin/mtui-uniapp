@@ -1,47 +1,51 @@
 <template>
-	<view class="comp">
-		<ry-title title="基础用法">
-			<mt-card :title="title" :notes="noteArr"></mt-card>
-		</ry-title>
+	<view>
+		<mt-navbar title="Card" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
+		<view class="comp">
+			<ry-title title="基础用法">
+				<mt-card :title="title" :notes="noteArr"></mt-card>
+			</ry-title>
 
-		<ry-title title="图文卡片 + 显示小标签">
-			<mt-card :title="title" :notes="noteArr" :tags="tagArr" :thumb="item.thumb" :config="item.config"
-				:clickable="true" @click="cardEvent(item)" v-for="(item, index) in imgCardList" :key="index">
-			</mt-card>
-		</ry-title>
+			<ry-title title="图文卡片 + 显示小标签">
+				<mt-card :title="title" :notes="noteArr" :tags="tagArr" :thumb="item.thumb" :config="item.config"
+					:clickable="true" @click="cardEvent(item)" v-for="(item, index) in imgCardList" :key="index">
+				</mt-card>
+			</ry-title>
 
-		<ry-title title="显示checkbox多选框 + 显示大标签">
-			<mt-card :title="title" :notes="noteArr" :bottomBadges="bottomBadgesArr" :config="item.config"
-				:checkItem="item.checkItem" @checkChange="checkChange" v-for="(item, index) in checkCardList"
-				:key="index"></mt-card>
-		</ry-title>
+			<ry-title title="显示checkbox多选框 + 显示大标签">
+				<mt-card :title="title" :notes="noteArr" :bottomBadges="bottomBadgesArr" :config="item.config"
+					:checkItem="item.checkItem" @checkChange="checkChange" v-for="(item, index) in checkCardList"
+					:key="index"></mt-card>
+			</ry-title>
 
-		<ry-title title="显示右侧开关 + 箭头">
-			<mt-card :title="title" :notes="noteArr" :config="item.config" @switchChange="switchChange($event, item)"
-				v-for="(item, index) in switchCardList" :key="index">
-			</mt-card>
-		</ry-title>
+			<ry-title title="显示右侧开关 + 箭头">
+				<mt-card :title="title" :notes="noteArr" :config="item.config"
+					@switchChange="switchChange($event, item)" v-for="(item, index) in switchCardList" :key="index">
+				</mt-card>
+			</ry-title>
 
-		<ry-title title="显示右侧文字 + 单按钮">
-			<mt-card :title="title" :notes="noteArr" :btnGroup="oneButtonArr" rightText="右侧文字"></mt-card>
-		</ry-title>
+			<ry-title title="显示右侧文字 + 单按钮">
+				<mt-card :title="title" :notes="noteArr" :btnGroup="oneButtonArr" rightText="右侧文字"></mt-card>
+			</ry-title>
 
-		<ry-title title="显示右侧标签 + 多按钮">
-			<mt-card :title="title" :notes="noteArr" :btnGroup="moreButtonArr" badgeText="2" @btnEvent="btnEvent">
-			</mt-card>
-		</ry-title>
+			<ry-title title="显示右侧标签 + 多按钮">
+				<mt-card :title="title" :notes="noteArr" :btnGroup="moreButtonArr" badgeText="2" @btnEvent="btnEvent">
+				</mt-card>
+			</ry-title>
 
-		<ry-title title="禁用模式">
-			<mt-card :title="title" :notes="noteArr" :btnGroup="moreButtonArr" badgeText="2" disabled></mt-card>
-		</ry-title>
+			<ry-title title="禁用模式">
+				<mt-card :title="title" :notes="noteArr" :btnGroup="moreButtonArr" badgeText="2" disabled></mt-card>
+			</ry-title>
+		</view>
 	</view>
 </template>
 
 <script>
+	import common from "../common/common.js";
 	export default {
+		mixins: [common],
 		data() {
 			return {
-
 				title: "江苏省无锡市滨湖区具区路与缘溪道交汇处融创茂",
 				// notes
 				noteArr: [{

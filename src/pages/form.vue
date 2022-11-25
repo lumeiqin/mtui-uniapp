@@ -1,112 +1,117 @@
 <template>
-	<view class="comp">
-		<ry-title title="value: text">
-			<view style="padding: 0 15px 20px 15px; background:#fff">
-				<mt-form :formData="textFormData" ref="mtForm" @change="changeForm"></mt-form>
-				<br>
-				<mt-button @click="formValid">校验表单</mt-button>
-			</view>
-		</ry-title>
+	<view>
+		<mt-navbar title="Form" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
+		<view class="comp">
+			<ry-title title="value: text">
+				<view style="padding: 0 15px 20px 15px; background:#fff">
+					<mt-form :formData="textFormData" ref="mtForm" @change="changeForm"></mt-form>
+					<br>
+					<mt-button @click="formValid">校验表单</mt-button>
+				</view>
+			</ry-title>
 
-		<ry-title title="value: password">
-			<view style="padding: 0 15px; background:#fff">
-				<mt-form :formData="passFormData"></mt-form>
-			</view>
-		</ry-title>
+			<ry-title title="value: password">
+				<view style="padding: 0 15px; background:#fff">
+					<mt-form :formData="passFormData"></mt-form>
+				</view>
+			</ry-title>
 
-		<ry-title title="value: number">
-			<view style="padding: 0 15px; background:#fff">
-				<mt-form :formData="numberFormData"></mt-form>
-			</view>
-		</ry-title>
+			<ry-title title="value: number">
+				<view style="padding: 0 15px; background:#fff">
+					<mt-form :formData="numberFormData"></mt-form>
+				</view>
+			</ry-title>
 
-		<ry-title title="value: tel">
-			<view style="padding: 0 15px; background:#fff">
-				<mt-form :formData="telFormData"></mt-form>
-			</view>
-		</ry-title>
+			<ry-title title="value: tel">
+				<view style="padding: 0 15px; background:#fff">
+					<mt-form :formData="telFormData"></mt-form>
+				</view>
+			</ry-title>
 
-		<ry-title title="value: ID">
-			<view style="padding: 0 15px; background:#fff">
-				<mt-form :formData="IDFormData"></mt-form>
-			</view>
-		</ry-title>
+			<ry-title title="value: ID">
+				<view style="padding: 0 15px; background:#fff">
+					<mt-form :formData="IDFormData"></mt-form>
+				</view>
+			</ry-title>
 
-		<ry-title title="value: textarea">
-			<view style="padding: 0 15px; background:#fff">
-				<mt-form :formData="textareaFormData"></mt-form>
-			</view>
-		</ry-title>
+			<ry-title title="value: textarea">
+				<view style="padding: 0 15px; background:#fff">
+					<mt-form :formData="textareaFormData"></mt-form>
+				</view>
+			</ry-title>
 
-		<ry-title title="value: click">
-			<view style="padding: 0 15px; background:#fff">
-				<mt-form :formData="clickFormData"></mt-form>
-			</view>
-		</ry-title>
+			<ry-title title="value: click">
+				<view style="padding: 0 15px; background:#fff">
+					<mt-form :formData="clickFormData"></mt-form>
+				</view>
+			</ry-title>
 
-		<ry-title title="value: location">
-			<view style="padding: 0 15px; background:#fff">
-				<mt-form :formData="locationFormData"></mt-form>
-			</view>
-		</ry-title>
+			<ry-title title="value: location">
+				<view style="padding: 0 15px; background:#fff">
+					<mt-form :formData="locationFormData"></mt-form>
+				</view>
+			</ry-title>
 
-		<ry-title title="value: code">
-			<view style="padding: 0 15px; background:#fff">
-				<mt-form :formData="codeFormData"></mt-form>
-			</view>
-		</ry-title>
+			<ry-title title="value: code">
+				<view style="padding: 0 15px; background:#fff">
+					<mt-form :formData="codeFormData"></mt-form>
+				</view>
+			</ry-title>
 
-		<ry-title title="value: radio">
-			<view style="padding: 0 15px; background:#fff">
-				<mt-form :formData="radioFormData"></mt-form>
-			</view>
-		</ry-title>
+			<ry-title title="value: radio">
+				<view style="padding: 0 15px; background:#fff">
+					<mt-form :formData="radioFormData"></mt-form>
+				</view>
+			</ry-title>
 
-		<ry-title title="value: selector">
-			<view style="padding: 0 15px; background:#fff">
-				<mt-form :formData="selectorFormData"></mt-form>
-			</view>
-		</ry-title>
+			<ry-title title="value: selector">
+				<view style="padding: 0 15px; background:#fff">
+					<mt-form :formData="selectorFormData"></mt-form>
+				</view>
+			</ry-title>
 
-		<ry-title title="value: multiSelector">
-			<view style="padding: 0 15px; background:#fff">
-				<mt-form :formData="multiSelectorFormData"></mt-form>
-			</view>
-		</ry-title>
+			<ry-title title="value: multiSelector">
+				<view style="padding: 0 15px; background:#fff">
+					<mt-form :formData="multiSelectorFormData"></mt-form>
+				</view>
+			</ry-title>
 
-		<ry-title title="value: multiCustom">
-			<view style="padding: 0 15px; background:#fff">
-				<mt-form :formData="multiCustomFormData"></mt-form>
-			</view>
-		</ry-title>
+			<ry-title title="value: multiCustom">
+				<view style="padding: 0 15px; background:#fff">
+					<mt-form :formData="multiCustomFormData"></mt-form>
+				</view>
+			</ry-title>
 
-		<ry-title title="value: multiChoose">
-			<view style="padding: 0 15px; background:#fff">
-				<mt-form :formData="multiChooseFormData"></mt-form>
-			</view>
-		</ry-title>
+			<ry-title title="value: multiChoose">
+				<view style="padding: 0 15px; background:#fff">
+					<mt-form :formData="multiChooseFormData"></mt-form>
+				</view>
+			</ry-title>
 
-		<ry-title title="value: list">
-			<view style="padding: 0 15px; background:#fff">
-				<mt-form :formData="listFormData"></mt-form>
-			</view>
-		</ry-title>
+			<ry-title title="value: list">
+				<view style="padding: 0 15px; background:#fff">
+					<mt-form :formData="listFormData"></mt-form>
+				</view>
+			</ry-title>
 
-		<ry-title title="value: date">
-			<view style="padding: 0 15px; background:#fff">
-				<mt-form :formData="dateFormData"></mt-form>
-			</view>
-		</ry-title>
-		<ry-title title="value: file">
-			<view style="padding: 0 15px; background:#fff">
-				<mt-form :formData="fileFormData"></mt-form>
-			</view>
-		</ry-title>
+			<ry-title title="value: date">
+				<view style="padding: 0 15px; background:#fff">
+					<mt-form :formData="dateFormData"></mt-form>
+				</view>
+			</ry-title>
+			<ry-title title="value: file">
+				<view style="padding: 0 15px; background:#fff">
+					<mt-form :formData="fileFormData"></mt-form>
+				</view>
+			</ry-title>
+		</view>
 	</view>
 </template>
 
 <script>
+	import common from "../common/common.js";
 	export default {
+		mixins: [common],
 		data() {
 			return {
 

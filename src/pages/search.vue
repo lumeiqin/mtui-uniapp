@@ -1,17 +1,22 @@
 <template>
-	<view class="comp">
-		<ry-title>
-			<mt-search @focusEvent="focusEvent" @blurEvent="blurEvent" @inputEvent="inputEvent"></mt-search>
-		</ry-title>
+	<view>
+		<mt-navbar title="Search" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
+		<view class="comp">
+			<ry-title>
+				<mt-search @focusEvent="focusEvent" @blurEvent="blurEvent" @inputEvent="inputEvent"></mt-search>
+			</ry-title>
 
-		<ry-title title="自定义参数">
-			<mt-search style="background: #fff;" :config="searchConfig"></mt-search>
-		</ry-title>
+			<ry-title title="自定义参数">
+				<mt-search style="background: #fff;" :config="searchConfig"></mt-search>
+			</ry-title>
+		</view>
 	</view>
 </template>
 
 <script>
+	import common from "../common/common.js";
 	export default {
+		mixins: [common],
 		data() {
 			return {
 				searchConfig: {
