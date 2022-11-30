@@ -18,10 +18,22 @@ export default {
                 url: "/pages/index/base"
             })
         },
+
+        // form
         formClick() {
             uni.navigateTo({
                 url: "/pages/index/form"
             })
+        },
+        formValid() {
+            if (this.$refs.mtForm.validate()) {
+                console.log("表单校验成功")
+            } else {
+                console.log("表单校验失败")
+            }
+        },
+        changeForm(obj) {
+            console.log("表单提交内容：", obj)
         },
     }
 }
