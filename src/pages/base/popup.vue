@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<mt-navbar title="Popup" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
+		<mt-navbar title="Popup" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
 		<view class="comp">
 			<ry-title>
 				<mt-popup ref="popup">
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-	import common from "../common/common.js";
+	import common from "../../common/common.js";
 	export default {
 		mixins: [common],
 		data() {

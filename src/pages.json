@@ -1,120 +1,149 @@
 {
-	"pages": [{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "home"
-			}
-		},
-		{
-			"path": "pages/box",
-			"style": {
-				"navigationBarTitleText": "box",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/button",
-			"style": {
-				"navigationBarTitleText": "button",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/card",
-			"style": {
-				"navigationBarTitleText": "card",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/collapse",
-			"style": {
-				"navigationBarTitleText": "collapse",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/form",
-			"style": {
-				"navigationBarTitleText": "form",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/grid",
-			"style": {
-				"navigationBarTitleText": "grid",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/modal",
-			"style": {
-				"navigationBarTitleText": "modal",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/navbar",
-			"style": {
-				"navigationBarTitleText": "navbar",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/popup",
-			"style": {
-				"navigationBarTitleText": "popup",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/rate",
-			"style": {
-				"navigationBarTitleText": "rate",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/search",
-			"style": {
-				"navigationBarTitleText": "search",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/step",
-			"style": {
-				"navigationBarTitleText": "step",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/tabbar",
-			"style": {
-				"navigationBarTitleText": "tabbar",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/tabs",
-			"style": {
-				"navigationBarTitleText": "tabs",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/tag",
-			"style": {
-				"navigationBarTitleText": "tag",
-				"navigationStyle": "custom"
-			}
-		}
-	],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
-	}
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "home"
+      }
+    },
+    {
+      "path": "pages/index/base",
+      "style": {
+        "navigationBarTitleText": "基础组件",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/base/box",
+      "style": {
+        "navigationBarTitleText": "box",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/base/button",
+      "style": {
+        "navigationBarTitleText": "button",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/base/card",
+      "style": {
+        "navigationBarTitleText": "card",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/base/collapse",
+      "style": {
+        "navigationBarTitleText": "collapse",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/base/grid",
+      "style": {
+        "navigationBarTitleText": "grid",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/base/modal",
+      "style": {
+        "navigationBarTitleText": "modal",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/base/navbar",
+      "style": {
+        "navigationBarTitleText": "navbar",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/base/popup",
+      "style": {
+        "navigationBarTitleText": "popup",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/base/rate",
+      "style": {
+        "navigationBarTitleText": "rate",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/base/search",
+      "style": {
+        "navigationBarTitleText": "search",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/base/step",
+      "style": {
+        "navigationBarTitleText": "step",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/base/tabbar",
+      "style": {
+        "navigationBarTitleText": "tabbar",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/base/tabs",
+      "style": {
+        "navigationBarTitleText": "tabs",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/base/tag",
+      "style": {
+        "navigationBarTitleText": "tag",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/base/swiper",
+      "style": {
+        "navigationBarTitleText": "swiper",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/form",
+      "style": {
+        "navigationBarTitleText": "表单组件",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/form",
+      "style": {
+        "navigationBarTitleText": "form",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/datePicker",
+      "style": {
+        "navigationBarTitleText": "datePicker",
+        "navigationStyle": "custom"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  }
 }

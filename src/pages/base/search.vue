@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<mt-navbar title="Search" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
+		<mt-navbar title="Search" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
 		<view class="comp">
 			<ry-title>
 				<mt-search @focusEvent="focusEvent" @blurEvent="blurEvent" @inputEvent="inputEvent"></mt-search>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-	import common from "../common/common.js";
+	import common from "../../common/common.js";
 	export default {
 		mixins: [common],
 		data() {

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<mt-navbar title="Button" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
+		<mt-navbar title="Button" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
 		<view class="comp">
 			<ry-title>
 				<mt-button @click="clickEvent">测试</mt-button>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-	import common from "../common/common.js";
+	import common from "../../common/common.js";
 	export default {
 		mixins: [common],
 		data() {

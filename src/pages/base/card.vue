@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<mt-navbar title="Card" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
+		<mt-navbar title="Card" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
 		<view class="comp">
 			<ry-title title="基础用法">
 				<mt-card :title="title" :notes="noteArr"></mt-card>
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-	import common from "../common/common.js";
+	import common from "../../common/common.js";
 	export default {
 		mixins: [common],
 		data() {
