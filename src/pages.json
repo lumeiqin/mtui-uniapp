@@ -133,9 +133,121 @@
       }
     },
     {
-      "path": "pages/form/datePicker",
+      "path": "pages/form/text",
       "style": {
-        "navigationBarTitleText": "datePicker",
+        "navigationBarTitleText": "text",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/id",
+      "style": {
+        "navigationBarTitleText": "id",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/tel",
+      "style": {
+        "navigationBarTitleText": "tel",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/number",
+      "style": {
+        "navigationBarTitleText": "number",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/password",
+      "style": {
+        "navigationBarTitleText": "password",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/click",
+      "style": {
+        "navigationBarTitleText": "click",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/location",
+      "style": {
+        "navigationBarTitleText": "location",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/code",
+      "style": {
+        "navigationBarTitleText": "code",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/textarea",
+      "style": {
+        "navigationBarTitleText": "textarea",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/radio",
+      "style": {
+        "navigationBarTitleText": "radio",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/selector",
+      "style": {
+        "navigationBarTitleText": "selector",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/multiSelector",
+      "style": {
+        "navigationBarTitleText": "multiSelector",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/multiCustom",
+      "style": {
+        "navigationBarTitleText": "multiCustom",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/multiChoose",
+      "style": {
+        "navigationBarTitleText": "multiChoose",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/list",
+      "style": {
+        "navigationBarTitleText": "list",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/date",
+      "style": {
+        "navigationBarTitleText": "date",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/form/file",
+      "style": {
+        "navigationBarTitleText": "file",
         "navigationStyle": "custom"
       }
     }
