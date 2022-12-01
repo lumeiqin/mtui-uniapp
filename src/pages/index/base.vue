@@ -1,6 +1,6 @@
 <template>
   <view>
-    <mt-navbar title="基础组件" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
+    <mt-navbar fixed title="基础组件" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
     <view style="padding: 30px 20px;">
       <block v-for="(item, index) in compArr" :key="index">
         <mt-button @click="jumpPage(item.path)">{{ item.title }}</mt-button>

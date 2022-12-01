@@ -1,6 +1,6 @@
 <template>
   <view>
-    <mt-navbar title="DatePicker" emit="true" :config="pagenav" @backClick="formClick"></mt-navbar>
+    <mt-navbar fixed title="DatePicker" emit="true" :config="pagenav" @backClick="formClick"></mt-navbar>
     <view class="comp">
       <ry-title title="选择年">
         <mt-button @click="openDate('year')">年</mt-button>

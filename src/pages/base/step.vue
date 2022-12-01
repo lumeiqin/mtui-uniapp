@@ -1,7 +1,7 @@
 <template>
 	<view>
-		<mt-navbar title="Step" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
-		<view class="comp">
+		<mt-navbar fixed title="Step" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
+		<view class="step">
 			<ry-title>
 				<mt-step v-for="(v, index) in dutyRecordList" :key="index" :time="v.createTime">
 					<view class="dutyListSteps">
@@ -43,4 +43,8 @@
 		color: #F4787E;
 		text-shadow: 0px 3px 4px rgba(244, 124, 127, 0.3);
 	}
+  .step {
+    padding: 15px 0;
+    background: #fff;
+  }
 </style>

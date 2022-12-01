@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<mt-navbar title="Modal" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
+		<mt-navbar fixed title="Modal" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
 		<view class="comp">
 			<ry-title>
 				<mt-modal ref="one"></mt-modal>

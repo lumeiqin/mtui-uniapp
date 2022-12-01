@@ -9,7 +9,7 @@
 		name: 'mt-popup-transition',
 		props: {
 			show: {
-				type: Boolean,
+				type: [Boolean, String],
 				default: false
 			},
 			type: {

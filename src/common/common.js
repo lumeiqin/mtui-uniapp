@@ -7,6 +7,12 @@ export default {
             }
         }
     },
+    onShow() {
+        uni.pageScrollTo({
+            scrollTop: 0,
+            duration: 300
+        });
+    },
     methods: {
         backClick() {
             uni.navigateTo({

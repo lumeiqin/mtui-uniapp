@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<mt-navbar title="Button" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
+		<mt-navbar fixed title="Button" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
 		<view class="comp">
 			<ry-title>
 				<mt-button @click="clickEvent">测试</mt-button>

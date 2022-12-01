@@ -1,6 +1,6 @@
 <template>
   <view>
-    <mt-navbar title="Form" emit="true" :config="pagenav" @backClick="formClick"></mt-navbar>
+    <mt-navbar fixed title="Form" emit="true" :config="pagenav" @backClick="formClick"></mt-navbar>
     <view class="formPage">
       <ry-title>
         <view class="formContent">

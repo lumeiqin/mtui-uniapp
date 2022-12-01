@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<mt-navbar title="Card" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
+		<mt-navbar fixed title="Card" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
 		<view class="comp">
 			<ry-title title="基础用法">
 				<mt-card :title="title" :notes="noteArr"></mt-card>

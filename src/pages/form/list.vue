@@ -1,6 +1,6 @@
 <template>
   <view>
-    <mt-navbar title="Password 密码" emit="true" :config="pagenav" @backClick="formClick"></mt-navbar>
+    <mt-navbar fixed title="Password 密码" emit="true" :config="pagenav" @backClick="formClick"></mt-navbar>
     <view class="formPage">
       <ry-title title="自定义配置">
         <view class="formContent">

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<mt-navbar title="Tabs" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
+		<mt-navbar fixed title="Tabs" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
 		<view class="comp">
 			<ry-title>
 				<mt-tabs></mt-tabs>
