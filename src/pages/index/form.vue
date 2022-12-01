@@ -24,52 +24,52 @@ export default {
       }, {
         title: 'Text 文本',
         path: 'text'
-      },{
-        title: 'ID 身份证号',
+      }, {
+        title: 'ID 身份证',
         path: 'id'
-      },{
+      }, {
         title: 'Tel 手机号',
         path: 'tel'
-      },{
+      }, {
         title: 'Number 数字',
         path: 'number'
-      },{
+      }, {
         title: 'Password 密码',
         path: 'password'
-      },{
+      }, {
         title: 'Click 点击',
         path: 'click'
-      },{
+      }, {
         title: 'Location 地图',
         path: 'location'
-      },{
+      }, {
         title: 'Code 验证码',
         path: 'code'
-      },{
+      }, {
         title: 'Textarea 文本框',
         path: 'textarea'
-      },{
+      }, {
         title: 'Radio 单选',
         path: 'radio'
-      },{
+      }, {
         title: 'Selector 单选',
         path: 'selector'
-      },{
+      }, {
         title: 'MultiSelector 多级联动',
         path: 'multiSelector'
-      },{
+      }, {
         title: 'MultiCustom 联动面板',
         path: 'multiCustom'
-      },{
+      }, {
         title: 'MultiChoose 多选',
         path: 'multiChoose'
-      },{
+      }, {
         title: 'List 列表',
         path: 'list'
-      },{
+      }, {
         title: 'Date 日期',
         path: 'date'
-      },{
+      }, {
         title: 'File 附件',
         path: 'file'
       }]
