@@ -58,7 +58,10 @@ export default {
   },
   methods: {
     changeSelector(item) {
-      console.log(item)
+      uni.showToast({
+        title: "表单提交的结果：" + JSON.stringify(item),
+        icon: "none"
+      })
     }
   }
 }
