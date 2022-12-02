@@ -258,6 +258,41 @@
         "navigationBarTitleText": "modal",
         "navigationStyle": "custom"
       }
+    },
+    {
+      "path": "pages/popup/simpleSelector",
+      "style": {
+        "navigationBarTitleText": "simpleSelector",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/popup/simpleDate",
+      "style": {
+        "navigationBarTitleText": "simpleDate",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/popup/simpleMultiSelector",
+      "style": {
+        "navigationBarTitleText": "simpleMultiSelector",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/popup/simpleMultiCustom",
+      "style": {
+        "navigationBarTitleText": "simpleMultiCustom",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/popup/simpleMultiChoose",
+      "style": {
+        "navigationBarTitleText": "simpleMultiChoose",
+        "navigationStyle": "custom"
+      }
     }
   ],
   "globalStyle": {

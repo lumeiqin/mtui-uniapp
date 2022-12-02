@@ -1,5 +1,5 @@
 <template>
-	<SelectBox ref="SelectBox" :noConfirm="false" @cancel="_onCancel">
+	<SelectBox ref="SelectBox" :title="title" :noConfirm="false" @cancel="_onCancel">
 		<template slot="picker">
 			<view class="searchBox" v-if="search">
 				<input type="text" v-model="keyword" placeholder="请输入搜索关键字" @input="searchInput" />

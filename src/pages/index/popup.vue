@@ -24,6 +24,21 @@ export default {
       }, {
         title: 'Modal 模态框',
         path: 'modal'
+      }, {
+        title: '选择器',
+        path: 'simpleSelector'
+      }, {
+        title: '日期选择器',
+        path: 'simpleDate'
+      }, {
+        title: '多级联动选择器',
+        path: 'simpleMultiSelector'
+      }, {
+        title: '联动面板选择',
+        path: 'simpleMultiCustom'
+      }, {
+        title: '多选选择器',
+        path: 'simpleMultiChoose'
       }]
     }
   },
