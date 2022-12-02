@@ -11,7 +11,7 @@
 				<view class="scrollBox-main">
 					<block v-for="(item, index) in tabList" :key="index">
 						<view class="scroll-item" :id="'itemTab_' + index" :class="{ _active: tabIndex === index }"
-							:style="{ 
+							:style="{
 								color: tabIndex == index ? selfConfig.selectedColor : selfConfig.color,
 								fontSize: tabIndex == index ?selfConfig.selectedSize: selfConfig.fontsize,
 								fontWeight:  tabIndex == index ?selfConfig.selectedWeight: 400,
@@ -29,7 +29,7 @@
 		<view class="base-tab" v-else>
 			<view class="base-tab-box">
 				<block v-for="(item, index) in tabList" :key="index">
-					<view class="base-tab-item" :class="{ _active: tabIndex === index }" :style="{ 
+					<view class="base-tab-item" :class="{ _active: tabIndex === index }" :style="{
 							color: tabIndex == index ? selfConfig.selectedColor : selfConfig.color,
 							fontSize: tabIndex == index ?selfConfig.selectedSize: selfConfig.fontsize,
 							fontWeight:  tabIndex == index ?selfConfig.selectedWeight: 400,
@@ -96,12 +96,12 @@
 					border: "1px solid #e4e4e4",
 					color: "#333",
 					selectedColor: "#2194F2",
-					fontsize: "15px",
-					selectedSize: "15px",
+					fontsize: "30rpx",
+					selectedSize: "30rpx",
 					selectedWeight: 600,
 					underline: true,
 					bg: "#fff",
-					height: "45px"
+					height: "90rpx"
 				}
 			}
 		},

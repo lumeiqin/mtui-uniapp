@@ -154,11 +154,12 @@
 
 		input {
 			width: 100%;
-			height: 40px;
+			height: 70rpx;
 			background: #fff;
-			border-radius: 20px;
+			border-radius: 40rpx;
 			padding: 0 30rpx;
 			box-sizing: border-box;
+      font-size: 28rpx;
 		}
 	}
 </style>
