@@ -28,9 +28,6 @@ export default {
         title: '选择器',
         path: 'simpleSelector'
       }, {
-        title: '日期选择器',
-        path: 'simpleDate'
-      }, {
         title: '多级联动选择器',
         path: 'simpleMultiSelector'
       }, {
@@ -39,6 +36,9 @@ export default {
       }, {
         title: '多选选择器',
         path: 'simpleMultiChoose'
+      },{
+        title: '日期选择器',
+        path: 'simpleDate'
       }]
     }
   },

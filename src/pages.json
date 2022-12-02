@@ -56,6 +56,13 @@
       }
     },
     {
+      "path": "pages/base/pagination",
+      "style": {
+        "navigationBarTitleText": "pagination",
+        "navigationStyle": "custom"
+      }
+    },
+    {
       "path": "pages/base/rate",
       "style": {
         "navigationBarTitleText": "rate",
