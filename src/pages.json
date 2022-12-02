@@ -9,7 +9,7 @@
     {
       "path": "pages/index/base",
       "style": {
-        "navigationBarTitleText": "基础组件",
+        "navigationBarTitleText": "基础",
         "navigationStyle": "custom"
       }
     },
@@ -49,23 +49,9 @@
       }
     },
     {
-      "path": "pages/base/modal",
-      "style": {
-        "navigationBarTitleText": "modal",
-        "navigationStyle": "custom"
-      }
-    },
-    {
       "path": "pages/base/navbar",
       "style": {
         "navigationBarTitleText": "navbar",
-        "navigationStyle": "custom"
-      }
-    },
-    {
-      "path": "pages/base/popup",
-      "style": {
-        "navigationBarTitleText": "popup",
         "navigationStyle": "custom"
       }
     },
@@ -248,6 +234,28 @@
       "path": "pages/form/file",
       "style": {
         "navigationBarTitleText": "file",
+        "navigationStyle": "custom"
+      }
+    },
+
+    {
+      "path": "pages/index/popup",
+      "style": {
+        "navigationBarTitleText": "弹出层",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/popup/popup",
+      "style": {
+        "navigationBarTitleText": "popup",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/popup/modal",
+      "style": {
+        "navigationBarTitleText": "modal",
         "navigationStyle": "custom"
       }
     }

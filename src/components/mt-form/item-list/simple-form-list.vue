@@ -60,7 +60,7 @@
 				this.formUtils._isArray(this.chooseList) && this.chooseList
 					.forEach(vi => {
 						if (vi[this.showValue.value] == this.valueShowPage) {
-							this.selectedId.push(vi[this.showValue.key])
+							this.selectedId = [vi[this.showValue.key]]
 						}
 					})
 			},

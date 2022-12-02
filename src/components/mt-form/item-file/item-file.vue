@@ -24,8 +24,8 @@
 
 				<view class="item-file-edit-choosed-uploader"
 					v-if="showItem.isEdit && (showItem.maxlength - showItem.valueShow.length)">
-					<uni-icons style="margin-bottom: 10rpx" color="#737373" type="plusempty" size="38"
-						v-if="showItem.fileType.length == 1" @click="choooseType(showItem.fileType[0])"></uni-icons>
+          <i class="iconfont icon-chuangjiantianjiapiliangtianjia"
+             v-if="showItem.fileType.length == 1" @click="choooseType(showItem.fileType[0])"></i>
 					<text>{{showItem.maxlength - showItem.valueShow.length}}/{{ showItem.maxlength }}</text>
 				</view>
 			</view>

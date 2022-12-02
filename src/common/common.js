@@ -41,5 +41,12 @@ export default {
         changeForm(obj) {
             console.log("表单提交内容：", obj)
         },
+
+        // popup
+        popupClick() {
+            uni.navigateTo({
+                url: "/pages/index/popup"
+            })
+        },
     }
 }

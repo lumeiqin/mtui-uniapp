@@ -1,6 +1,6 @@
 @import "./base.scss"; // 变量 + 方法 + 字体图标
 @import "./item.scss"; // item各部件样式方法
- 
+
 // 必填星号*样式
 .isvalidate::before {
 	content: '*';
@@ -75,7 +75,7 @@
 .item-box::after,.item-textarea::after,.item-file::after {
 	@include setLine;
 }
-	
+
 .item-box {
 	@include itemStyle;
 
@@ -321,6 +321,13 @@
 				justify-content: center;
 				align-items: center;
 				border: 1px dashed #d1d1d1;
+
+				i {
+					margin-bottom: 8rpx!important;
+					color: #737373;
+					font-size: 72rpx;
+					font-weight: 300;
+				}
 			}
 		}
 	}
@@ -378,13 +385,13 @@
 		scroll-view {
 			width: 100%;
 			height: 100%;
-		
+
 			.scroll-view-item.selected {
 				view {
 					color: $_themecolor !important;
 				}
 			}
-		
+
 			.scroll-view-item {
 				width: 100%;
 				display: flex;
@@ -392,17 +399,17 @@
 				align-items: center;
 				border-bottom: 1px solid #f0f0f0;
 				padding: 20rpx;
-		
+
 				i {
 					color: $_themecolor;
 					font-size: 40rpx;
 					margin-right: 20rpx;
 				}
-		
+
 				.icon-xuanzeweixuanze {
 					color: $_value-color;
 				}
-		
+
 				.brief {
 					flex: 1;
 					font-size: 30rpx;
@@ -427,19 +434,19 @@
 			margin: 20rpx;
 			height: 408rpx;
 			background-color: #fff;
-		
+
 			scroll-view {
 				height: 408rpx;
 				overflow-y: scroll;
 			}
-			
+
 			.item {
 				display: flex;
 				flex-direction: row;
 				flex-wrap: nowrap;
 				justify-content: space-between;
 				align-items: center;
-			
+
 				width: 710rpx;
 				font-size: 30rpx;
 				color: #252525;
@@ -447,13 +454,13 @@
 				margin: 0 0 10rpx 0;
 				padding: 0 20rpx;
 				border-radius: 8rpx;
-			
+
 			}
-			
+
 			.multiItem {
 				background-color: #f5f5f5;
 			}
-			
+
 			.multiItem-active {
 				background-color: $_themecolor;
 				color: #ffffff;
@@ -464,11 +471,11 @@
 			width: 100%;
 			height: 100%;
 			padding: 4rpx 0 4rpx 28rpx;
-		
+
 			scroll-view {
 				width: 100%;
 				height: 100%;
-		
+
 				.scroll-view-item {
 					width: 100%;
 					display: flex;
@@ -476,29 +483,29 @@
 					align-items: center;
 					border-bottom: 1px solid #f0f0f0;
 					padding: 12rpx 20rpx 12rpx 0;
-		
+
 					.briefBox {
 						width: 88%;
 						@include flex-start;
 						align-items: center;
-		
+
 						.icon-position {
 							font-size: 40rpx;
 							margin-right: 20rpx;
 						}
-		
+
 						.brief {
 							flex: 1;
 							display: flex;
 							flex-direction: column;
-		
+
 							>view {
 								font-weight: 500;
 								font-size: 30rpx;
 								color: $_value-color;
 								margin-bottom: 4rpx;
 							}
-		
+
 							text {
 								display: inline-block;
 								font-size: 26rpx;
@@ -507,11 +514,11 @@
 							}
 						}
 					}
-		
+
 					.chosed {
 						width: 8%;
 						text-align: left;
-		
+
 						.icon-xuanzhong {
 							font-size: 44rpx;
 							color: $_themecolor;
@@ -527,8 +534,8 @@
 						color: $_themecolor !important;
 					}
 				}
-				
-		
+
+
 				.isBottom {
 					height: 60rpx;
 					margin-top: 16rpx;
@@ -537,7 +544,7 @@
 					color: $_key-color;
 					position: relative;
 					font-size: 24rpx;
-		
+
 					&::after {
 						content: '';
 						position: absolute;
@@ -560,7 +567,7 @@
 			align-items: center;
 			color: $_key-color;
 			font-size: 24rpx;
-		
+
 			image {
 				width: 200rpx;
 				margin-bottom: 32rpx;

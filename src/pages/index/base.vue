@@ -34,14 +34,8 @@ export default {
         title: 'Grid 宫格',
         path: 'grid'
       }, {
-        title: 'Modal 模态框',
-        path: 'modal'
-      }, {
         title: 'Navbar 导航栏',
         path: 'navbar'
-      }, {
-        title: 'Popup 弹窗',
-        path: 'popup'
       }, {
         title: 'Rate 评分',
         path: 'rate'

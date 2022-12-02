@@ -13,11 +13,14 @@
 		data() {
 			return {
 				compArr: [{
-					title: '基础组件',
+					title: '基础',
 					path: '/pages/index/base'
 				}, {
-					title: '表单组件',
+					title: '表单',
 					path: '/pages/index/form'
+				}, {
+					title: '弹出层',
+					path: '/pages/index/popup'
 				}]
 			}
 		},
