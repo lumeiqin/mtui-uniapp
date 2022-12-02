@@ -1,6 +1,6 @@
 {
   "name": "mtui-uni",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "基于uniapp的ui库，包括：Box 容器、Button 按钮、Card 卡片、Collapse 折叠面板、Grid 多宫格、Modal 模态框、Navbar 导航栏、Popup 弹窗、Rate 评分、Search 搜索框、Step 流程图、Tabbar 标签栏、Tabs 标签页、Tags 标签、表单验证、多级联动、多级联动面板、年月日时分秒选择框、附件（录音，图片，视频）上传、判空方法、水印背景、时间格式化方法、封装接口方法等",
   "keywords": [
     "vue",
