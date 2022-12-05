@@ -37,6 +37,9 @@ export default {
         title: 'Navbar 导航栏',
         path: 'navbar'
       }, {
+        title: 'Pagination 分页',
+        path: 'pagination'
+      }, {
         title: 'Rate 评分',
         path: 'rate'
       }, {

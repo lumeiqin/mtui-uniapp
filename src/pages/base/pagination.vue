@@ -3,7 +3,15 @@
     <mt-navbar fixed title="Pagination" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
     <view class="comp">
       <ry-title>
-        <mt-pagination></mt-pagination>
+        <mt-pagination :totalPage="totalPage" @change="changeEvent"></mt-pagination>
+      </ry-title>
+
+      <ry-title title="不显示……">
+        <mt-pagination :showEll="false"></mt-pagination>
+      </ry-title>
+
+      <ry-title title="变换主题色">
+        <mt-pagination :config="{color: '#6A59B1'}"></mt-pagination>
       </ry-title>
     </view>
   </view>
@@ -15,8 +23,17 @@ import common from "../../common/common.js";
 export default {
   mixins: [common],
   data() {
-    return {}
+    return {
+      totalPage: 20
+    }
   },
-  methods: {}
+  methods: {
+    changeEvent(page) {
+      uni.showToast({
+        title: "当前页码为：" + page,
+        icon: "none"
+      })
+    }
+  }
 }
 </script>

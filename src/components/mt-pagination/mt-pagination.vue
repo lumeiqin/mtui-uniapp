@@ -1,12 +1,32 @@
 <template>
   <view class="pagination">
-    <view class="pagination_btn" :class="{disabled: current === 1}" @click="current > 1 && preClick(current - 1)">上一页</view>
-    <view class="ell" v-if="showPreEll" @click="preEllClick">…</view>
-    <view class="itemBox" :class="{plSize: !showPreEll, prSize: !showNextEll}">
-      <view class="item" :class="{active: current === item}" v-for="(item, index) in btnNumber" :key="index" @click="toPage(item)">{{ item }}</view>
+    <view :style="{
+      background: selfConfig.color
+    }" class="pagination_btn" :class="{disabled: current === 1}" @click="current > 1 && preClick(current - 1)">上一页</view>
+
+    <block v-if="showEll">
+      <view :style="{
+        color: selfConfig.color
+      }" class="ell" v-if="showPreEll" @click="preEllClick">…</view>
+    </block>
+
+    <view class="itemBox" :class="{plSize: !showPreEll || !showEll, prSize: !showNextEll || !showEll}">
+      <view :style="{
+        background: current === item? selfConfig.color: '#fff',
+        border: current === item? 'none': '1px solid ' + selfConfig.color,
+        color: current === item? '#fff': selfConfig.color
+      }" class="item" v-for="(item, index) in btnNumber" :key="index" @click="toPage(item)">{{ item }}</view>
     </view>
-    <view class="ell" v-if="showNextEll" @click="nextEllClick">…</view>
-    <view class="pagination_btn" :class="{disabled: current === total}" @click="current < total && nextClick(current + 1)">下一页</view>
+
+    <block v-if="showEll">
+      <view :style="{
+        color: selfConfig.color
+      }" class="ell" v-if="showNextEll" @click="nextEllClick">…</view>
+    </block>
+
+    <view :style="{
+      background: selfConfig.color
+    }" class="pagination_btn" :class="{disabled: current === total}" @click="current < total && nextClick(current + 1)">下一页</view>
   </view>
 </template>
 
@@ -16,7 +36,11 @@ export default {
   props: {
     totalPage: {
       type: Number,
-      default: 20
+      default: 10
+    },
+    showEll: {
+      type: Boolean,
+      default: true
     },
     config: {
       type:Object,
@@ -34,7 +58,7 @@ export default {
       showNextEll: false,
 
       selfConfig: {
-
+        color: "#2194F2"
       }
     }
   },
@@ -91,28 +115,91 @@ export default {
     preClick(page) {
       this.current = page;
       let firstItem = this.btnNumber[0];
-      if(this.current === firstItem - 1) {
-        if(firstItem >= 2) {
-          this.btnNumber = this.btnNumber.map(v => {
-            return v - 1
-          })
+      if (this.showEll) {
+        if(this.current === firstItem - 1) {
+          if(firstItem >= 2) {
+            this.btnNumber = this.btnNumber.map(v => {
+              return v - 1
+            })
+          }
+        }
+      } else {
+        if(this.current === firstItem - 1) {
+          if(firstItem >= 4) {
+            this.btnNumber = this.btnNumber.map(v => {
+              return v - 3
+            })
+          } else if(firstItem >= 3) {
+            this.btnNumber = this.btnNumber.map(v => {
+              return v - 2
+            })
+          } else if(firstItem >= 2) {
+            this.btnNumber = this.btnNumber.map(v => {
+              return v - 1
+            })
+          }
         }
       }
     },
     nextClick(page) {
       this.current = page;
       let lastItem = this.btnNumber[this.btnNumber.length - 1];
-      if(this.current === lastItem + 1) {
-        if (this.total >= lastItem + 1) {
-          this.btnNumber = this.btnNumber.map(v => {
-            return v + 1
-          })
+      if (this.showEll) {
+        if(this.current === lastItem + 1) {
+          if (this.total >= lastItem + 1) {
+            this.btnNumber = this.btnNumber.map(v => {
+              return v + 1
+            })
+          }
+        }
+      } else {
+        if(this.current === lastItem + 1) {
+          if (this.total >= lastItem + 3) {
+            this.btnNumber = this.btnNumber.map(v => {
+              return v + 3
+            })
+          } else if (this.total >= lastItem + 2) {
+            this.btnNumber = this.btnNumber.map(v => {
+              return v + 2
+            })
+          } else if (this.total >= lastItem + 1) {
+            this.btnNumber = this.btnNumber.map(v => {
+              return v + 1
+            })
+          }
         }
       }
     },
     toPage(page) {
       if(page === this.total + 1 || page === 0) return;
       this.current = page
+      if(!this.showEll) {
+        let firstItem = this.btnNumber[0];
+        let lastItem = this.btnNumber[this.btnNumber.length - 1];
+
+        if(this.current === firstItem) {
+          if(firstItem >= 3) {
+            this.btnNumber = this.btnNumber.map(v => {
+              return v - 2
+            })
+          } else if(firstItem >= 2) {
+            this.btnNumber = this.btnNumber.map(v => {
+              return v - 1
+            })
+          }
+        }
+        if(this.current === lastItem) {
+          if (this.total >= lastItem + 2) {
+            this.btnNumber = this.btnNumber.map(v => {
+              return v + 2
+            })
+          } else if (this.total >= lastItem + 1) {
+            this.btnNumber = this.btnNumber.map(v => {
+              return v + 1
+            })
+          }
+        }
+      }
     },
     preEllClick() {
       let firstItem = this.btnNumber[0];
@@ -157,7 +244,6 @@ export default {
     align-items: center;
     font-size: 28rpx;
     border-radius: 30rpx;
-    background: #2194F2;
     color: #fff;
   }
   .disabled {
@@ -174,18 +260,12 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-      border: 1px solid #2194F2;
-      color: #2194F2;
       border-radius: 50%;
       font-size: 26rpx;
       margin-right: 20rpx;
     }
     .item:nth-last-child(1) {
       margin-right: 0;
-    }
-    .active {
-      background: #2194F2;
-      color: #fff;
     }
   }
   .plSize {
@@ -196,7 +276,6 @@ export default {
   }
   .ell {
     width: 70rpx;
-    color: #2194F2;
     text-align: center;
     margin-top: -9px;
   }
