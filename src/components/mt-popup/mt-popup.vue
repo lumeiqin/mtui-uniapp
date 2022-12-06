@@ -1,7 +1,7 @@
 <template>
 	<view class="mt-popup" :class="{'mt-popup-center': type === 'center'}" v-show="popupShow"
 		@touchmove.stop.prevent="clear">
-		<view class="mt-popup-mask" @click="maskEvent"></view>
+		<view class="mt-popup-mask" v-if="showMask" @click="maskEvent"></view>
 		<mtPopupTransition ref="mtPopupTransition" :show="transitionShow" :type="type">
 			<slot></slot>
 		</mtPopupTransition>
@@ -23,6 +23,10 @@
 			type: {
 				type: String,
 				default: 'bottom'
+			},
+      showMask: {
+				type: [Boolean, String],
+				default: true
 			},
 			isMaskClick: {
 				type: [Boolean, String],

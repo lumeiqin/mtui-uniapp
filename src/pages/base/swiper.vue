@@ -1,7 +1,7 @@
 <template>
 <view>
   <mt-swiper :data="swiperData">
-    <view class="swiperItem" v-for="v in swiperData">
+    <view class="swiperItem" v-for="(v,i) in swiperData" :key="i">
       <view>{{v.opt}}</view>
     </view>
   </mt-swiper>

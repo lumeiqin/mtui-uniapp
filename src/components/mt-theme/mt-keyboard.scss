@@ -1,0 +1,83 @@
+.keyboard {
+  width: 100vw;
+  padding: 48rpx 50rpx;
+  border-radius: 26rpx 26rpx 0 0;
+  > i {
+    position: absolute;
+    top: 14rpx;
+    right: 14rpx;
+    color: #fff;
+    font-size: 46rpx;
+  }
+  .numberBox {
+    padding: 0 80rpx;
+    .number {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      button {
+        @extend %flex-center;
+        width: calc((100% - 60rpx) / 3);
+        height: 80rpx;
+        background: #fff;
+        margin-right: 30rpx;
+        margin-bottom: 28rpx;
+        font-size: 38rpx;
+        border-radius: 10rpx;
+        box-shadow: 0 10px 10px rgba(0,0,0,.3);
+      }
+      button:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+    .delete {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      button {
+        @extend %flex-center;
+        height: 80rpx;
+        background: #fff;
+        font-size: 38rpx;
+        border-radius: 10rpx;
+        box-shadow: 0 10px 10px rgba(0,0,0,.3);
+      }
+      button:nth-child(1) {
+        flex: 1;
+      }
+      button:nth-last-child(1) {
+        width: calc((100% - 60rpx) / 3);
+        margin-left: 30rpx;
+        i {
+          font-size: 46rpx;
+        }
+      }
+    }
+  }
+  .btnGroup {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 40rpx;
+    button {
+      width: calc((100% - 40rpx) / 2);
+      height: 90rpx;
+      border-radius: 50rpx;
+      @extend %flex-center;
+      color: #fff;
+      letter-spacing: 12rpx;
+      box-sizing: border-box;
+      box-shadow: 0 10px 10px rgba(0,0,0,.3);
+    }
+  }
+  .cancel {
+    border: 2px solid #fff;
+  }
+  .confirm {
+    background: rgba(0,0,0,.7);
+  }
+
+  button:active {
+    opacity: .6;
+  }
+
+}

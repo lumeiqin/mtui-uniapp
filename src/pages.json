@@ -49,6 +49,13 @@
       }
     },
     {
+      "path": "pages/base/keyboard",
+      "style": {
+        "navigationBarTitleText": "keyboard",
+        "navigationStyle": "custom"
+      }
+    },
+    {
       "path": "pages/base/navbar",
       "style": {
         "navigationBarTitleText": "navbar",

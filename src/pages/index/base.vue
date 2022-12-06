@@ -33,6 +33,9 @@ export default {
       }, {
         title: 'Grid 宫格',
         path: 'grid'
+      },{
+        title: 'Keyboard 键盘',
+        path: 'keyboard'
       }, {
         title: 'Navbar 导航栏',
         path: 'navbar'

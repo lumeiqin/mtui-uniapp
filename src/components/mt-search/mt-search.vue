@@ -20,7 +20,7 @@
 			}" :placeholder-style="
 				'color:' + selfConfig.placeholderColor + '; fontSize: ' +
 				selfConfig.fontsize
-			" @focus="focusFunc" @input="inputFunc" @blur="blurFunc" />
+			" @focus="focusFunc" @input="inputFunc" @blur="blurFunc" @click="clickFunc" />
 
 			<view class="close" v-if="keyword.length > 0 && selfConfig.showClear" @click="clearInput">
 				<i class="iconfont icon-guanbi"></i>
@@ -96,6 +96,9 @@
 			},
 			inputFunc(e) {
 				this.$emit("inputEvent", e.detail.value);
+			},
+      clickFunc(e) {
+				this.$emit("click", e.detail.value);
 			},
 			clearInput() {
 				this.keyword = '';
