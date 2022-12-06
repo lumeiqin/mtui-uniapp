@@ -1,7 +1,9 @@
 <template>
 	<view class="mt-popup" :class="{'mt-popup-center': type === 'center'}" v-show="popupShow"
 		@touchmove.stop.prevent="clear">
-		<view class="mt-popup-mask" v-if="showMask" @click="maskEvent"></view>
+		<view class="mt-popup-mask" :style="{
+      background: showMask? 'rgba(0, 0, 0, 0.3)':  'rgba(0, 0, 0, 0)'
+		}" @click="maskEvent"></view>
 		<mtPopupTransition ref="mtPopupTransition" :show="transitionShow" :type="type">
 			<slot></slot>
 		</mtPopupTransition>
