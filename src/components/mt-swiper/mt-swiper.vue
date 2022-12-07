@@ -1,121 +1,350 @@
 <template>
-  <view class="swiper" id="swiper">
-    <view class="swiper_box">
-      <view class="box_item" :style="changePic">
-        <image
-            :style="{width: boxWidth + 'px'}"
-            v-for="(item, key) in data"
-            :key="key"
-            :src="item.url"></image>
-      </view>
+  <div
+      ref="swiperContainer"
+      class="mt-swiper"
+      :style="{ width: selfConfig.width + 'px', height: selfConfig.height + 'rpx' }"
+      @click="swiperClick">
 
-      <view class="swiper_btn">
-        <view class="left" @click="go(1)"><i class="iconfont icon-31fanhui1"></i></view>
-        <view class="right" @click="go(-1)"><i class="iconfont icon-danse_gengduojiantou"></i></view>
-      </view>
-    </view>
-  </view>
+    <div
+        ref="sliderWrapper"
+        class="swiper_box"
+        :style="{
+            transform: `translateX(${transX}px)`,
+            transition: isTransToX ? `transform ${duration}ms cubic-bezier(0, 0, 0.25, 1)` : ''
+        }"
+
+         @touchstart="touchstartFn"
+         @touchmove="touchmoveFn"
+         @touchend="touchendFn"
+         @transitionend="transitionendFn">
+
+      <template v-if="urlList && urlList.length > 0">
+        <image :src="item" v-for="(item, index) in currentList" :key="index"></image>
+      </template>
+
+      <template v-else>
+        <component :is="firstItem"></component>
+        <slot></slot>
+        <component :is="lastItem"></component>
+      </template>
+    </div>
+  </div>
 </template>
 
 <script>
+let width = 375
+let criticalWidth = 0 // 临界宽度
+
+let activeIndex = 0
+
+let prevX = 0 // 上个周期中的tranlateX 坐标
+
+let _autoPlayTimer = null
+
+let touchCount = 0 // 触摸点数量
+
+
+
+// 用户标识当前的滑动状态
+let touchStatus = 0
+
+// 单指操作 - 滑动坐标相关
+// touchStart 点击坐标
+let stStartX = 0
+
+// 当前是否需要自动滑动到下一张图片
+let stAutoNext = 0
+// 滑动的方向，-1 为右滑，1 为左滑
+let stDirectionFlag = 0
+
+// getBoundingClientRect的兼容性
+const isSupportGetBoundingClientRect = typeof document.documentElement.getBoundingClientRect === 'function'
+
 export default {
-  name: "mt-swiper",
+  name: 'mt-swiper',
+  props: {
+    urlList: {
+      type: Array,
+      default: null
+    },
+    startIndex: {
+      type: Number,
+      default: 0
+    },
+    // 如果指定了此参数，并且值 >= 0，则将会将此值当做 delay的时间(单位为 ms)进行自动轮播；
+    // 不指定或指定值小于 0 则不自动轮播
+    // 如果想要指定此值，一般建议设置为 3000
+    autoPlayDelay: {
+      type: Number,
+      default: null
+    },
+    // 自动滚动到稳定位置所需的时间，单位是秒(ms)
+    duration: {
+      type: Number,
+      default: 350,
+      validator(value) {
+        return value >= 0
+      }
+    },
+    config: {
+      type: Object,
+      default() {
+        return {}
+      }
+    }
+  },
   data() {
     return {
-      index: 0, //现在是第几张
-      width: 0,
-      boxWidth: 0,
-      data: [
-        {url: "https://ms.bdimg.com/pacific/0/pic/-1475734717_1882409649.jpg?x=0&y=0&vh=150.00&vw=242.00&oh=150.00&ow=242.00&w=146&h=91&rs=0"},
-        {url: "https://ms.bdimg.com/pacific/0/pic/1814082679_-2015381553.jpg?x=0&y=0&vh=150.00&vw=242.00&oh=150.00&ow=242.00&w=146&h=91&rs=0"},
-        {url: "https://ms.bdimg.com/pacific/0/pic/-1475734717_1882409649.jpg?x=0&y=0&vh=150.00&vw=242.00&oh=150.00&ow=242.00&w=146&h=91&rs=0"},
-      ]
+      selfConfig: {
+        width: document.documentElement.clientWidth,
+        height: 400
+      },
+      currentList: [],
+      activeIndex: 0,
+
+      transX: 0,
+      isTransToX: false, // 正在自动滚动到固定位置的过程中
+
+      firstItem: null,
+      lastItem: null,
+      swiperItemCount: 0
     }
   },
   created() {
-    let _this = this;
-    this.$nextTick(() => {
-      uni.createSelectorQuery().select('#swiper').boundingClientRect((data) => {
-        _this.boxWidth = data.width;
-      }).exec()
-    })
+    this.selfConfig = {
+      ...this.selfConfig,
+      ...this.config
+    }
+
+    if (this.urlList && this.urlList.length) {
+      let firstUrl = this.urlList.slice(0, 1), endUrl = this.urlList.slice(-1);
+      this.currentList = endUrl.concat(this.urlList, firstUrl);
+
+      this.swiperItemCount = this.currentList.length;
+    } else {
+      const slots = this.$slots.default || []
+      this.swiperItemCount = slots.length;
+      if (slots.length > 1) {
+        this.swiperItemCount = slots.length + 2 // 加上首尾多出来的两个
+        this.updateChild(slots)
+      }
+    }
+
+    width = this.selfConfig.width;
+    criticalWidth = width / 3;
+    if (this.swiperItemCount > 1) {
+      // 因为首尾都多加了一个swiperItem元素，所以顺延一位
+      this.activeIndex = activeIndex = this.getActiveIndex(this.startIndex + 1)
+      this.transX = prevX = -width * activeIndex
+    }
+
+    clearTimeout(_autoPlayTimer)
+    _autoPlayTimer = setTimeout(() => {
+      this.autoPlayFn()
+    }, 14)
   },
-  computed: {
-    changePic() {
-      return {
-        width: `${this.boxWidth * this.data.length}px`,
-        transform: `translate3d(${this.width}px, 0, 0)`, //主要实现核心
-      };
+  destroy() {
+    clearTimeout(_autoPlayTimer)
+  },
+  watch: {
+    autoPlayDelay() {
+      // 修改了 autoPlayDelay 的值，需要重新触发事件
+      this.autoPlayFn()
     },
+    config(newvalue) {
+      this.selfConfig = {
+        ...this.selfConfig,
+        ...newvalue
+      }
+    }
   },
   methods: {
-    go(direc) {
-      if (direc == -1) {
-        this.index = this.index >= this.data.length - 1 ? 0 : this.index + 1;
-      } else if (direc == 1) {
-        this.index = this.index <= 0 ? this.data.length - 1 : this.index - 1;
+    touchstartFn(e) {
+      // 取消还没结束的自动轮播（如果指定了轮播的话）
+      clearTimeout(_autoPlayTimer)
+      if (this.ignoreTouch()) return
+      if (this.isTransToX) {
+        if (!isSupportGetBoundingClientRect) {
+          return touchStatus = 0
+        }
+        this.isTransToX = false
+        this.transX = prevX = this.$refs.sliderWrapper.getBoundingClientRect().left - this.$refs.swiperContainer.getBoundingClientRect().left
       }
-      this.width = -this.boxWidth * this.index;
+      touchStatus = 1
+      touchCount = e.touches.length
+      this.singleTouchStartFn(e)
     },
-  },
+    touchmoveFn(e) {
+      e.preventDefault()
+      if (this.ignoreTouch() || touchStatus !== 1) return
+      if (this.swiperItemCount !== 1) {
+        this.singleTouchMoveFn(e)
+      }
+    },
+    touchendFn(e) {
+      touchCount = e.touches.length
+      if (this.ignoreTouch() || touchStatus !== 1) return
+      if (this.swiperItemCount !== 1) {
+        if (touchCount !== 0) {
+          stStartX = e.touches[touchCount - 1].clientX
+          prevX = this.transX
+          return
+        }
+        this.singleTouchEndFn(e)
+      }
+    },
+    // 单指滑动行为 - start
+    singleTouchStartFn(e) {
+      stStartX = e.touches[touchCount - 1].clientX
+      if (touchCount > 1) {
+        prevX = this.transX
+      }
+    },
+    // 单指滑动行为 - move
+    singleTouchMoveFn(e) {
+      let transX = e.touches[touchCount - 1].clientX - stStartX + prevX
+      if (transX > 0) {
+        // 滑动到到第一个了
+        stStartX = e.touches[touchCount - 1].clientX
+        // 矫正到正确位置
+        prevX = transX = -width * (this.swiperItemCount - 2)
+      } else if (transX < -width * (this.swiperItemCount - 1)) {
+        // 滑动到最后一个了
+        stStartX = e.touches[touchCount - 1].clientX
+        // 矫正到正确位置
+        prevX = transX = -width
+      }
+      this.transX = transX
+    },
+    // 单指滑动行为 - end
+    singleTouchEndFn() {
+      let toX = this.swiperItemCount === 1 ? 0 : this.getSingleTouchEndMultipleChildToX()
+      this.gotoX(toX)
+    },
+    // 单指滑动行为 - end，swiper-item数量大于 1 的情况
+    getSingleTouchEndMultipleChildToX() {
+      let toX = 0
+      let diffX = this.transX + width * activeIndex
+      const wholeBlock = Math.floor(diffX / width)
+      // 如果连续滑过超过一个 swiperItem 块，当做一个来处理
+      if (Math.abs(diffX) > width) {
+        activeIndex = Math.ceil(-this.transX / width)
+        diffX = diffX - width * wholeBlock
+      }
+      // diffX 大于0 说明是右滑，小于0 则是左滑
+      if (diffX > 0) {
+        stDirectionFlag = -1
+        stAutoNext = diffX > criticalWidth
+        toX = stAutoNext ? -width * (activeIndex - 1) : -width * activeIndex
+      } else if (diffX < 0) {
+        stDirectionFlag = 1
+        stAutoNext = Math.abs(diffX) > criticalWidth
+        toX = stAutoNext ? -width * (activeIndex + 1) : -width * activeIndex
+      } else {
+        stDirectionFlag = 0
+        stAutoNext = false
+        toX = -width * activeIndex
+      }
+      this.activeIndex = activeIndex = this.getActiveIndex(activeIndex + (stAutoNext ? stDirectionFlag : 0))
+      return toX
+    },
+    transEndFn() {
+      this.activeIndex = activeIndex = this.getActiveIndex(activeIndex)
+      this.transX = prevX = -width * activeIndex
+      this.$emit('change', activeIndex)
+      // setTimeout是为了避免当 autoPlayDelay值被指定为 0 时无限轮播出现问题
+      // 16.7 是 1000/60 的大约值
+      clearTimeout(_autoPlayTimer)
+      _autoPlayTimer = setTimeout(() => {
+        this.autoPlayFn()
+      }, 16.7)
+    },
+    transitionendFn(e) {
+      if (e.target.className === 'swiper_box') {
+        if (this.isTransToX) {
+          this.isTransToX = false
+          // 单指操作 - 自动滑动结束
+          this.transEndFn()
+        }
+      }
+    },
+    // 如果没有传入 swiper-item子元素，或者只传入了一个子元素并且 noDragWhenSingle为 true，
+    // 则不对 touch 事件进行滑动响应
+    ignoreTouch() {
+      return this.swiperItemCount === 0 || (this.swiperItemCount === 1)
+    },
+    // duration不正确或为0，导致不会触发transitionend函数，所以需要直接调用 transEndFn
+    correctDurationAct() {
+      if (typeof this.duration !== 'number' || this.duration <= 0) {
+        this.isTransToX = false
+        this.transEndFn()
+      }
+    },
+    gotoX(toX) {
+      if (this.transX === toX) {
+        // 已经手动滑到正确的位置
+        this.transEndFn()
+      } else {
+        // 自由滚动到合适的位置
+        this.isTransToX = true
+        this.transX = toX
+        this.correctDurationAct()
+      }
+    },
+    goto(index) {
+      clearTimeout(_autoPlayTimer)
+      activeIndex = index % (this.swiperItemCount - 2) + 1
+      if (this.activeIndex !== activeIndex) {
+        this.activeIndex = activeIndex
+        this.gotoX(-width * activeIndex)
+      } else {
+        this.autoPlayFn()
+      }
+    },
+
+
+
+
+
+    autoPlayFn() {
+      let ifAutoPlay = typeof this.autoPlayDelay === 'number' && this.autoPlayDelay >= 0;
+      // 判断是否满足自动轮播的条件
+      if (this.swiperItemCount > 1 && ifAutoPlay && touchCount === 0 && this.transX % width === 0) {
+        clearTimeout(_autoPlayTimer)
+
+        _autoPlayTimer = setTimeout(() => {
+          activeIndex = activeIndex + 1
+          this.transX = -width * activeIndex
+          this.isTransToX = true
+          this.correctDurationAct()
+        }, this.autoPlayDelay)
+      }
+    },
+    getActiveIndex(index) {
+      if (this.swiperItemCount === 1) return 0;
+      if (index >= this.swiperItemCount - 1) return 1
+      if (index <= 0) return this.swiperItemCount - 2
+      return index
+    },
+    updateChild(slots) {
+      this.firstItem = {
+        render(h) {
+          return h('div', {
+            staticClass: 'swiper_item'
+          }, slots.slice(-1))
+        }
+      }
+      this.lastItem = {
+        render(h) {
+          return h('div', {
+            staticClass: 'swiper_item'
+          }, slots.slice(0, 1))
+        }
+      }
+    },
+    swiperClick() {
+      this.$emit('click', this.activeIndex - 1)
+    },
+  }
 }
 </script>
-
-<style lang="scss" scoped>
-.swiper {
-  width: 100%;
-
-  &_box {
-    width: 100%;
-    height: 200px;
-    position: relative;
-    top: 0;
-    left: 0;
-    margin: 0 auto;
-    z-index: 10;
-    overflow: hidden;
-
-    .box_item {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      transition: 0.5s ease;
-
-      image {
-        height: 100%;
-        display: block;
-      }
-    }
-  }
-
-  &_btn {
-    view {
-      width: 35px;
-      height: 40px;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      //background: rgba(0, 0, 0, .5);
-      display: flex;
-      align-items: center;
-      padding: 0 6px;
-
-      i {
-        font-size: 20px;
-        color: #fff;
-        font-weight: 600;
-      }
-    }
-
-    .left {
-      left: 0;
-      justify-content: flex-end;
-    }
-
-    .right {
-      right: 0;
-      justify-content: flex-start;
-    }
-  }
-}
-</style>
