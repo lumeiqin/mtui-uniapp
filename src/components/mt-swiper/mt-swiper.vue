@@ -108,7 +108,7 @@ export default {
 
       this.swiperItemCount = this.currentList.length;
     } else {
-      const slots = this.$slots.default || []
+      const slots = this.$slots && this.$slots.default || []
       this.swiperItemCount = slots.length;
       if (slots.length > 1) {
         this.swiperItemCount = slots.length + 2 // 加上首尾多出来的两个
