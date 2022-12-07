@@ -34,6 +34,10 @@ import mtTabbar from "./src/components/mt-tabbar/mt-tabbar";
 import mtTabs from "./src/components/mt-tabs/mt-tabs";
 import mtTag from "./src/components/mt-tag/mt-tag";
 import mtCollapse from "./src/components/mt-collapse/mt-collapse";
+import mtKeyboard from "./src/components/mt-keyboard/mt-keyboard";
+import mtSwiper from "./src/components/mt-swiper/mt-swiper";
+import mtSwiperItem from "./src/components/mt-swiper-item/mt-swiper-item";
+import mtPagination from "./src/components/mt-pagination/mt-pagination";
 
 let components = [
     mtBox,
@@ -60,6 +64,10 @@ let components = [
     mtTabs,
     mtTag,
     mtCollapse,
+    mtKeyboard,
+    mtSwiper,
+    mtSwiperItem,
+    mtPagination
 ]
 
 const install = function (Vue, opts = {}) {
@@ -108,4 +116,8 @@ export default {
     mtTabs,
     mtTag,
     mtCollapse,
+    mtKeyboard,
+    mtSwiper,
+    mtSwiperItem,
+    mtPagination
 };
