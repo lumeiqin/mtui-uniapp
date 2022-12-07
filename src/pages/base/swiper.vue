@@ -18,7 +18,7 @@
     <ry-title title="图片轮播">
       <mt-swiper ref="mtSwiper" :urlList="imgList" :slip="false" :config="swiperConfig"/>
       <view class="btnArr">
-        <mt-button @click="preClick" style="margin-right: 50px">上一页</mt-button>
+        <mt-button @click="preClick" style="margin-right: 60px">上一页</mt-button>
         <mt-button @click="nextClick">下一页</mt-button>
       </view>
     </ry-title>
@@ -73,7 +73,6 @@ export default {
 }
 
 .btnArr {
-  width: 320px;
   display: flex;
   justify-content: space-around;
   padding: 20px 10px;
