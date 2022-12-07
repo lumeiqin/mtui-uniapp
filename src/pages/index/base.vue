@@ -52,6 +52,9 @@ export default {
         title: 'Step 流程图',
         path: 'step'
       }, {
+        title: 'Swiper 轮播图',
+        path: 'swiper'
+      }, {
         title: 'Tabbar 标签栏',
         path: 'tabbar'
       }, {

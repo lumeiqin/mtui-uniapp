@@ -2,7 +2,7 @@
   <div
       ref="swiperContainer"
       class="mt-swiper"
-      :style="{ width: selfConfig.width + 'px', height: selfConfig.height + 'rpx' }"
+      :style="{ width: selfConfig.width * 2 + 'rpx', height: selfConfig.height + 'rpx' }"
       @click="swiperClick">
 
     <div
@@ -13,10 +13,10 @@
             transition: isTransToX ? `transform ${duration}ms cubic-bezier(0, 0, 0.25, 1)` : ''
         }"
 
-         @touchstart="touchstartFn"
-         @touchmove="touchmoveFn"
-         @touchend="touchendFn"
-         @transitionend="transitionendFn">
+        @touchstart="touchstartFn"
+        @touchmove="touchmoveFn"
+        @touchend="touchendFn"
+        @transitionend="transitionendFn">
 
       <template v-if="urlList && urlList.length > 0">
         <image :src="item" v-for="(item, index) in currentList" :key="index"></image>
@@ -28,6 +28,10 @@
         <component :is="lastItem"></component>
       </template>
     </div>
+
+    <div class="swiper-pagination" v-if="showDot">
+      <span :class="{'act': items === activeIndex}" v-for="items in swiperItemCount-2" :key="items"></span>
+    </div>
   </div>
 </template>
 
@@ -35,27 +39,14 @@
 let width = 375
 let criticalWidth = 0 // 临界宽度
 
-let activeIndex = 0
-
 let prevX = 0 // 上个周期中的tranlateX 坐标
-
 let _autoPlayTimer = null
 
 let touchCount = 0 // 触摸点数量
-
-
-
-// 用户标识当前的滑动状态
-let touchStatus = 0
-
-// 单指操作 - 滑动坐标相关
-// touchStart 点击坐标
-let stStartX = 0
-
-// 当前是否需要自动滑动到下一张图片
-let stAutoNext = 0
-// 滑动的方向，-1 为右滑，1 为左滑
-let stDirectionFlag = 0
+let touchStatus = 0 // 当前的滑动状态
+let startX = 0 // 点击坐标
+let autoNext = 0 // 是否需要自动滑动到下一张图片
+let directionFlag = 0 // 滑动的方向，-1 为右滑，1 为左滑
 
 // getBoundingClientRect的兼容性
 const isSupportGetBoundingClientRect = typeof document.documentElement.getBoundingClientRect === 'function'
@@ -71,20 +62,24 @@ export default {
       type: Number,
       default: 0
     },
-    // 如果指定了此参数，并且值 >= 0，则将会将此值当做 delay的时间(单位为 ms)进行自动轮播；
-    // 不指定或指定值小于 0 则不自动轮播
-    // 如果想要指定此值，一般建议设置为 3000
     autoPlayDelay: {
       type: Number,
       default: null
     },
-    // 自动滚动到稳定位置所需的时间，单位是秒(ms)
     duration: {
       type: Number,
       default: 350,
       validator(value) {
         return value >= 0
       }
+    },
+    showDot: {
+      type: Boolean,
+      default: true
+    },
+    slip: {
+      type: Boolean,
+      default: true
     },
     config: {
       type: Object,
@@ -134,8 +129,8 @@ export default {
     criticalWidth = width / 3;
     if (this.swiperItemCount > 1) {
       // 因为首尾都多加了一个swiperItem元素，所以顺延一位
-      this.activeIndex = activeIndex = this.getActiveIndex(this.startIndex + 1)
-      this.transX = prevX = -width * activeIndex
+      this.activeIndex = this.getActiveIndex(this.startIndex + 1)
+      this.transX = prevX = -width * this.activeIndex
     }
 
     clearTimeout(_autoPlayTimer)
@@ -148,7 +143,6 @@ export default {
   },
   watch: {
     autoPlayDelay() {
-      // 修改了 autoPlayDelay 的值，需要重新触发事件
       this.autoPlayFn()
     },
     config(newvalue) {
@@ -159,8 +153,111 @@ export default {
     }
   },
   methods: {
+    previous() {
+      clearTimeout(_autoPlayTimer)
+      if (this.activeIndex <= 1) return
+      this.activeIndex = this.getActiveIndex(this.activeIndex - 1)
+      this.gotoX(-width * this.activeIndex)
+    },
+    next() {
+      clearTimeout(_autoPlayTimer)
+      if (this.activeIndex >= this.swiperItemCount - 2) return
+      this.activeIndex = this.getActiveIndex(this.activeIndex + 1)
+      this.gotoX(-width * this.activeIndex)
+    },
+
+    goto(index) {
+      clearTimeout(_autoPlayTimer)
+      this.activeIndex = index % (this.swiperItemCount - 2) + 1
+      this.autoPlayFn()
+    },
+    transitionendFn(e) {
+      if (e.target.className === 'swiper_box') {
+        if (this.isTransToX) {
+          this.isTransToX = false
+          this.transEndFn()
+        }
+      }
+    },
+    touchendFn(e) {
+      if(!this.slip) return;
+      touchCount = e.touches.length
+      if (this.ignoreTouch() || touchStatus !== 1) return
+      if (this.swiperItemCount !== 1) {
+        if (touchCount !== 0) {
+          startX = e.touches[touchCount - 1].clientX
+          prevX = this.transX
+          return
+        }
+        this.singleTouchEndFn(e)
+      }
+    },
+    singleTouchEndFn() {
+      let toX = this.swiperItemCount === 1 ? 0 : this.getSingleTouchEndMultipleChildToX()
+      this.gotoX(toX)
+    },
+    gotoX(toX) {
+      if (this.transX === toX) {
+        // 已经手动滑到正确的位置
+        this.transEndFn()
+      } else {
+        // 自由滚动到合适的位置
+        this.isTransToX = true
+        this.transX = toX
+        this.correctDurationAct()
+      }
+    },
+    getSingleTouchEndMultipleChildToX() {
+      let toX = 0
+      let diffX = this.transX + width * this.activeIndex
+      const wholeBlock = Math.floor(diffX / width)
+      // 如果连续滑过超过一个 swiperItem 块，当做一个来处理
+      if (Math.abs(diffX) > width) {
+        this.activeIndex = Math.ceil(-this.transX / width)
+        diffX = diffX - width * wholeBlock
+      }
+      // diffX 大于0 说明是右滑，小于0 则是左滑
+      if (diffX > 0) {
+        directionFlag = -1
+        autoNext = diffX > criticalWidth
+        toX = autoNext ? -width * (this.activeIndex - 1) : -width * this.activeIndex
+      } else if (diffX < 0) {
+        directionFlag = 1
+        autoNext = Math.abs(diffX) > criticalWidth
+        toX = autoNext ? -width * (this.activeIndex + 1) : -width * this.activeIndex
+      } else {
+        directionFlag = 0
+        autoNext = false
+        toX = -width * this.activeIndex
+      }
+      this.activeIndex = this.getActiveIndex(this.activeIndex + (autoNext ? directionFlag : 0))
+      return toX
+    },
+    touchmoveFn(e) {
+      if(!this.slip) return;
+      e.preventDefault()
+      if (this.ignoreTouch() || touchStatus !== 1) return
+      if (this.swiperItemCount !== 1) {
+        this.singleTouchMoveFn(e)
+      }
+    },
+    singleTouchMoveFn(e) {
+      let transX = e.touches[touchCount - 1].clientX - startX + prevX
+      if (transX > 0) {
+        // 滑动到到第一个了
+        startX = e.touches[touchCount - 1].clientX
+        // 矫正到正确位置
+        prevX = transX = -width * (this.swiperItemCount - 2)
+      } else if (transX < -width * (this.swiperItemCount - 1)) {
+        // 滑动到最后一个了
+        startX = e.touches[touchCount - 1].clientX
+        // 矫正到正确位置
+        prevX = transX = -width
+      }
+      this.transX = transX
+    },
     touchstartFn(e) {
-      // 取消还没结束的自动轮播（如果指定了轮播的话）
+      if(!this.slip) return;
       clearTimeout(_autoPlayTimer)
       if (this.ignoreTouch()) return
       if (this.isTransToX) {
@@ -174,84 +271,21 @@ export default {
       touchCount = e.touches.length
       this.singleTouchStartFn(e)
     },
-    touchmoveFn(e) {
-      e.preventDefault()
-      if (this.ignoreTouch() || touchStatus !== 1) return
-      if (this.swiperItemCount !== 1) {
-        this.singleTouchMoveFn(e)
-      }
-    },
-    touchendFn(e) {
-      touchCount = e.touches.length
-      if (this.ignoreTouch() || touchStatus !== 1) return
-      if (this.swiperItemCount !== 1) {
-        if (touchCount !== 0) {
-          stStartX = e.touches[touchCount - 1].clientX
-          prevX = this.transX
-          return
-        }
-        this.singleTouchEndFn(e)
-      }
-    },
-    // 单指滑动行为 - start
     singleTouchStartFn(e) {
-      stStartX = e.touches[touchCount - 1].clientX
+      startX = e.touches[touchCount - 1].clientX
       if (touchCount > 1) {
         prevX = this.transX
       }
     },
-    // 单指滑动行为 - move
-    singleTouchMoveFn(e) {
-      let transX = e.touches[touchCount - 1].clientX - stStartX + prevX
-      if (transX > 0) {
-        // 滑动到到第一个了
-        stStartX = e.touches[touchCount - 1].clientX
-        // 矫正到正确位置
-        prevX = transX = -width * (this.swiperItemCount - 2)
-      } else if (transX < -width * (this.swiperItemCount - 1)) {
-        // 滑动到最后一个了
-        stStartX = e.touches[touchCount - 1].clientX
-        // 矫正到正确位置
-        prevX = transX = -width
-      }
-      this.transX = transX
-    },
-    // 单指滑动行为 - end
-    singleTouchEndFn() {
-      let toX = this.swiperItemCount === 1 ? 0 : this.getSingleTouchEndMultipleChildToX()
-      this.gotoX(toX)
-    },
-    // 单指滑动行为 - end，swiper-item数量大于 1 的情况
-    getSingleTouchEndMultipleChildToX() {
-      let toX = 0
-      let diffX = this.transX + width * activeIndex
-      const wholeBlock = Math.floor(diffX / width)
-      // 如果连续滑过超过一个 swiperItem 块，当做一个来处理
-      if (Math.abs(diffX) > width) {
-        activeIndex = Math.ceil(-this.transX / width)
-        diffX = diffX - width * wholeBlock
-      }
-      // diffX 大于0 说明是右滑，小于0 则是左滑
-      if (diffX > 0) {
-        stDirectionFlag = -1
-        stAutoNext = diffX > criticalWidth
-        toX = stAutoNext ? -width * (activeIndex - 1) : -width * activeIndex
-      } else if (diffX < 0) {
-        stDirectionFlag = 1
-        stAutoNext = Math.abs(diffX) > criticalWidth
-        toX = stAutoNext ? -width * (activeIndex + 1) : -width * activeIndex
-      } else {
-        stDirectionFlag = 0
-        stAutoNext = false
-        toX = -width * activeIndex
-      }
-      this.activeIndex = activeIndex = this.getActiveIndex(activeIndex + (stAutoNext ? stDirectionFlag : 0))
-      return toX
+    // 如果没有传入 swiper-item子元素，或者只传入了一个子元素, 则不对 touch 事件进行滑动响应
+    ignoreTouch() {
+      return this.swiperItemCount === 0 || this.swiperItemCount === 1
     },
     transEndFn() {
-      this.activeIndex = activeIndex = this.getActiveIndex(activeIndex)
-      this.transX = prevX = -width * activeIndex
-      this.$emit('change', activeIndex)
+      this.activeIndex = this.getActiveIndex(this.activeIndex)
+      this.transX = prevX = -width * this.activeIndex
+      this.$emit('change', this.activeIndex)
+
       // setTimeout是为了避免当 autoPlayDelay值被指定为 0 时无限轮播出现问题
       // 16.7 是 1000/60 的大约值
       clearTimeout(_autoPlayTimer)
@@ -259,53 +293,6 @@ export default {
         this.autoPlayFn()
       }, 16.7)
     },
-    transitionendFn(e) {
-      if (e.target.className === 'swiper_box') {
-        if (this.isTransToX) {
-          this.isTransToX = false
-          // 单指操作 - 自动滑动结束
-          this.transEndFn()
-        }
-      }
-    },
-    // 如果没有传入 swiper-item子元素，或者只传入了一个子元素并且 noDragWhenSingle为 true，
-    // 则不对 touch 事件进行滑动响应
-    ignoreTouch() {
-      return this.swiperItemCount === 0 || (this.swiperItemCount === 1)
-    },
-    // duration不正确或为0，导致不会触发transitionend函数，所以需要直接调用 transEndFn
-    correctDurationAct() {
-      if (typeof this.duration !== 'number' || this.duration <= 0) {
-        this.isTransToX = false
-        this.transEndFn()
-      }
-    },
-    gotoX(toX) {
-      if (this.transX === toX) {
-        // 已经手动滑到正确的位置
-        this.transEndFn()
-      } else {
-        // 自由滚动到合适的位置
-        this.isTransToX = true
-        this.transX = toX
-        this.correctDurationAct()
-      }
-    },
-    goto(index) {
-      clearTimeout(_autoPlayTimer)
-      activeIndex = index % (this.swiperItemCount - 2) + 1
-      if (this.activeIndex !== activeIndex) {
-        this.activeIndex = activeIndex
-        this.gotoX(-width * activeIndex)
-      } else {
-        this.autoPlayFn()
-      }
-    },
-
-
-
-
-
     autoPlayFn() {
       let ifAutoPlay = typeof this.autoPlayDelay === 'number' && this.autoPlayDelay >= 0;
       // 判断是否满足自动轮播的条件
@@ -313,11 +300,17 @@ export default {
         clearTimeout(_autoPlayTimer)
 
         _autoPlayTimer = setTimeout(() => {
-          activeIndex = activeIndex + 1
-          this.transX = -width * activeIndex
+          this.activeIndex = this.activeIndex + 1
+          this.transX = -width * this.activeIndex
           this.isTransToX = true
           this.correctDurationAct()
         }, this.autoPlayDelay)
+      }
+    },
+    correctDurationAct() {
+      if (typeof this.duration !== 'number' || this.duration <= 0) {
+        this.isTransToX = false
+        this.transEndFn()
       }
     },
     getActiveIndex(index) {

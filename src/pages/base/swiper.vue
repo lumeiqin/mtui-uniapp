@@ -1,51 +1,55 @@
 <template>
-  <div>
-    <mt-swiper ref="mySwiper">
-      <mt-swiper-item>
-        <div class="item-content item1">SwiperItem - 0</div>
-      </mt-swiper-item>
-      <mt-swiper-item>
-        <div class="item-content item2">SwiperItem - 1</div>
-      </mt-swiper-item>
-      <mt-swiper-item>
-        <div class="item-content item3">SwiperItem - 2</div>
-      </mt-swiper-item>
-    </mt-swiper>
+  <view>
+    <mt-navbar fixed title="Swiper" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
+    <ry-title>
+      <mt-swiper ref="mySwiper" :config="swiperConfig">
+        <mt-swiper-item>
+          <div class="item-content item1">SwiperItem - 0</div>
+        </mt-swiper-item>
+        <mt-swiper-item>
+          <div class="item-content item2">SwiperItem - 1</div>
+        </mt-swiper-item>
+        <mt-swiper-item>
+          <div class="item-content item3">SwiperItem - 2</div>
+        </mt-swiper-item>
+      </mt-swiper>
+    </ry-title>
 
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <mt-swiper :urlList="imgList" :clientH="200" :showCounter="true" :autoPlayDelay="1500" :criticalValue="1/4" />
-  </div>
-
-  <!--<template>-->
-  <!--<view>-->
-  <!--  <mt-swiper :data="swiperData">-->
-  <!--    <view class="swiperItem" v-for="(v,i) in swiperData" :key="i">-->
-  <!--      <view>{{v.opt}}</view>-->
-  <!--    </view>-->
-  <!--  </mt-swiper>-->
-  <!--</view>-->
-  <!--</template>-->
-
+    <ry-title title="图片轮播">
+      <mt-swiper ref="mtSwiper" :urlList="imgList" :slip="false" :config="swiperConfig"/>
+      <view class="btnArr">
+        <mt-button @click="preClick" style="margin-right: 50px">上一页</mt-button>
+        <mt-button @click="nextClick">下一页</mt-button>
+      </view>
+    </ry-title>
+  </view>
 </template>
 
 <script>
-import MtSwiper from "../../components/mt-swiper/mt-swiper-other";
+import common from "../../common/common.js";
+
 export default {
-  components: {MtSwiper},
+  mixins: [common],
   data() {
     return {
+      swiperConfig: {
+        width: 340,
+        height: 400
+      },
       imgList: [
-        'https://dummyimage.com/375x100/FB8A80?text=0',
-        'https://dummyimage.com/375x100/29A90F?text=1',
-        'https://dummyimage.com/375x100/6F9DFF?text=2'
+        'https://ts2.cn.mm.bing.net/th?id=OIP-C.xc5KsKdO2u9T5hBCpE0yCgHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2',
+        'https://tse4-mm.cn.bing.net/th/id/OIP-C.yTaV7x7n9LXjYN440YsIhQHaFj?w=196&h=147&c=7&r=0&o=5&dpr=2&pid=1.7',
+        'https://ts1.cn.mm.bing.net/th?id=OIP-C.pAIGQZalV1QJV7n7fupiCwHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2'
       ]
     }
   },
   methods: {
+    preClick() {
+      this.$refs.mtSwiper.previous()
+    },
+    nextClick() {
+      this.$refs.mtSwiper.next()
+    }
   }
 }
 </script>
@@ -65,5 +69,12 @@ export default {
 
 .item3 {
   background: #9999CC;
+}
+
+.btnArr {
+  width: 320px;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 10px;
 }
 </style>
