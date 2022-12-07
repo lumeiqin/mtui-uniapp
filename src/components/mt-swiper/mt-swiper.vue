@@ -2,7 +2,7 @@
   <div
       ref="swiperContainer"
       class="mt-swiper"
-      :style="{ width: selfConfig.width * 2 + 'rpx', height: selfConfig.height + 'rpx' }"
+      :style="{ width: selfConfig.width + 'px', height: selfConfig.height + 'px' }"
       @click="swiperClick">
 
     <div
@@ -92,7 +92,7 @@ export default {
     return {
       selfConfig: {
         width: document.documentElement.clientWidth,
-        height: 400
+        height: 200
       },
       currentList: [],
       activeIndex: 0,

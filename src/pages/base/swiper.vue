@@ -33,8 +33,8 @@ export default {
   data() {
     return {
       swiperConfig: {
-        width: 340,
-        height: 400
+        width: 300,
+        height: 200
       },
       imgList: [
         'https://ts2.cn.mm.bing.net/th?id=OIP-C.xc5KsKdO2u9T5hBCpE0yCgHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2',
@@ -56,6 +56,7 @@ export default {
 
 <style>
 .item-content {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
