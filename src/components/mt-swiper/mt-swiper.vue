@@ -2,7 +2,8 @@
   <div
       ref="swiperContainer"
       class="mt-swiper"
-      :style="{ width: selfConfig.width + 'px', height: selfConfig.height + 'px' }"
+      id="swiper"
+      :style="{ height: height }"
       @click="swiperClick">
 
     <div
@@ -81,19 +82,13 @@ export default {
       type: Boolean,
       default: true
     },
-    config: {
-      type: Object,
-      default() {
-        return {}
-      }
+    height: {
+      type: String,
+      default: '400rpx'
     }
   },
   data() {
     return {
-      selfConfig: {
-        width: document.documentElement.clientWidth,
-        height: 200
-      },
       currentList: [],
       activeIndex: 0,
 
@@ -106,10 +101,6 @@ export default {
     }
   },
   created() {
-    this.selfConfig = {
-      ...this.selfConfig,
-      ...this.config
-    }
 
     if (this.urlList && this.urlList.length) {
       let firstUrl = this.urlList.slice(0, 1), endUrl = this.urlList.slice(-1);
@@ -125,13 +116,17 @@ export default {
       }
     }
 
-    width = this.selfConfig.width;
-    criticalWidth = width / 3;
-    if (this.swiperItemCount > 1) {
-      // 因为首尾都多加了一个swiperItem元素，所以顺延一位
-      this.activeIndex = this.getActiveIndex(this.startIndex + 1)
-      this.transX = prevX = -width * this.activeIndex
-    }
+    this.$nextTick(() => {
+      uni.createSelectorQuery().select('#swiper').boundingClientRect((data) => {
+        width = data.width;
+        criticalWidth = width / 3;
+        if (this.swiperItemCount > 1) {
+          // 因为首尾都多加了一个swiperItem元素，所以顺延一位
+          this.activeIndex = this.getActiveIndex(this.startIndex + 1)
+          this.transX = prevX = -width * this.activeIndex
+        }
+      }).exec()
+    })
 
     clearTimeout(_autoPlayTimer)
     _autoPlayTimer = setTimeout(() => {
@@ -144,12 +139,6 @@ export default {
   watch: {
     autoPlayDelay() {
       this.autoPlayFn()
-    },
-    config(newvalue) {
-      this.selfConfig = {
-        ...this.selfConfig,
-        ...newvalue
-      }
     }
   },
   methods: {
@@ -180,7 +169,7 @@ export default {
       }
     },
     touchendFn(e) {
-      if(!this.slip) return;
+      if (!this.slip) return;
       touchCount = e.touches.length
       if (this.ignoreTouch() || touchStatus !== 1) return
       if (this.swiperItemCount !== 1) {
@@ -234,7 +223,7 @@ export default {
       return toX
     },
     touchmoveFn(e) {
-      if(!this.slip) return;
+      if (!this.slip) return;
       e.preventDefault()
       if (this.ignoreTouch() || touchStatus !== 1) return
       if (this.swiperItemCount !== 1) {
@@ -257,7 +246,7 @@ export default {
       this.transX = transX
     },
     touchstartFn(e) {
-      if(!this.slip) return;
+      if (!this.slip) return;
       clearTimeout(_autoPlayTimer)
       if (this.ignoreTouch()) return
       if (this.isTransToX) {
