@@ -17,7 +17,7 @@
         @touchstart="touchstartFn"
         @touchmove="touchmoveFn"
         @touchend="touchendFn"
-        @transitionend="transitionendFn">
+        @transitionend="transitionendFn" v-if="loading">
 
       <template v-if="urlList && urlList.length > 0">
         <image :src="item" v-for="(item, index) in currentList" :key="index"></image>
@@ -29,9 +29,14 @@
         <component :is="lastItem"></component>
       </template>
     </div>
+    <div class="swiper_loading" v-else>
+      <i class="iconfont icon-loading"></i>
+    </div>
 
-    <div class="swiper-pagination" v-if="showDot">
-      <span :class="{'act': items === activeIndex}" v-for="items in swiperItemCount-2" :key="items"></span>
+    <div class="swiper-pagination" v-if="showDot && loading">
+
+
+      <span :class="{'act': items === activeIndex}" v-for="items in dotArr" :key="items"></span>
     </div>
   </div>
 </template>
@@ -85,6 +90,10 @@ export default {
     height: {
       type: String,
       default: '400rpx'
+    },
+    loading: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -100,8 +109,44 @@ export default {
       swiperItemCount: 0
     }
   },
-  created() {
+  computed: {
+    dotArr() {
+      return this.swiperItemCount > 2 ? this.swiperItemCount - 2 : 1;
+    }
+  },
+  watch: {
+    autoPlayDelay() {
+      this.autoPlayFn()
+    },
+    loading(newvalue) {
+      if (newvalue) {
+        const slots = this.$slots && this.$slots.default || []
+        this.swiperItemCount = slots.length;
+        if (slots.length > 1) {
+          this.swiperItemCount = slots.length + 2 // 加上首尾多出来的两个
+          this.updateChild(slots)
+        }
 
+        this.$nextTick(() => {
+          uni.createSelectorQuery().select('#swiper').boundingClientRect((data) => {
+            width = data.width;
+            criticalWidth = width / 3;
+            if (this.swiperItemCount > 1) {
+              // 因为首尾都多加了一个swiperItem元素，所以顺延一位
+              this.activeIndex = this.getActiveIndex(this.startIndex + 1)
+              this.transX = prevX = -width * this.activeIndex
+            }
+          }).exec()
+        })
+
+        clearTimeout(_autoPlayTimer)
+        _autoPlayTimer = setTimeout(() => {
+          this.autoPlayFn()
+        }, 14)
+      }
+    }
+  },
+  created() {
     if (this.urlList && this.urlList.length) {
       let firstUrl = this.urlList.slice(0, 1), endUrl = this.urlList.slice(-1);
       this.currentList = endUrl.concat(this.urlList, firstUrl);
@@ -135,11 +180,6 @@ export default {
   },
   destroy() {
     clearTimeout(_autoPlayTimer)
-  },
-  watch: {
-    autoPlayDelay() {
-      this.autoPlayFn()
-    }
   },
   methods: {
     previous() {

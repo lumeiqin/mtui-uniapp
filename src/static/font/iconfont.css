@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3460079 */
-  src: url('//at.alicdn.com/t/c/font_3460079_2j13phgk0r6.woff2?t=1670296137503') format('woff2'),
-  url('//at.alicdn.com/t/c/font_3460079_2j13phgk0r6.woff?t=1670296137503') format('woff'),
-  url('//at.alicdn.com/t/c/font_3460079_2j13phgk0r6.ttf?t=1670296137503') format('truetype');
+  src: url('//at.alicdn.com/t/c/font_3460079_1izn6x1cxn7.woff2?t=1670490073709') format('woff2'),
+  url('//at.alicdn.com/t/c/font_3460079_1izn6x1cxn7.woff?t=1670490073709') format('woff'),
+  url('//at.alicdn.com/t/c/font_3460079_1izn6x1cxn7.ttf?t=1670490073709') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-loading:before {
+  content: "\e962";
 }
 
 .icon-guanbi1:before {
