@@ -4,16 +4,20 @@
 .mt-box {
   width: 100%;
   position: relative;
+  font-size: 30rpx;
+  color: #333;
+
+  &--empty {
+    padding: 30rpx;
+    text-align: center;
+    letter-spacing: 4rpx;
+  }
 
   &--center {
 	@extend %flex-start;
     flex-wrap: nowrap;
     flex-direction: column;
     text-align: center;
-  }
-
-  &--flip {
-    transform: rotate(180deg);
   }
 
   &--border::before, &--border::after {

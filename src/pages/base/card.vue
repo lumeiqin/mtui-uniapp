@@ -29,7 +29,7 @@
 			</ry-title>
 
 			<ry-title title="显示右侧标签 + 多按钮">
-				<mt-card :title="title" :notes="noteArr" :btnGroup="moreButtonArr" badgeText="2" @btnEvent="btnEvent">
+				<mt-card :title="title" :notes="noteArr" :btnGroup="moreButtonArr" badgeText="2" @btnClick="btnEvent">
 				</mt-card>
 			</ry-title>
 

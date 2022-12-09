@@ -260,7 +260,7 @@
 				this.$emit("checkChange", e.target.value)
 			},
 			btnClick(item) {
-				this.$emit("btnEvent", {
+				this.$emit("btnClick", {
 					btn: item
 				});
 			},

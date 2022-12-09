@@ -155,7 +155,7 @@
 
 			tabClick(item, index) {
 				this.tabIndex = index;
-				this.$emit('tabClick', item, index);
+				this.$emit('click', item, index);
 			},
 			calcScrollPosition() {
 				const query = uni.createSelectorQuery().in(this);

@@ -3,7 +3,7 @@
 		<mt-navbar fixed title="Search" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
 		<view class="comp">
 			<ry-title>
-				<mt-search @focusEvent="focusEvent" @blurEvent="blurEvent" @inputEvent="inputEvent"></mt-search>
+				<mt-search @focus="focusEvent" @blur="blurEvent" @input="inputEvent"></mt-search>
 			</ry-title>
 
 			<ry-title title="自定义参数">

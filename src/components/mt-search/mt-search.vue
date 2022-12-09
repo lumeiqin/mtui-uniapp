@@ -89,20 +89,20 @@
 		},
 		methods: {
 			focusFunc(e) {
-				this.$emit("focusEvent", e.detail.value);
+				this.$emit("focus", e.detail.value);
 			},
 			blurFunc(e) {
-				this.$emit("blurEvent", e.detail.value);
+				this.$emit("blur", e.detail.value);
 			},
 			inputFunc(e) {
-				this.$emit("inputEvent", e.detail.value);
+				this.$emit("input", e.detail.value);
 			},
       clickFunc(e) {
 				this.$emit("click", e.detail.value);
 			},
 			clearInput() {
 				this.keyword = '';
-				this.$emit("inputEvent", this.keyword);
+				this.$emit("input", this.keyword);
 			},
 		}
 	};
