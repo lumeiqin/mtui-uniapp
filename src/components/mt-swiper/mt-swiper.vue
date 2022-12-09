@@ -118,6 +118,9 @@ export default {
     autoPlayDelay() {
       this.autoPlayFn()
     },
+    activeIndex(newvalue) {
+      this.$emit('change', newvalue)
+    },
     loading(newvalue) {
       if (newvalue) {
         const slots = this.$slots && this.$slots.default || []
@@ -313,7 +316,6 @@ export default {
     transEndFn() {
       this.activeIndex = this.getActiveIndex(this.activeIndex)
       this.transX = prevX = -width * this.activeIndex
-      this.$emit('change', this.activeIndex)
 
       // setTimeout是为了避免当 autoPlayDelay值被指定为 0 时无限轮播出现问题
       // 16.7 是 1000/60 的大约值

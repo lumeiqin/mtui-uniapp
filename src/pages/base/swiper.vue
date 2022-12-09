@@ -25,7 +25,7 @@
     </ry-title>
 
     <ry-title title="数据请求">
-      <mt-swiper ref="swiper3" :loading="loading">
+      <mt-swiper ref="swiper3" :loading="loading" @change="changeSwiper">
         <mt-swiper-item v-for="(item, index) in dataList" :key="index">
           <img :src="item" alt="">
         </mt-swiper-item>
@@ -55,6 +55,12 @@ export default {
     this.getData()
   },
   methods: {
+    changeSwiper(index) {
+      uni.showToast({
+        title: "当前的项：" + index,
+        icon: "none"
+      })
+    },
     getData() {
       setTimeout(() => {
         this.dataList = this.imgList
