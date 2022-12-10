@@ -38,9 +38,13 @@
 
 <script>
 	import pickerMixin from "../common/js/pickerMixin.js";
+	import SelectBox from "../common/select-box.vue"
 	export default {
 		name: "simple-multi",
 		mixins: [pickerMixin],
+		components: {
+			SelectBox
+		},
 		data() {
 			return {
 				firstStepList: [],

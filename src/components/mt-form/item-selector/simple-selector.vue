@@ -14,10 +14,14 @@
 
 <script>
 	import pickerMixin from "../common/js/pickerMixin.js";
-	
+	import SelectBox from "../common/select-box.vue"
+
 	export default {
 		name: "simple-selector",
 		mixins: [pickerMixin],
+		components: {
+			SelectBox
+		},
 		methods: {
 			_onChange(e) {
 				this.pickerValue = e.detail.value;

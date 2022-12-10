@@ -1,11 +1,7 @@
 import FormUtils from "./form.js";
 var utils = new FormUtils();
-import SelectBox from "../select-box.vue"
 
 export default {
-	components: {
-		SelectBox
-	},
 	props: {
 		title: {
 			type: String,

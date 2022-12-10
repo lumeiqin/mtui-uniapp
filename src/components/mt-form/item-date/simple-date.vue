@@ -40,11 +40,15 @@
 </template>
 
 <script>
+	import SelectBox from "../common/select-box.vue";
 	import pickerMixin from "../common/js/pickerMixin.js";
 
 	export default {
 		name: "simple-date",
 		mixins: [pickerMixin],
+		components: {
+			SelectBox
+		},
 		props: {
 			startDate: {
 				type: String,

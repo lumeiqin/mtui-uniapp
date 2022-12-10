@@ -14,11 +14,15 @@
 </template>
 
 <script>
+	import SelectBox from "../common/select-box.vue"
 	import pickerMixin from "../common/js/pickerMixin.js";
 
 	export default {
 		name: "simple-multi-choose",
 		mixins: [pickerMixin],
+		components: {
+			SelectBox
+		},
 		data() {
 			return {
 				selectedId: [],

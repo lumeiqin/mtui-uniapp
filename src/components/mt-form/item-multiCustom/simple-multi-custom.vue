@@ -32,10 +32,14 @@
 
 <script>
 	import pickerMixin from "../common/js/pickerMixin.js";
+	import SelectBox from "../common/select-box.vue"
 
 	export default {
 		name: "simple-multi-custom",
 		mixins: [pickerMixin],
+		components: {
+			SelectBox
+		},
 		data() {
 			return {
 				activeTab: 0,
@@ -159,7 +163,7 @@
 			border-radius: 40rpx;
 			padding: 0 30rpx;
 			box-sizing: border-box;
-      font-size: 28rpx;
+			font-size: 28rpx;
 		}
 	}
 </style>
