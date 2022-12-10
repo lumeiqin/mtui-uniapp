@@ -21,11 +21,6 @@ Vue.use(mtui);
 ```
 
 ```scss
-//在 App.vue 中引入字体图标
-@import "mtui-uni/src/static/font/iconfont.css";
-```
-
-```scss
 //在 uni.scss 中引入组件样式
 @import "mtui-uni/src/components/mt-theme/index.scss";
 ```
@@ -40,11 +35,6 @@ git clone https://github.com/lacey-lmq/mtui-uniapp.git
 ```
 
 ```scss
-//在 App.vue 中引入字体图标
-@import "./static/font/iconfont.css";
-```
-
-```scss
 //在 uni.scss 中引入组件样式
 @import "./components/mt-theme/index.scss";
 ```
@@ -55,11 +45,6 @@ git clone https://github.com/lacey-lmq/mtui-uniapp.git
 
 ```bash
 git clone https://github.com/lacey-lmq/mtui-uniapp.git
-```
-
-```scss
-//在 App.vue 中引入字体图标
-@import "./static/font/iconfont.css";
 ```
 
 ##### 在 `src/components/mt-theme` 目录下找到需要的组件样式拷贝到项目中。 

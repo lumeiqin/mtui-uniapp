@@ -15,19 +15,19 @@ export default {
     },
     methods: {
         backClick() {
-            uni.navigateTo({
+            uni.reLaunch({
                 url: "/pages/index/index"
             })
         },
         baseClick() {
-            uni.navigateTo({
+            uni.reLaunch({
                 url: "/pages/index/base"
             })
         },
 
         // form
         formClick() {
-            uni.navigateTo({
+            uni.reLaunch({
                 url: "/pages/index/form"
             })
         },
@@ -44,7 +44,7 @@ export default {
 
         // popup
         popupClick() {
-            uni.navigateTo({
+            uni.reLaunch({
                 url: "/pages/index/popup"
             })
         },

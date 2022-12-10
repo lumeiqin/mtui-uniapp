@@ -13,8 +13,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./static/font/iconfont.css";
-
 .comp {
   padding: 15px 0;
 }
