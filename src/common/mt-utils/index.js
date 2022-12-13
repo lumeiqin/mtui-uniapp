@@ -99,6 +99,9 @@ class Utils {
      * @description 接口请求 [get | post | file]
      */
     get(urlParams, requestParams = {}, headerParams = {}) {
+        uni.showLoading({
+            title: "加载中"
+        })
         this.setConsole(["----------get" +
         "接口请求地址：" + this._handleUrl(urlParams),
             "接口请求参数：" + JSON.stringify(this._bindToken(requestParams, this.tokenName)),
@@ -112,12 +115,16 @@ class Utils {
                 success(res) {
                     resolve(res.data)
                 },
-                fail: reject
+                fail: reject,
+                complete: () => uni.hideLoading()
             });
         })
     }
 
     post(urlParams, requestParams = {}, submitType = "json", headerParams = {}) {
+        uni.showLoading({
+            title: "加载中"
+        })
         let submitHeader = {};
         switch (submitType) {
             case "form":
@@ -151,12 +158,17 @@ class Utils {
                 success(res) {
                     resolve(res.data)
                 },
-                fail: reject
+                fail: reject,
+                complete: () => uni.hideLoading()
             });
         })
     }
 
     fileUpload(urlParams, fileName, requestParams = {}, headerParams = {}, nameKey = 'file', submitMethods = 'single') {
+        uni.showLoading({
+            title: "加载中"
+        })
+
         this.setConsole(["+++++++++++++++fileUpload" +
         "接口请求地址：" + this._handleUrl(urlParams),
             "文件本体：" + fileName,
@@ -181,7 +193,8 @@ class Utils {
                     success(res) {
                         resolve(res.data)
                     },
-                    fail: reject
+                    fail: reject,
+                    complete: () => uni.hideLoading()
                 });
             } else {
                 uni.uploadFile({
@@ -194,7 +207,8 @@ class Utils {
                     success(res) {
                         resolve(res.data)
                     },
-                    fail: reject
+                    fail: reject,
+                    complete: () => uni.hideLoading()
                 })
             }
         })
