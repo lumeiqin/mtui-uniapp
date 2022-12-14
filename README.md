@@ -4,7 +4,7 @@
 ***
 
 #
-### 方式一 ：通过 npm 安装
+### 方式一 ：通过 npm 安装（只适用h5）
 
 #### 使通过 npm 安装，需要先通过 vue-cli 创建 uni-app 项目，[详见](https://uniapp.dcloud.io/quickstart-cli)
 
@@ -32,7 +32,7 @@ Vue.use(mtui);
 ```
 
 
-### 方式二 ：通过下载代码
+### 方式二 ：通过下载代码（适用h5，app）
 
 #### 通过 GitHub 下载组件，将 `src/components/` `/static` 目录拷贝到自己的项目中。
 
@@ -42,7 +42,7 @@ git clone https://github.com/lacey-lmq/mtui-uniapp.git
 
 ```scss
 <style lang="scss">
-@import "mtui-uni/src/components/mt-theme/iconfont/iconfont.css";
+@import "./components/mt-theme/iconfont/iconfont.css";
 </style>
 ```
 
@@ -63,7 +63,7 @@ git clone https://github.com/lacey-lmq/mtui-uniapp.git
 
 ```scss
 <style lang="scss">
-@import "mtui-uni/src/components/mt-theme/iconfont/iconfont.css";
+@import "./components/mt-theme/iconfont/iconfont.css";
 </style>
 ```
 
