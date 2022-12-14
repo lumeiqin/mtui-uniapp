@@ -22,7 +22,7 @@ Vue.use(mtui);
 
 ```css
 /* 在 App.vue 中引入字体图标 */
-@import "mtui-uni/src/components/mt-theme/iconfont/iconfont.scss";
+@import "mtui-uni/src/components/mt-theme/iconfont/iconfont.css";
 ```
 
 ```scss
@@ -41,7 +41,7 @@ git clone https://github.com/lacey-lmq/mtui-uniapp.git
 
 ```css
 /* 在 App.vue 中引入字体图标 */
-@import "mtui-uni/src/components/mt-theme/iconfont/iconfont.scss";
+@import "mtui-uni/src/components/mt-theme/iconfont/iconfont.css";
 ```
 
 ```scss
@@ -61,7 +61,7 @@ git clone https://github.com/lacey-lmq/mtui-uniapp.git
 
 ```css
 /* 在 App.vue 中引入字体图标 */
-@import "mtui-uni/src/components/mt-theme/iconfont/iconfont.scss";
+@import "mtui-uni/src/components/mt-theme/iconfont/iconfont.css";
 ```
 
 ```scss
