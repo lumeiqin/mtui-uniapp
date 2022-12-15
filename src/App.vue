@@ -13,6 +13,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "components/mt-theme/iconfont/iconfont.css";
 .comp {
   padding: 15px 0;
 }

@@ -33,6 +33,7 @@
   .swiper_box {
     height: 100%;
     white-space: nowrap;
+    transition: transform 500ms cubic-bezier(0, 0, 0.5, 1);
   }
 
   .swiper_item, image {
