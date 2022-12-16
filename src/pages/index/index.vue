@@ -252,10 +252,10 @@ export default {
       padding: 0 32rpx;
       .item_modules {
         width: 100%;
-        height: 80rpx;
+        height: 92rpx;
         background: #fff;
         border-radius: 100rpx;
-        margin-bottom: 30rpx;
+        margin-bottom: 46rpx;
         padding: 0 38rpx 0 40rpx;
         display: flex;
         justify-content: space-between;
