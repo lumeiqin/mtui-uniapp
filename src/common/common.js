@@ -15,22 +15,12 @@ export default {
     },
     methods: {
         backClick() {
-            uni.reLaunch({
+            uni.redirectTo({
                 url: "/pages/index/index"
-            })
-        },
-        baseClick() {
-            uni.reLaunch({
-                url: "/pages/index/base"
             })
         },
 
         // form
-        formClick() {
-            uni.reLaunch({
-                url: "/pages/index/form"
-            })
-        },
         formValid() {
             if (this.$refs.mtForm.validate()) {
                 console.log("表单校验成功")
@@ -40,13 +30,6 @@ export default {
         },
         changeForm(obj) {
             console.log("表单提交内容：", obj)
-        },
-
-        // popup
-        popupClick() {
-            uni.reLaunch({
-                url: "/pages/index/popup"
-            })
         },
     }
 }

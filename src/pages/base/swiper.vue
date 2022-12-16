@@ -1,6 +1,6 @@
 <template>
   <view>
-    <mt-navbar fixed title="Swiper" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
+    <mt-navbar fixed title="Swiper" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
 
     <ry-title>
       <mt-swiper ref="swiper1">

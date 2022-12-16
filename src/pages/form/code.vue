@@ -1,6 +1,6 @@
 <template>
   <view>
-    <mt-navbar fixed title="Code 验证码" emit="true" :config="pagenav" @backClick="formClick"></mt-navbar>
+    <mt-navbar fixed title="Code 验证码" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
     <view class="formPage">
       <ry-title title="根据phone字段获取手机号">
         <view class="formContent">

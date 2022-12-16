@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<mt-navbar fixed title="Rate" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
+		<mt-navbar fixed title="Rate" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
 		<view class="comp">
 			<ry-title>
 				<mt-rate :value="3" @change="rateChange"></mt-rate>

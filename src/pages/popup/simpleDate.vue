@@ -1,6 +1,6 @@
 <template>
   <view>
-    <mt-navbar fixed title="日期选择器" emit="true" :config="pagenav" @backClick="popupClick"></mt-navbar>
+    <mt-navbar fixed title="日期选择器" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
     <view class="comp">
       <ry-title>
         <mt-button @click="openDate('normal')">基础用法</mt-button>

@@ -1,6 +1,6 @@
 <template>
   <view>
-    <mt-navbar fixed title="Pagination" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
+    <mt-navbar fixed title="Pagination" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
     <view class="comp">
       <ry-title>
         <mt-pagination :totalPage="totalPage" @change="changeEvent"></mt-pagination>

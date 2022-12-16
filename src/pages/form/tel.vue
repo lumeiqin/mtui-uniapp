@@ -1,6 +1,6 @@
 <template>
   <view>
-    <mt-navbar fixed title="Tel 手机号" emit="true" :config="pagenav" @backClick="formClick"></mt-navbar>
+    <mt-navbar fixed title="Tel 手机号" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
     <view class="formPage">
       <ry-title title="自定义配置">
         <view class="formContent">

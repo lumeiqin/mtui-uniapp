@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<mt-navbar fixed title="Step" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
+		<mt-navbar fixed title="Step" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
 		<view class="step">
 			<ry-title>
 				<mt-step v-for="(v, index) in dutyRecordList" :key="index" :time="v.createTime">

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<mt-navbar fixed title="Search" emit="true" :config="pagenav" @backClick="baseClick"></mt-navbar>
+		<mt-navbar fixed title="Search" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
 		<view class="comp">
 			<ry-title>
 				<mt-search @focus="focusEvent" @blur="blurEvent" @input="inputEvent"></mt-search>

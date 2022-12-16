@@ -3,13 +3,7 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "home"
-      }
-    },
-    {
-      "path": "pages/index/base",
-      "style": {
-        "navigationBarTitleText": "基础",
+        "navigationBarTitleText": "home",
         "navigationStyle": "custom"
       }
     },
@@ -115,13 +109,6 @@
       "path": "pages/base/swiper",
       "style": {
         "navigationBarTitleText": "swiper",
-        "navigationStyle": "custom"
-      }
-    },
-    {
-      "path": "pages/index/form",
-      "style": {
-        "navigationBarTitleText": "表单组件",
         "navigationStyle": "custom"
       }
     },
@@ -251,14 +238,6 @@
         "navigationStyle": "custom"
       }
     },
-
-    {
-      "path": "pages/index/popup",
-      "style": {
-        "navigationBarTitleText": "弹出层",
-        "navigationStyle": "custom"
-      }
-    },
     {
       "path": "pages/popup/popup",
       "style": {
@@ -284,6 +263,13 @@
       "path": "pages/popup/simpleDate",
       "style": {
         "navigationBarTitleText": "simpleDate",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/popup/simpleList",
+      "style": {
+        "navigationBarTitleText": "simpleList",
         "navigationStyle": "custom"
       }
     },
