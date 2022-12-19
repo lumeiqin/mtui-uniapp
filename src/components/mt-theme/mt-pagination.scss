@@ -1,5 +1,6 @@
 .pagination {
   height: 56rpx;
+  line-height: 56rpx;
   display: flex;
   align-items: center;
   &_btn {
@@ -9,7 +10,6 @@
     justify-content: center;
     align-items: center;
     font-size: 28rpx;
-    border-radius: 30rpx;
     color: #fff;
   }
   .disabled {
@@ -26,7 +26,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      border-radius: 50%;
       font-size: 26rpx;
       margin-right: 20rpx;
     }
@@ -44,5 +43,12 @@
     width: 70rpx;
     text-align: center;
     margin-top: -9px;
+  }
+
+  .simpleMode {
+    width: 280rpx;
+    text-align: center;
+    color: #646566;
+    letter-spacing: 2rpx;
   }
 }

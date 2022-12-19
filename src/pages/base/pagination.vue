@@ -3,15 +3,27 @@
     <mt-navbar fixed title="Pagination" emit="true" :config="pagenav" @backClick="backClick"></mt-navbar>
     <view class="comp">
       <ry-title>
-        <mt-pagination :totalPage="totalPage" @change="changeEvent"></mt-pagination>
+        <view style="padding: 40rpx 0">
+          <mt-pagination :totalPage="totalPage" @change="changeEvent"></mt-pagination>
+        </view>
       </ry-title>
 
       <ry-title title="不显示……">
-        <mt-pagination :showEll="false"></mt-pagination>
+        <view style="padding: 40rpx 0">
+          <mt-pagination :showEll="false"></mt-pagination>
+        </view>
       </ry-title>
 
-      <ry-title title="变换主题色">
-        <mt-pagination :config="{color: '#6A59B1'}"></mt-pagination>
+      <ry-title title="简单模式">
+        <view style="padding: 40rpx 0">
+          <mt-pagination type="simple" :showEll="false"></mt-pagination>
+        </view>
+      </ry-title>
+
+      <ry-title title="自定义参数">
+        <view style="padding: 40rpx 0">
+          <mt-pagination :config="pageConfig"></mt-pagination>
+        </view>
       </ry-title>
     </view>
   </view>
@@ -24,7 +36,12 @@ export default {
   mixins: [common],
   data() {
     return {
-      totalPage: 20
+      totalPage: 20,
+      pageConfig: {
+        color: '#6A59B1',
+        radius: '10rpx',
+        numRadius: "8rpx"
+      }
     }
   },
   methods: {
