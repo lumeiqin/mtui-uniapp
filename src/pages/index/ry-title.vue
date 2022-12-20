@@ -22,13 +22,13 @@
 		line-height: 40rpx;
 		font-size: 30rpx;
 		font-weight: 500;
-		padding: 12rpx 30rpx;
+		padding: 10rpx 30rpx;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		border-left: 4px solid #848687;
 	}
 	.content {
-		padding: 20rpx;
+		padding: 40rpx;
 	}
 </style>

@@ -1,0 +1,10 @@
+.mtLoading {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #424242;
+  font-size: 30rpx;
+  i {
+    animation: rotate360 1s infinite;
+  }
+}

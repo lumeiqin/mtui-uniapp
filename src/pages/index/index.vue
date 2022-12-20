@@ -48,6 +48,9 @@ export default {
             title: 'Keyboard 键盘',
             path: 'keyboard'
           }, {
+            title: 'Loading 加载',
+            path: 'loading'
+          }, {
             title: 'Navbar 导航栏',
             path: 'navbar'
           }, {

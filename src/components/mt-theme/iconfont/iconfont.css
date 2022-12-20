@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3460079 */
-  src: url('https://at.alicdn.com/t/c/font_3460079_1izn6x1cxn7.woff2?t=1670490073709') format('woff2'),
-  url('https://at.alicdn.com/t/c/font_3460079_1izn6x1cxn7.woff?t=1670490073709') format('woff'),
-  url('https://at.alicdn.com/t/c/font_3460079_1izn6x1cxn7.ttf?t=1670490073709') format('truetype');
+  src: url('https://at.alicdn.com/t/c/font_3460079_bwmw7ncg977.woff2?t=1671507736979') format('woff2'),
+  url('https://at.alicdn.com/t/c/font_3460079_bwmw7ncg977.woff?t=1671507736979') format('woff'),
+  url('https://at.alicdn.com/t/c/font_3460079_bwmw7ncg977.ttf?t=1671507736979') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,26 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-loading1:before {
+  content: "\e62f";
+}
+
+.icon-loading2:before {
+  content: "\e61d";
+}
+
+.icon-loading3:before {
+  content: "\e633";
+}
+
+.icon-Loading:before {
+  content: "\e65d";
+}
+
+.icon-Loading1:before {
+  content: "\e6e8";
 }
 
 .icon-loading:before {

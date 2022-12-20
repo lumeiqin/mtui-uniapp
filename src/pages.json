@@ -50,6 +50,13 @@
       }
     },
     {
+      "path": "pages/base/loading",
+      "style": {
+        "navigationBarTitleText": "loading",
+        "navigationStyle": "custom"
+      }
+    },
+    {
       "path": "pages/base/navbar",
       "style": {
         "navigationBarTitleText": "navbar",
