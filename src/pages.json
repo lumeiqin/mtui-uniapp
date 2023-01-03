@@ -92,6 +92,13 @@
       }
     },
     {
+      "path": "pages/base/swiper",
+      "style": {
+        "navigationBarTitleText": "swiper",
+        "navigationStyle": "custom"
+      }
+    },
+    {
       "path": "pages/base/tabbar",
       "style": {
         "navigationBarTitleText": "tabbar",
@@ -113,9 +120,9 @@
       }
     },
     {
-      "path": "pages/base/swiper",
+      "path": "pages/base/text",
       "style": {
-        "navigationBarTitleText": "swiper",
+        "navigationBarTitleText": "home",
         "navigationStyle": "custom"
       }
     },

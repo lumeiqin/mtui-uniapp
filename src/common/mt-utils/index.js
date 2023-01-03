@@ -299,6 +299,83 @@ class Utils {
         return format
     }
 
+    /**
+     * @description 判断值是否为指定的类型
+     * @param {Null, Undefined, Number, Boolean, String, Array, Set, Map, File, Object} val: 需要判断的值
+     * @param {String} type 指定的类型名称
+     */
+    judgeType(val, type) {
+        let data = [{
+            name: "array",
+            condi: "[object Array]"
+        }, {
+            name: "null",
+            condi: "[object Null]"
+        }, {
+            name: "undefined",
+            condi: "[object Undefined]"
+        }, {
+            name: "number",
+            condi: "[object Number]"
+        }, {
+            name: "boolean",
+            condi: "[object Boolean]"
+        }, {
+            name: "string",
+            condi: "[object String]"
+        }, {
+            name: "set",
+            condi: "[object Set]"
+        }, {
+            name: "map",
+            condi: "[object Map]"
+        }, {
+            name: "file",
+            condi: "[object File]"
+        }, {
+            name: "object",
+            condi: "[object Object]"
+        }]
+
+        let result = Object.prototype.toString.call(val);
+
+        return type === this.objectGetItem(data, result, 'condi', 'name');
+    }
+
+
+    /**
+     * @description 根据传入的值，到传入的数据中获取对应的其他值
+     * @param {Array，Object} data: 传入的数据
+     * @param {String} type 传入的值
+     * @param {String} param Array: 传入的值属于哪个参数
+     * @param {String} secondParam Array: 需要获取哪个参数
+     */
+    objectGetItem(data, val, param, secondParam) {
+        if (this.isEmpty(data)) return;
+
+        if (Object.prototype.toString.call(data) == '[object Array]') {
+            let arrVal;
+            data.map(v => {
+                if (v[param] == val) {
+                    arrVal = v[secondParam];
+                }
+            })
+            return arrVal;
+        }
+
+        if (Object.prototype.toString.call(data) == '[object Object]') {
+            let objVal;
+            Object.keys(data).forEach(v => {
+                if (val == v) {
+                    objVal = data[v]
+                } else if (val == data[v]) {
+                    objVal = v
+                }
+            })
+            return objVal
+        }
+    }
+
     // 水印背景
     waterMark(options) {
         var _this = this;

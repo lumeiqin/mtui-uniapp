@@ -1,6 +1,7 @@
 <template>
   <view>
-    <scroll-view class="indexPage" scroll-y="true" scroll-with-animation="true" :scroll-top="scrollTop" @scroll="scrollEvent">
+    <scroll-view class="indexPage" scroll-y="true" scroll-with-animation="true" :scroll-top="scrollTop"
+                 @scroll="scrollEvent">
       <view class="indexPage_item" v-for="(item, index) in dataArr" :key="index">
         <view class="item_title" :ref="'items_' + index">{{ item.title }}</view>
         <view class="item_module">
@@ -14,7 +15,9 @@
     </scroll-view>
 
     <view class="fixBox">
-      <view class="items" :class="{'active': current === index}" v-for="(item, index) in dataArr" :key="index" @click="scrollIndex(item, index)">{{ item.title }}</view>
+      <view class="items" :class="{'active': current === index}" v-for="(item, index) in dataArr" :key="index"
+            @click="scrollIndex(item, index)">{{ item.title }}
+      </view>
     </view>
   </view>
 </template>
@@ -175,7 +178,6 @@ export default {
 
   onShow() {
     this.scrollTop = uni.getStorageSync("scrollTop");
-
   },
   created() {
     this.$nextTick(() => {
@@ -185,7 +187,7 @@ export default {
     })
   },
   methods: {
-    scrollIndex(item,index) {
+    scrollIndex(item, index) {
       this.scrollTop = item.top;
       this.current = index;
     },
@@ -194,7 +196,7 @@ export default {
       uni.setStorageSync("scrollTop", e.detail.scrollTop);
 
       this.dataArr.forEach((v, i) => {
-        if(this.scrollTop >= v.top) {
+        if (this.scrollTop >= v.top) {
           this.current = i
         }
       })
@@ -220,18 +222,21 @@ export default {
   padding: 0 10px;
   border-radius: 8px;
   z-index: 1000;
-  box-shadow: 2px 3px 5px rgba(0,0,0,.3);
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, .3);
+
   .items {
     font-size: 30rpx;
     color: #666;
     letter-spacing: 2rpx;
     padding: 5px 0;
   }
+
   .active {
     color: #2194F2;
-    text-shadow: 2px 2px 5px rgba(0,0,0,.3);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, .3);
   }
 }
+
 .indexPage {
   width: 100%;
   height: 100vh;
@@ -239,6 +244,7 @@ export default {
   &_item {
     padding: 0 0 60rpx 0;
     box-sizing: border-box;
+
     .item_title {
       width: 100%;
       height: 100rpx;
@@ -253,6 +259,7 @@ export default {
     .item_module {
       width: 100%;
       padding: 0 32rpx;
+
       .item_modules {
         width: 100%;
         height: 92rpx;
@@ -264,16 +271,19 @@ export default {
         justify-content: space-between;
         align-items: center;
         font-weight: 300;
-        box-shadow: 2px 3px 5px rgba(0,0,0,.3);
+        box-shadow: 2px 3px 5px rgba(0, 0, 0, .3);
+
         text {
           font-size: 30rpx;
           color: #666;
         }
+
         i {
           font-size: 32rpx;
           color: #999;
         }
       }
+
       .item_modules:nth-last-child(1) {
         margin-bottom: 0;
       }

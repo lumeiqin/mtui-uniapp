@@ -38,6 +38,7 @@ import mtKeyboard from "./src/components/mt-keyboard/mt-keyboard";
 import mtSwiper from "./src/components/mt-swiper/mt-swiper";
 import mtSwiperItem from "./src/components/mt-swiper-item/mt-swiper-item";
 import mtPagination from "./src/components/mt-pagination/mt-pagination";
+import mtLoading from "./src/components/mt-loading/mt-loading";
 
 let components = [
     mtBox,
@@ -67,7 +68,8 @@ let components = [
     mtKeyboard,
     mtSwiper,
     mtSwiperItem,
-    mtPagination
+    mtPagination,
+    mtLoading
 ]
 
 const install = function (Vue, opts = {}) {
@@ -119,5 +121,6 @@ export default {
     mtKeyboard,
     mtSwiper,
     mtSwiperItem,
-    mtPagination
+    mtPagination,
+    mtLoading
 };
