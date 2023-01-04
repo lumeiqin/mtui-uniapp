@@ -22,7 +22,7 @@
 
       <ry-title title="自定义参数">
         <view style="padding: 40rpx 0">
-          <mt-pagination :config="pageConfig"></mt-pagination>
+          <mt-pagination :index="2" :config="pageConfig"></mt-pagination>
         </view>
       </ry-title>
     </view>

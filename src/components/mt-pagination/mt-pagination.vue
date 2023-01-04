@@ -52,6 +52,10 @@ export default {
       type: Number,
       default: 10
     },
+    index: {
+      type: Number,
+      default: 1
+    },
     type: {
       type: String,
       default: 'normal'
@@ -88,6 +92,7 @@ export default {
       ...this.config
     }
     this.total = this.totalPage;
+    this.current = this.index;
 
     if (this.total <= 0) return
     for (let i = 1; i <= this.total; i++) {
@@ -105,6 +110,9 @@ export default {
           this.btnNumber.push(i)
         }
       }
+    },
+    index(newValue) {
+      this.current = newValue;
     },
     config(newvalue) {
       this.selfConfig = {
