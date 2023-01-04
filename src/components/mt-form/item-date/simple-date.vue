@@ -158,7 +158,22 @@
             };
       },
       endDate(newvalue) {
+        this.startTime = this.startDate;
         this.endTime = newvalue;
+
+        let startDatetime = this.startTime && this.formatDate(this.startTime);
+        let startDate = startDatetime && startDatetime.split(" ")[0].split("-");
+        let startTime = startDatetime && startDatetime.split(" ")[1].split(":");
+        this.start = startDate &&
+            startTime && {
+              time: startDatetime,
+              year: Number(startDate[0]),
+              month: Number(startDate[1]),
+              day: Number(startDate[2]),
+              hour: Number(startTime[0]),
+              minute: Number(startTime[1]),
+              second: Number(startTime[2])
+            };
 
         let endDatetime = this.endTime && this.formatDate(this.endTime);
         let endDate = endDatetime && endDatetime.split(" ")[0].split("-");
