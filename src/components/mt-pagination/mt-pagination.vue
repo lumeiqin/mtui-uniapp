@@ -33,7 +33,7 @@
 
     <block v-else-if="type === 'simple'">
       <view class="simpleMode">
-        {{ current }} / {{ totalPage }}
+        {{ current }} / {{ total }}
       </view>
     </block>
 
@@ -97,6 +97,15 @@ export default {
     }
   },
   watch: {
+    totalPage(newValue) {
+      this.total = newValue;
+      if (this.total <= 0) return
+      for (let i = 1; i <= this.total; i++) {
+        if (i <= 5) {
+          this.btnNumber.push(i)
+        }
+      }
+    },
     config(newvalue) {
       this.selfConfig = {
         ...this.selfConfig,
