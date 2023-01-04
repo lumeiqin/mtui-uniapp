@@ -66,6 +66,9 @@
 
 		data() {
 			return {
+        startTime: "",
+        endTime: "",
+
 				years: [],
 				months: [],
 				days: [],
@@ -101,7 +104,11 @@
 					second: Number(currentTime[2])
 				};
 
-			let startDatetime = this.startDate && this.formatDate(this.startDate);
+
+      this.startTime = this.startDate;
+      this.endTime = this.endDate;
+
+          let startDatetime = this.startTime && this.formatDate(this.startTime);
 			let startDate = startDatetime && startDatetime.split(" ")[0].split("-");
 			let startTime = startDatetime && startDatetime.split(" ")[1].split(":");
 			this.start = startDate &&
@@ -115,7 +122,7 @@
 					second: Number(startTime[2])
 				};
 
-			let endDatetime = this.endDate && this.formatDate(this.endDate);
+			let endDatetime = this.endTime && this.formatDate(this.endTime);
 			let endDate = endDatetime && endDatetime.split(" ")[0].split("-");
 			let endTime = endDatetime && endDatetime.split(" ")[1].split(":");
 			this.end = startDate &&
@@ -133,6 +140,40 @@
 		},
 
 		watch: {
+      startDate(newvalue) {
+        this.startTime = newvalue;
+
+        let startDatetime = this.startTime && this.formatDate(this.startTime);
+        let startDate = startDatetime && startDatetime.split(" ")[0].split("-");
+        let startTime = startDatetime && startDatetime.split(" ")[1].split(":");
+        this.start = startDate &&
+            startTime && {
+              time: startDatetime,
+              year: Number(startDate[0]),
+              month: Number(startDate[1]),
+              day: Number(startDate[2]),
+              hour: Number(startTime[0]),
+              minute: Number(startTime[1]),
+              second: Number(startTime[2])
+            };
+      },
+      endDate(newvalue) {
+        this.endTime = newvalue;
+
+        let endDatetime = this.endTime && this.formatDate(this.endTime);
+        let endDate = endDatetime && endDatetime.split(" ")[0].split("-");
+        let endTime = endDatetime && endDatetime.split(" ")[1].split(":");
+        this.end = startDate &&
+            startTime && {
+              time: endDatetime,
+              year: Number(endDate[0]),
+              month: Number(endDate[1]),
+              day: Number(endDate[2]),
+              hour: Number(endTime[0]),
+              minute: Number(endTime[1]),
+              second: Number(endTime[2])
+            };
+      },
 			value(newvalue, oldvalue) {
 				if (newvalue[0] != oldvalue[0]) {
 					this.initMonths();
