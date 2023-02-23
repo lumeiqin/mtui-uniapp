@@ -6,7 +6,7 @@
 		'line-height': selfConfig.height
 	}">
 		<view class="mt-tabs-box" v-if="type === 'scroll'">
-			<scroll-view id="scrollBox" class="scrollBox" :scroll-x="true" :scroll-left="scrollLeft">
+			<scroll-view id="scrollBox" class="scrollBox" scroll-with-animation :scroll-x="true" :scroll-left="scrollLeft">
 
 				<view class="scrollBox-main">
 					<block v-for="(item, index) in tabList" :key="index">

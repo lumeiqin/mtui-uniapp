@@ -99,9 +99,11 @@ class Utils {
      * @description 接口请求 [get | post | file]
      */
     get(urlParams, requestParams = {}, headerParams = {}) {
-        uni.showLoading({
-            title: "加载中"
-        })
+        if(!urlParams.loading) {
+            uni.showLoading({
+                title: "加载中"
+            })
+        }
         this.setConsole(["----------get" +
         "接口请求地址：" + this._handleUrl(urlParams),
             "接口请求参数：" + JSON.stringify(this._bindToken(requestParams, this.tokenName)),
@@ -122,9 +124,11 @@ class Utils {
     }
 
     post(urlParams, requestParams = {}, submitType = "json", headerParams = {}) {
-        uni.showLoading({
-            title: "加载中"
-        })
+        if(!urlParams.loading) {
+            uni.showLoading({
+                title: "加载中"
+            })
+        }
         let submitHeader = {};
         switch (submitType) {
             case "form":
@@ -165,10 +169,11 @@ class Utils {
     }
 
     fileUpload(urlParams, fileName, requestParams = {}, headerParams = {}, nameKey = 'file', submitMethods = 'single') {
-        uni.showLoading({
-            title: "加载中"
-        })
-
+        if(!urlParams.loading) {
+            uni.showLoading({
+                title: "加载中"
+            })
+        }
         this.setConsole(["+++++++++++++++fileUpload" +
         "接口请求地址：" + this._handleUrl(urlParams),
             "文件本体：" + fileName,
