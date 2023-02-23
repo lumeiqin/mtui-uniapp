@@ -177,7 +177,7 @@ export default {
   },
 
   onShow() {
-    // this.scrollTop = uni.getStorageSync("scrollTop");
+    this.scrollTop = uni.getStorageSync("scrollTop");
   },
   created() {
     this.$nextTick(() => {
@@ -193,7 +193,7 @@ export default {
     },
     scrollEvent(e) {
       this.scrollTop = e.detail.scrollTop;
-      // uni.setStorageSync("scrollTop", e.detail.scrollTop);
+      uni.setStorageSync("scrollTop", e.detail.scrollTop);
 
       this.dataArr.forEach((v, i) => {
         if (this.scrollTop >= v.top) {
