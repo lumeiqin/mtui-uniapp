@@ -1,7 +1,7 @@
 <template>
 	<SelectBox ref="SelectBox" @cancel="_onCancel" @submit="_onSubmit">
 		<template slot="picker">
-			<picker-view :value="pickerValue" @change="_onChange">
+			<picker-view :value="pickerValue" @change="_onChange" v-if="chooseList && chooseList.length > 0">
 				<picker-view-column>
 					<view class="select-box-body-columnItem" v-for="(item, index) in chooseList" :key="index">
 						{{ item[showValue.value] }}
