@@ -1,6 +1,6 @@
 #### 在使用 MtUI UNI 版 前，请确保你已经学习并熟练使用过 [uni-app](https://uniapp.dcloud.io/) 。
 
-### [mtui-uni 文档](https://lumeiqin.github.io/mtui-uniapp/)
+### [mtui-uni 文档](https://env-00jxgo0ipbjd-static.normal.cloudstatic.cn/index.html#/)
 
 ---
 
